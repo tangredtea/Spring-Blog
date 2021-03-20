@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <!-- Standard Meta 适配移动设备 -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>XI溪 - 人生若只是初见,何事秋风悲画扇</title>
+    <div th:insert="~{common::common-js}"></div>
+
+
+</head>
+
+<body>
+
+<div id="workingArea">
+    <div id="navMenu" class="ui inverted segment navDiv-active" >
+        <div th:replace="~{common::Menu}"></div>
+    </div>
+    <div class="errorContent">
+        <div class="ui container">
+            <div class="ui raised  segment  errorBackground error">
+                <div class="main">
+                    <h1 class="status">
+                        Bug
+                    </h1>
+                    <p>
+					<span>
+						 发生Bug了，What the hell?
+					</span>
+                        <span class="error">
+						?
+					</span>
+                    </p>
+                    <p class="message">
+                        请偷偷反馈给博主噢
+                    </p>
+                    <div align="center">
+                        <a href="/" class="ui teal button">
+                            返回
+                        </a>
+                    </div>
+                    <div class="icons">
+                        <p>
+                            Follow us on:
+                        </p>
+                        <ul>
+                            <li>
+                                <a id="wechat" class="ui wechat circular icon button">
+                                    <i class="weixin icon">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="QQ" class="ui qq circular icon button">
+                                    <i class="qq icon">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/xuzhixiangya" target="_blank" data-tooltip="点击进入github"
+                                   data-position="bottom center" data-inverted="" class="ui circular icon button">
+                                    <i class="github icon">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://blog.csdn.net/qq_44787816?spm=1000.2115.3001.5113" target="_blank"
+                                   data-tooltip="点击进入csdn" data-position="bottom center" data-inverted=""
+                                   class="ui circular icon button">
+                                    <i class="cuttlefish icon">
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://space.bilibili.com/363622328" target="_blank" data-tooltip="点击进入b站"
+                                   data-position="bottom center" data-inverted="" class="ui circular icon button">
+                                    <i class="bimobject icon">
+                                    </i>
+                                </a>
+                            </li>
+                            <div id="wechatPic" class="ui flowing popup transition hidden">
+                                <img src="../static/images/aboutMe/contactOfWeChat.png" th:src="@{/images/aboutMe/contactOfWeChat.png}" class="ui small rounded image">
+                            </div>
+                            <div id="QQPic" class="ui flowing popup transition hidden">
+                                <img src="../static/images/aboutMe/contactOfQQ.png" th:src="@{/images/aboutMe/contactOfQQ.png}" class="ui small rounded image">
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div th:utext="'&lt;!--'" th:remove="tag"></div>
+        <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+        <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+        <ul th:remove="tag">
+            <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+        </ul>
+        <div th:utext="'--&gt;'" th:remove="tag"></div>
+    </div>
+    <div th:insert="~{common::footer}"></div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" src="../static/js/error.js" th:src="@{/js/error.js}"></script>
+</body>
+</html>

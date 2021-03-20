@@ -1,0 +1,19 @@
+spring:            #全局配置
+  thymeleaf:
+    cache: false
+  profiles:
+    active: dev
+#gzip压缩
+server:
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+    port-header: X-Forwarded-Port
+    use-forward-headers: true
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+
+
+comment.avatar: /images/avatar.jpg

@@ -1,0 +1,58 @@
+#生产环境
+spring:
+  datasource:
+    #C3P0连接池
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    maxPoolSize: 200
+    minPoolSize: 10
+    initialPoolSize: 10
+    acquireIncrement: 5
+    idleConnectionTestPeriod: 28000
+    maxIdleTime: 28000
+  thymeleaf:
+    #开启模板缓存
+    cache: true
+    #检查模板是否存在再呈现
+    check-template: true
+    #检查模板位置是否正确
+    check-template-location: true
+    #Content-Type 的值（默认值： text/html ）
+    servlet.content-type: text/html
+    # 开启 MVC Thymeleaf 视图解析（默认值： true ）
+    enabled: true
+    # 模板编码
+    encoding: UTF-8
+    # 要运⽤于模板之上的模板模式。另⻅ StandardTemplate-ModeHandlers( 默认值： HTML5)
+    mode: HTML
+    # 在构建 URL 时添加到视图名称前的前缀（默认值： classpath:/templates/ ）
+    prefix: classpath:/templates/
+    # 在构建 URL 时添加到视图名称后的后缀（默认值： .html ）
+    suffix: .html
+#日志输出
+logging:
+  level:
+    root: warn
+    com.star: info
+    #日志目录
+  file.path=: log/blog-dev.log
+#Mybatis
+mybatis:
+  #设置别名
+  type-aliases-package: com.blog.pojo
+  #ָ指定myBatis的核心配置文件与Mapper映射文件
+  mapper-locations: classpath:mapper/*.xml
+  #驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params:
+
+

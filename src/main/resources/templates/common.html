@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+</head>
+<body>
+<!--公共头部引入资源-->
+<div th:fragment="common-js">
+    <link rel="icon" href="../static/images/logo.png" th:href="@{/images/logo.png}"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/foreBlog.css" th:href="@{/css/foreBlog.css}">
+</div>
+<!--主页菜单-->
+<div th:fragment="Menu" class="ui  container">
+        <div class="ui stackable inverted secondary menu">
+            <!--标记处-->
+            <img class="ui rounded image logo" src="../static/images/logo.png" th:src="@{/images/logo.png}">
+            <a href="/" class="item mobileHidden navItem"><i class="home icon"></i>首页</a>
+            <a href="/types" class="item mobileHidden navItem"><i class="list icon"></i>分类</a>
+            <a href="/tags" class="item mobileHidden navItem"><i class="ui tag icon"></i>标签</a>
+            <a href="/comments" class="item mobileHidden navItem"><i class="comments outline icon"></i>留言墙</a>
+            <a href="/about" class="item mobileHidden navItem"><i class="ui street view icon"></i>关于我</a>
+            <a href="/friends" class="item mobileHidden navItem"><i class="ui linkify icon"></i>友链</a>
+            <div id="searchItem " class=" right menu item mobileHidden navItem searchItemHidden"  >
+                <div class="ui icon search input"   >
+                    <form name="search" action="#" method="post" th:action="@{/search}" target="_blank"  >
+                        <div class="ui icon transparent input m-margin-tb-tiny"    >
+                            <input style="color:white" ctype="text"   name="query" placeholder="Search...." th:value="${query}">
+                            <i onclick="document.forms['search'].submit()" style="color: #d2691e" class="search link icon"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <span class="mobileShow mobileTitle">文若君</span>
+        <a class="ui black button mobileButton  mobileShow"><i class="sidebar icon"></i></a>
+    </div>
+<!--底部及其资源-->
+<div th:fragment="footer" class="ui inverted segment footerDiv">
+    <div class="ui container">
+        <div class="ui stackable inverted divided grid" align="center">
+            <div class="four wide column">
+                <h4 class="ui inverted header">联系我呀</h4>
+                <img class="ui small rounded image" src="https://www.xiaoxuya.top/img/aboutMe/contactOfWeChat.jpg" />
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">技术支持</h4>
+                <div class="ui animated inverted  list">
+                    <a href="https://semantic-ui.com" rel="nofollow" target="_blank" class="item">Semantic UI</a>
+                    <a href="https://spring.io/"  rel="nofollow" target="_blank" class="item">Spring</a>
+                    <a href="https://redis.io/"  rel="nofollow" target="_blank"  class="item">Redis</a>
+                    <a href="https://mybatis.org/mybatis-3/" rel="nofollow"  target="_blank"  class="item">Mybatis</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">学习网站</h4>
+                <div class="ui animated inverted  list">
+                    <a href="https://github.com/" rel="nofollow" target="_blank" class="item">Github</a>
+                    <a href="https://www.bilibili.com/" rel="nofollow"  target="_blank" class="item">BiliBili</a>
+                    <a href="https://www.mooc.cn/" rel="nofollow"  target="_blank"  class="item">MOOC</a>
+                    <a href="https://gitee.com/" rel="nofollow" target="_blank" class="item">Gitee</a>
+
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">网站信息</h4>
+                <div class="ui inverted  list">
+                    <div class="item webinfo" style="font-size: 13px">
+                        网站名称: <span id="webName" v-cloak>{{websiteInfo.webSiteName}}</span>
+                    </div>
+                    <div class="item webinfo" style="font-size: 13px">
+                        文章总数: <span id="articleNumber" v-cloak>{{websiteInfo.allArticleCount}}</span>
+                    </div>
+                    <div class="item webinfo" style="font-size: 13px">
+                        访客总数: <span id="accessNumber" v-cloak>{{websiteInfo.visitorNumber}}</span>
+                    </div>
+                    <div class="item webinfo" style="font-size: 13px">
+                        浏览总量: <span id="viewNumber" v-cloak>{{websiteInfo.allViewNumber}}</span>
+                    </div>
+                    <div class="item webinfo" style="font-size: 13px">
+                        建站时间: <span id="webDate">2021年3月16日</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted divider"></div>
+        <div class="ttl" align="center">网站已运行: <span id="webRuntime"></span></div>
+        <div class="copyRight" align="center">Copyright © 2021-Now isbut.cn All Rights Reserved.</div>
+    </div>
+
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../static/js/foreBlog.js" type="text/javascript" th:src="@{/js/foreBlog.js}" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script>
+        setInterval(setTime, 1000);
+    </script>
+
+
+
+    <script type="text/javascript" src="../static/js/canvas-ribbon.js" th:src="@{/js/canvas-ribbon.js}"></script>
+    <script type="text/javascript">
+        new Ribbons({
+            // ribbon color HSL saturation amount
+            colorSaturation: "80%",
+            // ribbon color HSL brightness amount
+            colorBrightness: "50%",
+            // ribbon color opacity amount
+            colorAlpha: 0.6,
+            // how fast to cycle through colors in the HSL color space
+            colorCycleSpeed: 10,
+            // where to start from on the Y axis on each side (top|min, middle|center, bottom|max, random)
+            verticalPosition: "center",
+            // how fast to get to the other side of the screen
+            horizontalSpeed: 0.8,
+            // how many ribbons to keep on screen at any given time
+            ribbonCount: 2,
+            // add stroke along with ribbon fill colors
+            strokeSize: 0,
+            // move ribbons vertically by a factor on page scroll
+            parallaxAmount: 0,
+            // add animation effect to each ribbon section over time
+            animateSections: true
+        });
+    </script>
+
+</div>
+</body>
+</html>
