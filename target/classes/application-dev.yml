@@ -38,7 +38,7 @@ spring:
 logging:
   level:
     root: warn
-    com.star: info
+    com.blog: info
     #日志目录
   file.path=: log/blog-dev.log
 #Mybatis

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <!-- Standard Meta 适配移动设备 -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!--    <title th:text="'分类'+'&#45;&#45;'+${web.suffix}">博客标题</title>-->
+    <!--    &lt;!&ndash; 页面描述 &ndash;&gt;-->
+    <!--    <meta name="description" content="博客描述" th:content="${web.description}"/>-->
+    <!--    &lt;!&ndash; 页面关键词 &ndash;&gt;-->
+    <!--    <meta name="keywords" th:content="${web.keywords}" content="博客关键词"/>-->
+    <!--实现每日一言-->
+    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    <!--End-->
+    <script>
+        fetch('https://v1.hitokoto.cn/?max_length=21')
+            .then(function (res){
+                return res.json();
+            })
+            .then(function (data) {
+                var hitokoto = document.getElementById('hitokoto');
+                hitokoto.innerText =data.hitokoto;
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+    </script>
+    <div th:insert="~{common::common-js}"></div>
+
+</head>
+<body>
+
+<div id="workingArea">
+    <div id="navMenu" class="ui inverted segment navDiv-active" >
+        <div th:replace="~{common::Menu}"></div>
+    </div>
+    <div class="pageHeadContainer">
+        <img src="../static/images/background/background5.jpg"  th:src="@{/images/background/background5.jpg}" class="ui image backgroundImg">
+        <div class="backgroundLayout">
+            <div class="myInfoDiv" align="center">
+                <div class="word" >
+                    <br>
+                    <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aboutMeContent">
+        <div class="ui raised teal segment">
+            <div class="ui vertical stackable grid container">
+                <div class="row">
+                    <h4 class="ui header aboutMeTitle">关于我</h4>
+                </div>
+                <div class="row introduction">
+                    <div class="aboutMe">
+                        <div class="item">
+                            <span class="span header">个人介绍</span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">个人简介:</span>
+                            <div class="itemContent">
+                                <p> 大三学生，了解基本前端知识，主攻Java后端开发。 </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">擅长技术:</span>
+                            <div class="itemContent">
+                                <p>熟悉 Java 语言基础（集合、反射、多线程等）</p>
+                                <p>熟悉基本数据结构以及常用算法</p>
+                                <p>熟悉 MySQL、Redis 的使用，了解 Mysql 索引、锁等基本原理</p>
+                                <p>熟悉计算机网络、计算机组成原理以及操作系统知识</p>
+                                <p>了解Spring、SpringMVC、SpringBoot、Mybatis等框架</p>
+                                <p>了解常用设计模式以及基本前端知识，了解JVM的基本知识</p>
+                                <p>工具：掌握Maven、Git、Linux等工具的常用命令 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog">
+                        <div class="item">
+                            <span class="span header">博客介绍</span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">博客名字:</span>
+                            <span class="spanContent"> 文若君 </span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">博客网址:</span>
+                            <span class="spanContent"> www.isbut.cn</span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">创建时间:</span>
+                            <span class="spanContent"> 2021-03-15</span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">博客使用的技术:</span>
+                            <div class="itemContent">
+                                <p>1、页面原型：html5，css3，js，jQuery，semantic UI以及一些插件</p>
+                                <p>2、后端：springboot，mybatis，mysql </p>
+                                <p>项目可能会存在小bug，如果发现了可以到Github提交issue修复</p>
+                                <p>Github项目地址:</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="futurePlan">
+                        <div class="item">
+                            <span class="span header">我的规划</span>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">近期规划:</span>
+                            <div class="itemContent">
+                                <p>1、巩固以前学的技术</p>
+                                <p>2、复习知识并且查漏补缺</p>
+                                <p>3、每日打卡自己定下的目标</p>
+                                <p>4、学习Vue后整合shiro升级博客</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <span class="itemHeader">长远规划:</span>
+                            <div class="itemContent">
+                                <p>1、好好学习</p>
+                                <p>2、快乐生活</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logUpdate">
+                        <div class="item">
+                            <span class="span header">更新日志</span>
+                        </div>
+                        <div class="item">
+                            <div class="itemContent">
+                             <p>暂时不写</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4 class="end">我也是有底线的哦!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="toTop" class="circular ui icon button" style="display: none;">
+        <i class="ui caret up icon"></i>
+    </button>
+
+    <div th:insert="~{common::footer}"></div>
+</div>
+
+<script type="text/javascript" src="/static/js/category.js" th:src="@{/js/category.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+</body>
+</html>

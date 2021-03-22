@@ -1,18 +1,20 @@
 #生产环境
 spring:
   datasource:
-    #C3P0连接池
-    type: com.mchange.v2.c3p0.ComboPooledDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    #hikari连接池,号称最快的连接池
+    type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
-    maxPoolSize: 200
-    minPoolSize: 10
-    initialPoolSize: 10
-    acquireIncrement: 5
-    idleConnectionTestPeriod: 28000
-    maxIdleTime: 28000
+    hikari:
+      auto-commit: true
+      minimum-idle: 2
+      idle-timeout: 60000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      pool-name: DatebookHikariCP
+      maximum-pool-size: 5
   thymeleaf:
     #开启模板缓存
     cache: true
@@ -36,7 +38,7 @@ spring:
 logging:
   level:
     root: warn
-    com.star: info
+    com.blog: info
     #日志目录
   file.path=: log/blog-dev.log
 #Mybatis

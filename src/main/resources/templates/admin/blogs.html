@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <title>博客管理</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
   <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
-  <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+  <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 </head>
 
@@ -16,8 +15,8 @@
   <div class="ui attached pointing menu">
     <div class="ui container">
       <div class="right menu">
-        <a href="#" th:href="@{/admin/blogs/input}" class=" item">发布</a>
-        <a href="#" th:href="@{/admin/blogs}" class="teal active item">列表</a>
+        <a href="#" th:href="@{/admin/blogs/input}"  class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>发布</a>
+        <a href="#" th:href="@{/admin/blogs}"  class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>列表</a>
       </div>
     </div>
   </div>
@@ -87,7 +86,7 @@
             <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-3-02</td>
             <td>
               <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
-              <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>
+              <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}"  onclick="return confirm('确定要删除该吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
             </td>
           </tr>
           </tbody>
@@ -125,9 +124,6 @@
   <br>
   <br>
 
-
-
-  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>

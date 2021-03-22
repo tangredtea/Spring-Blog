@@ -11,6 +11,23 @@
     <title>博客标题</title>
     <!--标记处-->
    <div th:insert="~{common :: common-js}"></div>
+    <!--实现每日一言-->
+    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    <!--End-->
+    <script>
+        fetch('https://v1.hitokoto.cn/?max_length=21')
+            .then(function (res){
+                return res.json();
+            })
+            .then(function (data) {
+                var hitokoto = document.getElementById('hitokoto');
+                hitokoto.innerText =data.hitokoto;
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+    </script>
     <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
 <style>
 
@@ -32,10 +49,7 @@
                 <img class="ui tiny circular image" src="../static/images/aboutMe/home.jpg" th:src="@{/images/aboutMe/home.jpg}" />
                 <div class="word">
 						<span>
-							人生若只是初见
-							<br>
-							<br>
-							何事秋风悲画扇
+							 <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
 						</span>
                 </div>
                 <div class="myLink">

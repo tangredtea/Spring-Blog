@@ -13,6 +13,23 @@
 <!--    <meta name="description" content="博客描述" th:content="${web.description}"/>-->
 <!--    &lt;!&ndash; 页面关键词 &ndash;&gt;-->
 <!--    <meta name="keywords" th:content="${web.keywords}" content="博客关键词"/>-->
+    <!--实现每日一言-->
+    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    <!--End-->
+    <script>
+        fetch('https://v1.hitokoto.cn/?max_length=21')
+            .then(function (res){
+                return res.json();
+            })
+            .then(function (data) {
+                var hitokoto = document.getElementById('hitokoto');
+                hitokoto.innerText =data.hitokoto;
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+    </script>
 <div th:insert="~{common::common-js}"></div>
 
 </head>
@@ -26,11 +43,9 @@
         <img src="../static/images/background/background5.jpg"  th:src="@{/images/background/background5.jpg}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
-                <div>
-                    <span class="name">XI溪</span>
-                </div>
-                <div class="word" v-cloak>
-                    {{motto.word}}
+                <div class="word" >
+                    <br>
+                    <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
                 </div>
             </div>
         </div>
@@ -112,19 +127,6 @@
         <i class="ui caret up icon"></i>
     </button>
 
-    <div>
-        <div class="ui tiny modal tipModal">
-            <div class="ui header">提示</div>
-            <div class="content">
-
-            </div>
-            <div class="actions">
-                <div class="ui teal button" id="tipCloseButton">
-                    确定
-                </div>
-            </div>
-        </div>
-    </div>
     <div th:insert="~{common::footer}"></div>
     </div>
 

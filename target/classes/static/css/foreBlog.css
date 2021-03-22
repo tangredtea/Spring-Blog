@@ -7,9 +7,38 @@ body{
 
 }
 
-[v-cloak]{
-    display: none;
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
 }
+.box-shadow-max{
+    margin-bottom: 15px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, .05);
+    -webkit-box-shadow: #000000 0px 0px 10px;
+    -moz-box-shadow: #000000 0px 0px 10px;
+}
+.friends-link{
+    width: 160px;
+    height: 220px;
+    border: 1px solid #999;
+    box-shadow: 5px 5px 5px #999;
+    border-radius:8px;
+}
+
+.friends-link-image{
+    width: 160px;
+    height: 170px;
+    border-radius: 8px 8px 0px 0px;
+
+}
+.m-font-size-text-friends{
+    font-size: 16px;
+    color: #000000;
+    font-family: STSong;
+}
+
 
 /*  页面头部部分  */
 /* logo */
