@@ -31,6 +31,7 @@ public class BlogServiceImpl implements BlogService {
         }
         String content = blog.getContent();
         blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
+        blogDao.updateViews(id);//访问量自增
         return blog;
     }
 

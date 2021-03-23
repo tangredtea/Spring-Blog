@@ -8,11 +8,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<!--    <title th:text="'分类'+'&#45;&#45;'+${web.suffix}">博客标题</title>-->
-<!--    &lt;!&ndash; 页面描述 &ndash;&gt;-->
-<!--    <meta name="description" content="博客描述" th:content="${web.description}"/>-->
-<!--    &lt;!&ndash; 页面关键词 &ndash;&gt;-->
-<!--    <meta name="keywords" th:content="${web.keywords}" content="博客关键词"/>-->
+    <title th:text="'分类页——'+#{web.name}"></title>
+    <meta name="keywords" th:content="#{web.keywords}">
+    <meta name="description" th:content="#{web.description}">
+    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
     <!--实现每日一言-->
     <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
@@ -40,7 +39,7 @@
         <div th:replace="~{common::Menu}"></div>
     </div>
     <div class="pageHeadContainer">
-        <img src="../static/images/background/background5.jpg"  th:src="@{/images/background/background5.jpg}" class="ui image backgroundImg">
+        <img src="../static/images/background/background5.jpg"  th:src="#{types.background}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
                 <div class="word" >

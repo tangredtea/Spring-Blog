@@ -7,12 +7,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-<!--    <title th:text="'归档'+'&#45;&#45;'+${web.suffix}">博客标题</title>-->
-<!--    &lt;!&ndash; 页面描述 &ndash;&gt;-->
-<!--    <meta name="description" content="博客描述" th:content="${web.description}"/>-->
-<!--    &lt;!&ndash; 页面关键词 &ndash;&gt;-->
-<!--    <meta name="keywords" th:content="${web.keywords}" content="博客关键词"/>-->
+    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
+    <title th:text="'时间轴——'+#{web.name}"></title>
+    <meta name="keywords" th:content="#{web.keywords}">
+    <meta name="description" th:content="#{web.description}">
     <div th:insert="~{common::common-js}"></div>
 
 

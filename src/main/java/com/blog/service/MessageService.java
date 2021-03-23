@@ -9,6 +9,8 @@ public interface MessageService {
     //查询留言列表
     List<Message> listMessage();
 
+    List<Message> findByIndexParentId();
+
     //保存留言
     int saveMessage(Message message);
 

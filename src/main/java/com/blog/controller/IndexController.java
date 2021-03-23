@@ -1,11 +1,9 @@
 package com.blog.controller;
 
 import com.blog.pojo.Blog;
-import com.blog.pojo.Comment;
-import com.blog.pojo.Tag;
-import com.blog.pojo.Type;
+import com.blog.pojo.Message;
 import com.blog.service.BlogService;
-import com.blog.service.CommentService;
+import com.blog.service.MessageService;
 import com.blog.service.TagService;
 import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
@@ -27,7 +25,7 @@ public class IndexController {
     private TypeService typeService;
 
     @Autowired
-    private CommentService commentService;
+    private MessageService messageService;
 
     @Autowired
     private TagService tagService;
@@ -42,21 +40,15 @@ public class IndexController {
     public String toIndex(@RequestParam(required = false,defaultValue = "1") int pageNum,Model model){
         PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.getIndexBlog();
-        List<Blog> recommendBlog =blogService.getAllRecommendBlog();  //获取推荐博客
-        List<Comment> comment=commentService.findComment();
-        //得到分页结果对象
+        List<Blog> recommendBlog =blogService.getAllRecommendBlog();  //获取推荐博客//得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
-        System.out.println(comment.toString());
-        model.addAttribute("comments",comment);
+        List<Message> messages = messageService.findByIndexParentId();
+        model.addAttribute("messages", messages);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("recommendBlogs", recommendBlog);
         List<Blog> HotBlog=blogService.getHotBlog();
         model.addAttribute("HotBlog", HotBlog);
         return "index";
-//        List<Type> allType = typeService.getBlogType();  //获取博客的类型(联表查询)
-//        List<Tag> allTag = tagService.getBlogTag();  //获取博客的标签(联表查询)
-//        model.addAttribute("tags", allTag);
-//        model.addAttribute("types", allType);
     }
 
     @PostMapping("/search")
@@ -75,7 +67,6 @@ public class IndexController {
     public String toLogin(@PathVariable Long id, Model model){
         Blog blog = blogService.getDetailedBlog(id);
         model.addAttribute("blog", blog);
-        System.out.println(blog);
         return "blog";
     }
 }

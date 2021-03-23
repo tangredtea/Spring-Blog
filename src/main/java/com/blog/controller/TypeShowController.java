@@ -36,7 +36,6 @@ public class TypeShowController {
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
         model.addAttribute("types", types);
         model.addAttribute("pageInfo", pageInfo);
-        System.out.println(pageInfo.toString());
         model.addAttribute("activeTypeId", id);
 
         return "types";

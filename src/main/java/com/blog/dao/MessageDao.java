@@ -14,6 +14,7 @@ public interface MessageDao {
     //添加一个评论
     int saveMessage(Message message);
 
+    List<Message> findByIndexParentId(@Param("ParentId") Long ParentId);
     //查询父级评论
     List<Message> findByParentIdNull(@Param("ParentId") Long ParentId);
 

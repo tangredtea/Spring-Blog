@@ -3,6 +3,7 @@ package com.blog.service.impl;
 import com.blog.dao.MessageDao;
 import com.blog.pojo.Message;
 import com.blog.service.MessageService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,15 @@ public class MessageServiceImpl implements MessageService {
     //存放迭代找出的所有子代的集合
     private List<Message> tempReplys = new ArrayList<>();
 
+    /**
+     * 首页推荐评论
+     * @return
+     */
+    @Override
+    public  List<Message> findByIndexParentId(){
+        List<Message> messages = messageDao.findByParentIdNull(Long.parseLong("-1"));
+        return messages;
+    }
     /**
      * @Description: 查询留言
      * @Return: 留言消息

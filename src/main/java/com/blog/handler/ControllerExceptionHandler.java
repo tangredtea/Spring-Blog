@@ -33,7 +33,7 @@ public class ControllerExceptionHandler {
         //返回异常信息到自定义error页面
         ModelAndView mv = new ModelAndView();
         mv.addObject("url", request.getRequestURI());
-        mv.addObject("Exception", e);
+        mv.addObject("exception",e);
         mv.setViewName("error/error");
 
         return mv;

@@ -18,6 +18,8 @@ public interface BlogDao {
 
     List<Blog> getAllBlog();
 
+    int updateViews(Long id); //访问量自增
+
     List<Blog> getByTypeId(Long typeId);  //根据类型id获取博客
 
     List<Blog> getByTagId(Long tagId);  //根据标签id获取博客

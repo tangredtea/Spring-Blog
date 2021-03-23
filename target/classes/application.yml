@@ -15,5 +15,3 @@ server:
     mime-types: application/json,application/xml,text/html,text/xml,text/plain
 
 
-
-comment.avatar: /images/avatar.jpg

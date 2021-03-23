@@ -8,7 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!--标记处-->
-    <title>博客标题</title>
+    <title th:text="${blog.title}+#{web.name}">博客标题</title>
+    <meta name="keywords" th:content="#{web.keywords}">
+    <meta name="description" th:content="${blog.description}?${blog.description}: #{web.description}">
+    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
+
     <!--标记处-->
 
 
@@ -50,11 +54,11 @@
         <div th:insert="~{common :: Menu}"></div>
     </div>
     <div class="pageHeadContainer">
-        <img src="https://www.xiaoxuya.top/img/article/95.jpg" class="ui image backgroundImg">
+        <img src="https://www.xiaoxuya.top/img/article/95.jpg" th:src="${blog.firstPicture}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
                 <div>
-                    <span class="name">XI溪</span>
+                    <span class="name" th:text="#{web.name}"></span>
                 </div>
                 <div class="word" >
                     梦里的四海为家，百花齐放，人来人往，花红柳绿。错过的年华在沙漠开出美丽的紫薇花、却荒废了轮回的春夏。缘来缘去缘如水，背负万丈尘寰，只为一句，等待下一次重逢。
@@ -74,7 +78,6 @@
                     <div class="aticleInfo">
                         <span><i class="ui user circle icon"></i>作者: <span class="author" th:text="${blog.user.nickname}">{{article.author}}</span></span>
                         <span><i class="ui clock outline icon"></i>发表时间: <span class="publishDate" th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">{article.createDate | dateFormatFilter}</span></span>
-                        <span><i class="ui list icon"></i>分类: <a href="/category" class="categoryName" v-cloak>{{article.category.name}}</a></span>
                         <span><i class="ui eye icon"></i><span class="viewNumber" th:text="${blog.views}">{{article.viewNumber}}</span></span>
                         <a class="ui blue button originalDesign" th:text="${blog.flag}">{{ article.originalDesign==1? '原创': '转载'}}</a>
                     </div>

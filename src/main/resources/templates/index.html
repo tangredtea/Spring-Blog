@@ -8,7 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <!--标记处-->
-    <title>博客标题</title>
+    <title th:text="#{web.title}"></title>
+    <meta name="keywords" th:content="#{web.keywords}">
+    <meta name="description" th:content="#{web.description}">
+    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
+
     <!--标记处-->
    <div th:insert="~{common :: common-js}"></div>
     <!--实现每日一言-->
@@ -43,10 +47,10 @@
 <!--首页顶部背景-->
     <div class="headContainer">
         <!--标记处-->
-        <img src="../static/images/background/background5.jpg"  th:src="@{/images//background/background5.jpg}" class="ui image backgroundImg">
+        <img src="../static/images/background/background5.jpg"  th:src="#{web.background}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
-                <img class="ui tiny circular image" src="../static/images/aboutMe/home.jpg" th:src="@{/images/aboutMe/home.jpg}" />
+                <img class="ui tiny circular image" src="../static/images/aboutMe/home.jpg" th:src="#{web.home}" />
                 <div class="word">
 						<span>
 							 <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
@@ -55,33 +59,33 @@
                 <div class="myLink">
                     <a id="wechat" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
                     <a id="QQ" class="ui qq circular icon button"><i class="qq icon"></i></a>
-                    <a href="#" target="_blank" class="ui circular icon button"
+                    <a th:href="#{web.github}" rel="nofollow" target="_blank" class="ui circular icon button"
                        data-tooltip="点击进入github" data-position="bottom center" data-inverted="">
                         <i class="github icon"></i>
                     </a>
-                    <a href="#" target="_blank"
+                    <a th:href="#{web.csdn}" rel="nofollow" target="_blank"
                        class="ui circular icon button" data-tooltip="点击进入csdn" data-position="bottom center"
                        data-inverted="">
                         <i class="cuttlefish icon"></i>
                     </a>
-                    <a href="#" target="_blank" class="ui circular icon button"
+                    <a th:href="#{web.bilibili}" rel="nofollow" target="_blank" class="ui circular icon button"
                        data-tooltip="点击进入b站" data-position="bottom center" data-inverted="">
                         <i class="bimobject icon"></i>
                     </a>
 
                     <div id="wechatPic" class="ui flowing popup transition hidden">
-                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfWeChat.png" th:src="@{/images/aboutMe/contactOfWeChat.png}" />
+                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfWeChat.png" th:src="#{web.wechat}" />
                     </div>
                     <div id="QQPic" class="ui flowing popup transition hidden">
-                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfQQ.png" th:src="@{/images/aboutMe/contactOfQQ.png}">
+                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfQQ.png" th:src="#{web.qq}">
                     </div>
                 </div>
                 <div id="indexNavMenu" class="nav">
-                    <a href="#" class="ui teal button">
+                    <a href="/types" class="ui teal button">
                         <i class="google wallet icon"></i>文章</a>
-                    <a href="#" class="ui twitter button">
+                    <a href="/tags" class="ui twitter button">
                         <i class="ui tag icon"></i>标签</a>
-                    <a href="#" class="ui linkedin button">
+                    <a href="/message" class="ui linkedin button">
                         <i class="modx icon"></i>留言</a>
                 </div>
                 <div class="guidance">
@@ -115,7 +119,7 @@
 <!--格言随机背景图-->
                 </div>
                 <div class="eight wide column" align="center">
-                    <img class="ui rounded huge image" src="https://www.xiaoxuya.top/img/article/201.jpg">
+                    <img class="ui rounded huge image" th:src="#{web.geyan}">
                 </div>
             </div>
 <!--热点文章-->
@@ -139,24 +143,24 @@
             </div>
 <!--精选留言-->
             <div class="row titleDiv">
-                <a href="/commentWall" class="ui header title"><i class="orange codiepie icon"></i>精选留言</a>
+                <a href="/message" class="ui header title"><i class="orange codiepie icon"></i>最新留言</a>
             </div>
             <div class="row comments">
-                <div class="four wide column comment" th:each="comment : ${comments}">
-                    <a class="ui fluid raised link card" href="/commentWall" th:href="@{/blog/{id}(id=${comment.blogId})}">
+                <div class="four wide column comment" th:each="messages : ${messages}">
+                    <a class="ui fluid raised link card" href="/message" >
                         <div class="content">
-                            <div class="header"th:text="${comment.nickname}">评论名字</div>
+                            <div class="header"th:text="${messages.nickname}">评论名字</div>
                             <div class="meta">
-                                <span class="right floated time" th:text="${#dates.format(comment.createTime, 'yyyy-MM-dd')}">创建时间</span>
+                                <span class="right floated time" th:text="${#dates.format(messages.createTime, 'yyyy-MM-dd')}">创建时间</span>
                                 <span class="comment">comment</span>
                             </div>
-                            <div class="description" th:text="${comment.content}">
+                            <div class="description" th:text="${messages.content}">
                               评论内容
                             </div>
                         </div>
                         <div class="extra content">
                             <div class="right floated author">
-                                <img class="ui avatar image" src="https://www.xiaoxuya.top/img/user/190.jpg" th:text="${comment.nickname}">
+                                <img class="ui avatar image" src="https://www.xiaoxuya.top/img/user/190.jpg" th:text="${messages.nickname}">
                             </div>
                         </div>
                     </a>
@@ -167,7 +171,7 @@
                 <div href="" class="recommendArticlesTitle">推荐文章</div>
             </div>
             <div class="three column row recommendArticles">
-                <div class="column recommendArticle" th:each="recommendBlog : ${recommendBlogs}">
+                <div class="column recommendArticle" th:each="recommendBlog: ${recommendBlogs}">
                     <div class="ui fluid raised link card">
                         <a class="image" th:href="@{/blog/{id}(id=${recommendBlog.id})}">
                             <img src="http://n.sinaimg.cn/sinacn20111/600/w1920h1080/20190331/0f41-huxwryw5226043.jpg" th:src="${recommendBlog.firstPicture}">

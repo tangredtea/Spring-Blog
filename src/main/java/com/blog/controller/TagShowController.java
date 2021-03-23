@@ -25,7 +25,7 @@ public class TagShowController {
     private BlogService blogService;
 
     @GetMapping(value = {"/tags/{id}","/tags"})
-    public String types(@PathVariable Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
+    public String types(@PathVariable(required = false)  Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
                         Model model){
         PageHelper.startPage(pagenum, 100);  //开启分页
         List<Tag> tags = tagService.getBlogTag();

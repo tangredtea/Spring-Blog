@@ -97,7 +97,7 @@
     <!--文章详情页面-->
     <select id="getDetailedBlog" resultMap="blog">
         select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
-        b.update_time,b.commentabled, b.share_statement, b.appreciation,
+        b.update_time,b.commentabled, b.share_statement, b.appreciation,b.description,
         u.nickname, u.avatar,
         tag.id tagid, tag.name tagname
         from t_blog b, t_user u, t_tag tag, t_blog_tags tb
@@ -169,7 +169,10 @@
         where DATE_FORMAT(b.update_time, "%Y") = #{year}
     </select>
 
-
+    <!--文章访问自增-->
+    <update id="updateViews" parameterType="com.blog.pojo.Blog">
+        update t_blog b set b.views = b.views+1 where b.id = #{id}
+    </update>
 
 
 

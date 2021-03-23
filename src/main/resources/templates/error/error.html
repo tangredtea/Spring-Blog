@@ -7,8 +7,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-    <title>XI溪 - 人生若只是初见,何事秋风悲画扇</title>
+    <title th:text="'错误页——'+#{web.name}"></title>
+    <meta name="keywords" th:content="#{web.keywords}">
+    <meta name="description" th:content="#{web.description}">
+    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
     <div th:insert="~{common::common-js}"></div>
 
 
@@ -61,14 +63,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://github.com/xuzhixiangya" target="_blank" data-tooltip="点击进入github"
+                                <a th:href="#{web.github}" target="_blank" data-tooltip="点击进入github"
                                    data-position="bottom center" data-inverted="" class="ui circular icon button">
                                     <i class="github icon">
                                     </i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://blog.csdn.net/qq_44787816?spm=1000.2115.3001.5113" target="_blank"
+                                <a th:href="#{web.csdn}" target="_blank"
                                    data-tooltip="点击进入csdn" data-position="bottom center" data-inverted=""
                                    class="ui circular icon button">
                                     <i class="cuttlefish icon">
@@ -76,17 +78,17 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="https://space.bilibili.com/363622328" target="_blank" data-tooltip="点击进入b站"
+                                <a th:href="#{web.bilibili}" target="_blank" data-tooltip="点击进入b站"
                                    data-position="bottom center" data-inverted="" class="ui circular icon button">
                                     <i class="bimobject icon">
                                     </i>
                                 </a>
                             </li>
                             <div id="wechatPic" class="ui flowing popup transition hidden">
-                                <img src="../static/images/aboutMe/contactOfWeChat.png" th:src="@{/images/aboutMe/contactOfWeChat.png}" class="ui small rounded image">
+                                <img src="../static/images/aboutMe/contactOfWeChat.png" th:src="#{web.wechat}" class="ui small rounded image">
                             </div>
                             <div id="QQPic" class="ui flowing popup transition hidden">
-                                <img src="../static/images/aboutMe/contactOfQQ.png" th:src="@{/images/aboutMe/contactOfQQ.png}" class="ui small rounded image">
+                                <img src="../static/images/aboutMe/contactOfQQ.png" th:src="#{web.qq}" class="ui small rounded image">
                             </div>
                         </ul>
                     </div>

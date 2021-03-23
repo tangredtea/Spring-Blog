@@ -7,10 +7,7 @@
 <body>
 <!--公共头部引入资源-->
 <div th:fragment="common-js">
-    <link rel="icon" href="../static/images/logo.png" th:href="@{/images/logo.png}"/>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-
     <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
 
     <link rel="stylesheet" type="text/css" href="../static/css/foreBlog.css" th:href="@{/css/foreBlog.css}">
@@ -19,11 +16,12 @@
 <div th:fragment="Menu" class="ui  container">
         <div class="ui stackable inverted secondary menu">
             <!--标记处-->
-            <img class="ui rounded image logo" src="../static/images/logo.png" th:src="@{/images/logo.png}">
+            <img class="ui rounded image logo" src="../static/images/logo.png" th:src="#{web.logo}">
             <a href="/" class="item mobileHidden navItem"><i class="home icon"></i>首页</a>
             <a href="/types" class="item mobileHidden navItem"><i class="list icon"></i>分类</a>
             <a href="/tags" class="item mobileHidden navItem"><i class="ui tag icon"></i>标签</a>
-            <a href="/comments" class="item mobileHidden navItem"><i class="comments outline icon"></i>留言墙</a>
+            <a href="/time" class="item mobileHidden navItem"><i class="youtube icon"></i>归档</a>
+            <a href="/message" class="item mobileHidden navItem"><i class="comments outline icon"></i>留言墙</a>
             <a href="/about" class="item mobileHidden navItem"><i class="ui street view icon"></i>关于我</a>
             <a href="/friends" class="item mobileHidden navItem"><i class="ui linkify icon"></i>友链</a>
             <div id="searchItem " class=" right menu item mobileHidden navItem searchItemHidden"  >
@@ -37,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <span class="mobileShow mobileTitle">文若君</span>
+        <span class="mobileShow mobileTitle" th:text="#{web.name}"></span>
         <a class="ui black button mobileButton  mobileShow"><i class="sidebar icon"></i></a>
     </div>
 <!--底部及其资源-->
@@ -46,7 +44,7 @@
         <div class="ui stackable inverted divided grid" align="center">
             <div class="four wide column">
                 <h4 class="ui inverted header">联系我呀</h4>
-                <img class="ui small rounded image" src="https://www.xiaoxuya.top/img/aboutMe/contactOfWeChat.jpg" />
+                <img class="ui small rounded image" th:src="#{web.wechat}" />
             </div>
             <div class="four wide column">
                 <h4 class="ui inverted header">技术支持</h4>
@@ -68,23 +66,13 @@
                 </div>
             </div>
             <div class="four wide column">
-                <h4 class="ui inverted header">网站信息</h4>
+                <h4 class="ui inverted header">博主寄诗</h4>
                 <div class="ui inverted  list">
-                    <div class="item webinfo" style="font-size: 13px">
-                        网站名称: <span id="webName" v-cloak>{{websiteInfo.webSiteName}}</span>
-                    </div>
-                    <div class="item webinfo" style="font-size: 13px">
-                        文章总数: <span id="articleNumber" v-cloak>{{websiteInfo.allArticleCount}}</span>
-                    </div>
-                    <div class="item webinfo" style="font-size: 13px">
-                        访客总数: <span id="accessNumber" v-cloak>{{websiteInfo.visitorNumber}}</span>
-                    </div>
-                    <div class="item webinfo" style="font-size: 13px">
-                        浏览总量: <span id="viewNumber" v-cloak>{{websiteInfo.allViewNumber}}</span>
-                    </div>
-                    <div class="item webinfo" style="font-size: 13px">
-                        建站时间: <span id="webDate">2021年3月16日</span>
-                    </div>
+                    <h4 class="ui inverted header m-text-thin m-text-spaced ">虞美人·李煜</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">
+                        春花秋月何时了，往事知多少？小楼昨夜又东风，故国不堪回首月明中！</p>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">
+                        雕阑玉砌应犹在，只是朱颜改。问君能有几多愁？恰似一江春水向东流。</p>
                 </div>
             </div>
         </div>
