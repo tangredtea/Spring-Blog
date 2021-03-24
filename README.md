@@ -15,7 +15,14 @@
 
 日志：Log4J
 
+后台配置:properties
+
 ------
+运行截图
+![首页](https://t1.picb.cc/uploads/2021/03/24/Zj2xyL.jpg)
+![首页](https://t1.picb.cc/uploads/2021/03/24/Zj2F5v.png)
+![后台](https://t1.picb.cc/uploads/2021/03/24/Zj2PXi.png)
+
 
 除了上述选择外实现的简单优化
 
