@@ -1,3 +1,9 @@
+[![license](https://badgen.net/github/license//laowenruo/Spring-Blog?color=green)](https://github.com//laowenruo/Spring-Blog/main/LICENSE)
+[![stars](https://badgen.net/github/stars//laowenruo/Spring-Blog)](https://github.com//laowenruo/Spring-Blog/stargazers)
+[![contributors](https://badgen.net/github/contributors/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/graphs/contributors)
+[![help-wanted](https://badgen.net/github/label-issues//laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
+[![issues](https://badgen.net/github/open-issues//laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
+[![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 # Spring-Blog
 框架：Springboot
 
@@ -15,6 +21,19 @@
 
 日志：Log4J
 
+后台配置:properties
+
+------
+运行截图
+------
+首页
+![首页](https://t1.picb.cc/uploads/2021/03/24/Zj2xyL.jpg)
+------
+首页下拉
+![首页下拉](https://t1.picb.cc/uploads/2021/03/24/Zj2F5v.png)
+------
+后台管理
+![后台管理](https://t1.picb.cc/uploads/2021/03/24/Zj2PXi.png)
 ------
 
 除了上述选择外实现的简单优化
@@ -51,8 +70,8 @@
 
 🔲redis缓存加速
 
-🔲后台欢迎页面统计Echarts，以及前端页脚的footer信息
-
 时间充裕后实现功能：
+
+🔲学习VUE，并且开发一个VUE版本
 
 🔲shiro框架实现博客后台多用户多权限，但不打算提供前台用户注册
