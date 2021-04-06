@@ -19,6 +19,14 @@
 	</properties>
 
 	<dependencies>
+		<!--Redis依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+
 		<!--这三个jar包作用是将markdown格式转成html格式-->
 		<dependency>
 			<groupId>com.atlassian.commonmark</groupId>
@@ -104,14 +112,5 @@
 		</dependency>
 
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

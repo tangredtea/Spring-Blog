@@ -8,6 +8,7 @@ import com.blog.pojo.Tag;
 import com.blog.service.BlogService;
 import com.blog.util.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,6 +24,7 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlog(id);
     }
 
+    @Cacheable(cacheNames = "redisCache#45", key = "#id")
     @Override
     public Blog getDetailedBlog(Long id) {
         Blog blog = blogDao.getDetailedBlog(id);

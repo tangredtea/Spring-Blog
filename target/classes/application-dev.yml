@@ -15,6 +15,25 @@ spring:
       max-lifetime: 1800000
       pool-name: DatebookHikariCP
       maximum-pool-size: 5
+      #Redis配置，默认底层的Redis连接池为lettuce
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: #你的redis密码，如果没有可以不设置
+    timeout: 20000
+    lettuce:
+      pool:
+        #连接池最大连接数
+        max-active: 8
+        #连接池的最小空闲连接
+        max-idle: 1
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 100000
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000 #单位是:ms(毫秒)
+    cache-names: redisCache
   thymeleaf:
     #开启模板缓存
     cache: false

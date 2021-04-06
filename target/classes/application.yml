@@ -1,6 +1,6 @@
 spring:            #全局配置
   thymeleaf:
-    cache: false
+    cache: true
   profiles:
     active: dev
 #gzip压缩
