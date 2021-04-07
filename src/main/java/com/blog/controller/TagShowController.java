@@ -7,6 +7,7 @@ import com.blog.service.TagService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class TagShowController {
 
     @Autowired
     private BlogService blogService;
-
+    @Cacheable(cacheNames = "tags#7200", key = "#id")
     @GetMapping(value = {"/tags/{id}","/tags"})
     public String types(@PathVariable(required = false)  Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
                         Model model){

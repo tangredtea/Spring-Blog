@@ -24,7 +24,14 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlog(id);
     }
 
-    @Cacheable(cacheNames = "redisCache#45", key = "#id")
+    /**
+     * 缓存博文，毕竟没什么人看，后期再将阅读量单独分离，博文长久缓存
+     * 对于不常更改的数据采用@CachePut注解
+     * #后面的代表缓存时间，单位为s
+     * @param id
+     * @return
+     */
+    @Cacheable(cacheNames = "blog#1200", key = "#id")
     @Override
     public Blog getDetailedBlog(Long id) {
         Blog blog = blogDao.getDetailedBlog(id);

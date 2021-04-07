@@ -9,6 +9,7 @@ import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,7 @@ public class IndexController {
      * @param pageNum
      * @return
      */
+    @Cacheable(cacheNames = "toIndex#7200", key = "#pageNum")
     @RequestMapping("/")
     public String toIndex(@RequestParam(required = false,defaultValue = "1") int pageNum,Model model){
         PageHelper.startPage(pageNum, 5);
@@ -62,7 +64,7 @@ public class IndexController {
         model.addAttribute("query", query);
         return "search";
     }
-
+    @Cacheable(cacheNames = "indexBlog#7200", key = "#id")
     @GetMapping("/blog/{id}")
     public String toLogin(@PathVariable Long id, Model model){
         Blog blog = blogService.getDetailedBlog(id);
