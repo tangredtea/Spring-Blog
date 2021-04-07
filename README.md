@@ -21,9 +21,9 @@
 
 日志：Log4J
 
-后台配置:properties
+后台配置: properties
 
-缓存实现:Redis+Spring-cache
+缓存实现: Redis+Spring-cache
 
 ------
 运行截图
