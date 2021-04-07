@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment="添加了Redis缓存，明天实现">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_lettuce_lettuce_core_5_2_2_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_45_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_3_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_redis_1_3_8_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_commons_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_3_1_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/blog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/BlogApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/TagShowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/TagShowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/TypeShowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/TypeShowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/pojo/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/pojo/Blog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/BlogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/service/impl/BlogServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/service/impl/BlogServiceImpl.class" afterDir="false" />
-    </list>
+    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -258,7 +227,7 @@
       <workItem from="1617720250528" duration="4317000" />
       <workItem from="1617724636576" duration="86000" />
       <workItem from="1617724800343" duration="448000" />
-      <workItem from="1617782018882" duration="1319000" />
+      <workItem from="1617782018882" duration="1936000" />
     </task>
     <task id="LOCAL-00001" summary="update md5">
       <created>1584841437407</created>
@@ -288,7 +257,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617724380609</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="初步的Redis缓存实现">
+      <created>1617783488432</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617783488432</updated>
+    </task>
+    <task id="LOCAL-00006" summary="简化">
+      <created>1617783621238</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617783621238</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +282,9 @@
     <MESSAGE value="更新并修复功能" />
     <MESSAGE value="页面整合、删除无用功能、降低耦合度、优化SEO" />
     <MESSAGE value="添加了Redis缓存，明天实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了Redis缓存，明天实现" />
+    <MESSAGE value="初步的Redis缓存实现" />
+    <MESSAGE value="简化" />
+    <option name="LAST_COMMIT_MESSAGE" value="简化" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="141" key="#com.intellij.ide.util.MemberChooser" timestamp="1617721552021">
@@ -314,10 +299,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="503" y="181" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1616037965637" />
-    <state x="397" y="21" key="CommitChangelistDialog2" timestamp="1617724599885">
+    <state x="397" y="21" key="CommitChangelistDialog2" timestamp="1617783618506">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="397" y="21" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1617724599885" />
+    <state x="397" y="21" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1617783618506" />
     <state x="151" y="71" key="DiffContextDialog" timestamp="1617724498767">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -330,46 +315,46 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="597" y="336" key="Github.CreateGistDialog/0.0.1536.864@0.0.1536.864" timestamp="1616511438507" />
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1617783147356">
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617783147356" />
-    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1617783147356">
+    <state width="1493" height="226" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.0.center" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1617783147356" />
-    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1617783147356">
+    <state width="1493" height="226" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.0.left" timestamp="1617783433838">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1617783147356" />
-    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1617783147356">
+    <state width="1493" height="226" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1617783433838" />
+    <state width="1493" height="226" key="GridCell.Tab.0.right" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1617783147356" />
-    <state width="1493" height="226" key="GridCell.Tab.1.bottom" timestamp="1617783147357">
+    <state width="1493" height="226" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.1.bottom" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617783147357" />
-    <state width="1493" height="226" key="GridCell.Tab.1.center" timestamp="1617783147357">
+    <state width="1493" height="226" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.1.center" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1617783147357" />
-    <state width="1493" height="226" key="GridCell.Tab.1.left" timestamp="1617783147356">
+    <state width="1493" height="226" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.1.left" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1617783147356" />
-    <state width="1493" height="226" key="GridCell.Tab.1.right" timestamp="1617783147357">
+    <state width="1493" height="226" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
+    <state width="1493" height="226" key="GridCell.Tab.1.right" timestamp="1617783433839">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="226" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1617783147357" />
+    <state width="1493" height="226" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1617783433839" />
     <state x="281" y="14" key="SettingsEditor" timestamp="1617722467330">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="281" y="14" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1617722467330" />
-    <state x="365" y="167" key="Vcs.Push.Dialog.v2" timestamp="1617724641029">
+    <state x="365" y="167" key="Vcs.Push.Dialog.v2" timestamp="1617783643288">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="365" y="167" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1617724641029" />
+    <state x="365" y="167" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1617783643288" />
     <state x="896" y="272" width="578" height="592" key="find.popup" timestamp="1616501984578">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
