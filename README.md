@@ -1,8 +1,8 @@
-[![license](https://badgen.net/github/license//laowenruo/Spring-Blog?color=green)](https://github.com//laowenruo/Spring-Blog/main/LICENSE)
+[![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/laowenruo/Spring-Blog/master/LICENSE)
 [![stars](https://badgen.net/github/stars//laowenruo/Spring-Blog)](https://github.com//laowenruo/Spring-Blog/stargazers)
 [![contributors](https://badgen.net/github/contributors/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/graphs/contributors)
-[![help-wanted](https://badgen.net/github/label-issues//laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
-[![issues](https://badgen.net/github/open-issues//laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
+[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
+[![issues](https://badgen.net/github/open-issues/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
 [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 # Spring-Blog
 框架：Springboot
@@ -21,9 +21,9 @@
 
 日志：Log4J
 
-后台配置:properties
+后台配置: properties
 
-缓存实现:Redis+Spring-cache
+缓存实现: Redis+Spring-cache
 
 ------
 运行截图
