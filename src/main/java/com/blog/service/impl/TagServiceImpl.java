@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Service
 public class TagServiceImpl implements TagService {
 
@@ -40,8 +43,13 @@ public class TagServiceImpl implements TagService {
         return tagDao.getBlogTag();
     }
 
+    /**
+     * 从tagIds字符串中获取id，根据id获取tag集合
+     * @param text
+     * @return
+     */
     @Override
-    public List<Tag> getTagByString(String text) {    //从tagIds字符串中获取id，根据id获取tag集合
+    public List<Tag> getTagByString(String text) {
         List<Tag> tags = new ArrayList<>();
         List<Long> longs = convertToList(text);
         for (Long long1 : longs) {
@@ -50,7 +58,12 @@ public class TagServiceImpl implements TagService {
         return tags;
     }
 
-    private List<Long> convertToList(String ids) {  //把前端的tagIds字符串转换为list集合
+    /**
+     * 把前端的tagIds字符串转换为list集合
+     * @param ids
+     * @return
+     */
+    private List<Long> convertToList(String ids) {
         List<Long> list = new ArrayList<>();
         if (!"".equals(ids) && ids != null) {
             String[] idarray = ids.split(",");

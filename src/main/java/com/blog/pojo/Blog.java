@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,11 +31,15 @@ public class Blog implements Serializable {
     private Date createTime;
     private Date updateTime;
 
-    //这个属性用来在mybatis中进行连接查询的
+    /**
+     * 这个属性用来在mybatis中进行连接查询的
+     */
     private Long typeId;
     private Long userId;
 
-    //获取多个标签的id
+    /**
+     * 获取多个标签的id
+     */
     private String tagIds;
     private String description;
 
@@ -46,7 +53,11 @@ public class Blog implements Serializable {
         this.tagIds = tagsToIds(this.getTags());
     }
 
-    //将tags集合转换为tagIds字符串形式：“1,2,3”,用于编辑博客时显示博客的tag
+    /**
+     * 将tags集合转换为tagIds字符串形式：“1,2,3”,用于编辑博客时显示博客的tag
+     * @param tags
+     * @return
+     */
     private String tagsToIds(List<Tag> tags){
         if(!tags.isEmpty()){
             StringBuffer ids = new StringBuffer();

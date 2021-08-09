@@ -24,11 +24,12 @@ public class TagShowController {
 
     @Autowired
     private BlogService blogService;
-    @Cacheable(cacheNames = "tags#7200", key = "#id")
+
     @GetMapping(value = {"/tags/{id}","/tags"})
     public String types(@PathVariable(required = false)  Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
                         Model model){
-        PageHelper.startPage(pagenum, 100);  //开启分页
+        //开启分页
+        PageHelper.startPage(pagenum, 100);
         List<Tag> tags = tagService.getBlogTag();
         //从导航点过来的
         if (id == null){

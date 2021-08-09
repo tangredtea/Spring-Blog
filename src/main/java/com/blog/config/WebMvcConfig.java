@@ -1,21 +1,29 @@
 package com.blog.config;
 
 import com.blog.interceptor.LoginInterceptor;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 拦截非法后台路径访问
+ * @author Ryan
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
-
+@ComponentScan(basePackages = "com.blog")
+public class WebMvcConfig implements WebMvcConfigurer {
+    /**
+     * 注册自定义拦截器
+     *
+     * @param registry
+     */
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {   //配置拦截器
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin")
                 .excludePathPatterns("/admin/login");
     }
+
 }
+

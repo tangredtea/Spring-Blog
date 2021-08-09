@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Controller
 public class IndexController {
 
@@ -37,12 +40,13 @@ public class IndexController {
      * @param pageNum
      * @return
      */
-    @Cacheable(cacheNames = "toIndex#7200", key = "#pageNum")
     @RequestMapping("/")
     public String toIndex(@RequestParam(required = false,defaultValue = "1") int pageNum,Model model){
         PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.getIndexBlog();
-        List<Blog> recommendBlog =blogService.getAllRecommendBlog();  //获取推荐博客//得到分页结果对象
+        //获取推荐博客
+        List<Blog> recommendBlog =blogService.getAllRecommendBlog();
+        //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
         List<Message> messages = messageService.findByIndexParentId();
         model.addAttribute("messages", messages);
@@ -64,7 +68,7 @@ public class IndexController {
         model.addAttribute("query", query);
         return "search";
     }
-    @Cacheable(cacheNames = "indexBlog#7200", key = "#id")
+
     @GetMapping("/blog/{id}")
     public String toLogin(@PathVariable Long id, Model model){
         Blog blog = blogService.getDetailedBlog(id);

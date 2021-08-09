@@ -170,8 +170,8 @@
     </select>
 
     <!--文章访问自增-->
-    <update id="updateViews" parameterType="com.blog.pojo.Blog">
-        update t_blog b set b.views = b.views+1 where b.id = #{id}
+    <update id="updateViews" >
+        update t_blog b set b.views = #{value} where b.id = #{id}
     </update>
 
 

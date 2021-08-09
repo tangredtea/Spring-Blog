@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.auth0:java-jwt:3.9.0">
+    <CLASSES>
+      <root url="jar://D:/software/maven/repo/com/auth0/java-jwt/3.9.0/java-jwt-3.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/software/maven/repo/com/auth0/java-jwt/3.9.0/java-jwt-3.9.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/software/maven/repo/com/auth0/java-jwt/3.9.0/java-jwt-3.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

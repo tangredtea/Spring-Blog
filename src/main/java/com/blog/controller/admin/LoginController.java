@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 后台登录处理
+ * @author Ryan
  */
 @Controller
 @RequestMapping("/admin")
@@ -29,13 +30,18 @@ public class LoginController {
      */
     @GetMapping()
     public String loginPage(HttpSession session){
-        if (session.getAttribute("user")!=null) return "admin/index";
+        if (session.getAttribute("user")!=null) {
+            return "admin/index";
+        }
         return "admin/login";
     }
     @GetMapping("/login")
     public String login(HttpSession session){
-        if (session.getAttribute("user")!=null) return "admin/index";
-        else return "redirect:/admin";
+        if (session.getAttribute("user")!=null) {
+            return "admin/index";
+        } else {
+            return "redirect:/admin";
+        }
     }
     @PostMapping("/login")
     public String login(@RequestParam String username,

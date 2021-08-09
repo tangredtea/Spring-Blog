@@ -1,20 +1,29 @@
 package com.blog.service.impl;
 
 import com.blog.dao.BlogDao;
+import com.blog.entity.RedisKey;
 import com.blog.exception.NotFoundException;
 import com.blog.pojo.Blog;
 import com.blog.pojo.BlogAndTag;
 import com.blog.pojo.Tag;
 import com.blog.service.BlogService;
+import com.blog.service.RedisService;
 import com.blog.util.MarkdownUtils;
+import com.blog.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * @author Ryan
+ */
 @Service
 public class BlogServiceImpl implements BlogService {
+
+    @Autowired
+    RedisService cache;
 
     @Autowired
     BlogDao blogDao;
@@ -24,23 +33,28 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getBlog(id);
     }
 
-    /**
-     * 缓存博文，毕竟没什么人看，后期再将阅读量单独分离，博文长久缓存
-     * 对于不常更改的数据采用@CachePut注解
-     * #后面的代表缓存时间，单位为s
-     * @param id
-     * @return
-     */
-    @Cacheable(cacheNames = "blog#1200", key = "#id")
+
     @Override
     public Blog getDetailedBlog(Long id) {
-        Blog blog = blogDao.getDetailedBlog(id);
+        Blog blog=null;
+        //如果缓存中有这个键值的话
+        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
+            blog= (Blog) cache.hGet(RedisKey.ARTCILE,String.valueOf(id));
+            Long aLong = cache.hIncr(RedisKey.ARTCILEVIEWS, String.valueOf(id), 1L);
+            blog.setViews(Math.toIntExact(aLong));
+        }
+        else {
+            //缓存中无的话，存储到缓存中
+            blog = blogDao.getDetailedBlog(id);
+            cache.hSet(RedisKey.ARTCILE,String.valueOf(id),blog);
+            cache.hSet(RedisKey.ARTCILEVIEWS, String.valueOf(id),blog.getViews()+1);
+        }
         if (blog == null) {
             throw new NotFoundException("该博客不存在");
         }
         String content = blog.getContent();
-        blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
-        blogDao.updateViews(id);//访问量自增
+        //将Markdown格式转换成html
+        blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
         return blog;
     }
 
@@ -77,7 +91,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Map<String, List<Blog>> archiveBlog() {
         List<String> years = blogDao.findGroupYear();
-        Set<String> set = new HashSet<>(years);  //set去掉重复的年份
+        //set去掉重复的年份
+        Set<String> set = new HashSet<>(years);  
         Map<String, List<Blog>> map = new HashMap<>();
         for (String year : set) {
             map.put(year, blogDao.findByYear(year));
@@ -100,8 +115,12 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getHotBlog();
     }
 
-
-    @Override    //新增博客
+    /**
+     * 新增博客
+     * @param blog
+     * @return
+     */
+    @Override    
     public int saveBlog(Blog blog) {
         blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
@@ -121,7 +140,12 @@ public class BlogServiceImpl implements BlogService {
         return 1;
     }
 
-    @Override   //编辑博客
+    /**
+     * 编辑博客
+     * @param blog
+     * @return
+     */
+    @Override   
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
         //将标签的数据存到t_blogs_tag表中
@@ -131,11 +155,21 @@ public class BlogServiceImpl implements BlogService {
             blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);
         }
+        Long id=blog.getId();
+        //如果缓存中有这个键值的话
+        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
+            cache.hSet(RedisKey.ARTCILE,String.valueOf(id),blog);
+        }
         return blogDao.updateBlog(blog);
     }
 
     @Override
     public int deleteBlog(Long id) {
+        //如果缓存中有这个键值的话
+        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
+            cache.hDel(RedisKey.ARTCILE,String.valueOf(id));
+            cache.hDel(RedisKey.ARTCILEVIEWS,String.valueOf(id));
+        }
         return blogDao.deleteBlog(id);
     }
 

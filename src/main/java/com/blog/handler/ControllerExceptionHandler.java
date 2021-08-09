@@ -13,13 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 非状态码跳转到自定义的error页面
  * 状态码自动处理到相对应的状态码页面
+ * 拦截所有controller抛出的异常，对异常进行统一的处理
+ * @author Ryan
  */
-@ControllerAdvice   //拦截所有controller抛出的异常，对异常进行统一的处理
+@ControllerAdvice
 public class ControllerExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @ExceptionHandler(Exception.class)  //表示该方法可以处理所有类型异常
+    /**
+     * 表示该方法可以处理所有类型异常
+     * @param request
+     * @param e
+     * @return
+     * @throws Exception
+     */
+    @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
 
         //日志打印异常信息

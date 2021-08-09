@@ -31,7 +31,8 @@ public class TypeController {
 
     @GetMapping("/types/input")
     public String toAddType(Model model){
-        model.addAttribute("type", new Type());   //返回一个type对象给前端th:object
+        //返回一个type对象给前端th:object
+        model.addAttribute("type", new Type());
         return "admin/types-input";
     }
 
@@ -42,7 +43,7 @@ public class TypeController {
     }
 
     @PostMapping("/types")
-    public String addType(Type type, RedirectAttributes attributes){   //新增
+    public String addType(Type type, RedirectAttributes attributes){
         Type t = typeService.getTypeByName(type.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的分类");
@@ -51,11 +52,12 @@ public class TypeController {
             attributes.addFlashAttribute("msg", "添加成功");
         }
         typeService.saveType(type);
-        return "redirect:/admin/types";   //不能直接跳转到types页面，否则不会显示type数据(没经过types方法)
+        //不能直接跳转到types页面，否则不会显示type数据(没经过types方法)
+        return "redirect:/admin/types";
     }
 
     @PostMapping("/types/{id}")
-    public String editType(@PathVariable Long id, Type type, RedirectAttributes attributes){  //修改
+    public String editType(@PathVariable Long id, Type type, RedirectAttributes attributes){
         Type t = typeService.getTypeByName(type.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的分类");
@@ -64,7 +66,8 @@ public class TypeController {
             attributes.addFlashAttribute("msg", "修改成功");
         }
         typeService.updateType(type);
-        return "redirect:/admin/types";   //不能直接跳转到types页面，否则不会显示type数据(没经过types方法)
+        //不能直接跳转到types页面，否则不会显示type数据(没经过types方法)
+        return "redirect:/admin/types";
     }
 
     @GetMapping("/types/{id}/delete")

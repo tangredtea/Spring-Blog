@@ -16,6 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
@@ -34,18 +37,32 @@ public class BlogController {
         model.addAttribute("tags", tagService.getAllTag());
     }
 
-    @GetMapping("/blogs")  //后台显示博客列表
+    /**
+     * 后台显示博客列表
+     * @param pagenum
+     * @param model
+     * @return
+     */
+    @GetMapping("/blogs")
     public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
         PageHelper.startPage(pagenum, 5);
         List<Blog> allBlog = blogService.getAllBlog();
         //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
         model.addAttribute("pageInfo", pageInfo);
-        setTypeAndTag(model);  //查询类型和标签
+        setTypeAndTag(model);
+
         return "admin/blogs";
     }
 
-    @PostMapping("/blogs/search")  //按条件查询博客
+    /**
+     *  按条件查询博客
+     * @param blog
+     * @param pagenum
+     * @param model
+     * @return
+     */
+    @PostMapping("/blogs/search")
     public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
         PageHelper.startPage(pagenum, 5);
         List<Blog> allBlog = blogService.searchAllBlog(blog);
@@ -57,23 +74,44 @@ public class BlogController {
         return "admin/blogs";
     }
 
-    @GetMapping("/blogs/input") //去新增博客页面
+    /**
+     * 去新增博客页面
+     * @param model
+     * @return
+     */
+    @GetMapping("/blogs/input")
     public String toAddBlog(Model model){
-        model.addAttribute("blog", new Blog());  //返回一个blog对象给前端th:object
+        //返回一个blog对象给前端th:object
+        model.addAttribute("blog", new Blog());
         setTypeAndTag(model);
         return "admin/blogs-input";
     }
 
-    @GetMapping("/blogs/{id}/input") //去编辑博客页面
+    /**
+     * 去编辑博客页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/blogs/{id}/input")
     public String toEditBlog(@PathVariable Long id, Model model){
         Blog blog = blogService.getBlog(id);
-        blog.init();   //将tags集合转换为tagIds字符串
-        model.addAttribute("blog", blog);     //返回一个blog对象给前端th:object
+        //将tags集合转换为tagIds字符串
+        blog.init();
+        //返回一个blog对象给前端th:object
+        model.addAttribute("blog", blog);
         setTypeAndTag(model);
         return "admin/blogs-input";
     }
 
-    @PostMapping("/blogs") //新增、编辑博客
+    /**
+     * 新增、编辑博客
+     * @param blog
+     * @param session
+     * @param attributes
+     * @return
+     */
+    @PostMapping("/blogs")
     public String addBlog(Blog blog, HttpSession session, RedirectAttributes attributes){
         //设置user属性
         blog.setUser((User) session.getAttribute("user"));
@@ -85,8 +123,8 @@ public class BlogController {
         blog.setTypeId(blog.getType().getId());
         //给blog中的List<Tag>赋值
         blog.setTags(tagService.getTagByString(blog.getTagIds()));
-
-        if (blog.getId() == null) {   //id为空，则为新增
+        //id为空，则为新增
+        if (blog.getId() == null) {
             blogService.saveBlog(blog);
         } else {
             blogService.updateBlog(blog);

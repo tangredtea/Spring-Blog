@@ -3,6 +3,9 @@ package com.blog.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Ryan
+ */
 public class MD5Utils {
 
     /**
@@ -19,10 +22,12 @@ public class MD5Utils {
             StringBuffer buf = new StringBuffer("");
             for (int offset = 0; offset < byteDigest.length; offset++) {
                 i = byteDigest[offset];
-                if (i < 0)
+                if (i < 0) {
                     i += 256;
-                if (i < 16)
+                }
+                if (i < 16) {
                     buf.append("0");
+                }
                 buf.append(Integer.toHexString(i));
             }
             //32位加密

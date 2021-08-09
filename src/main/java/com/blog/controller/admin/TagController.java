@@ -14,6 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Controller
 @RequestMapping("/admin")
 public class TagController {
@@ -33,7 +36,8 @@ public class TagController {
 
     @GetMapping("/tags/input")
     public String toAddTag(Model model){
-        model.addAttribute("tag", new Tag());   //返回一个tag对象给前端th:object
+        //返回一个tag对象给前端th:object
+        model.addAttribute("tag", new Tag());
         return "admin/tags-input";
     }
 
@@ -53,7 +57,8 @@ public class TagController {
             attributes.addFlashAttribute("msg", "添加成功");
         }
         tagService.saveTag(tag);
-        return "redirect:/admin/tags";   //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
+        //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
+        return "redirect:/admin/tags";
     }
 
     @PostMapping("/tags/{id}")
@@ -66,7 +71,8 @@ public class TagController {
             attributes.addFlashAttribute("msg", "修改成功");
         }
         tagService.updateTag(tag);
-        return "redirect:/admin/tags";   //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
+        //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
+        return "redirect:/admin/tags";
     }
 
     @GetMapping("/tags/{id}/delete")

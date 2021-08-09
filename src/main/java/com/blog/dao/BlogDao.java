@@ -8,41 +8,123 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Mapper
 @Repository
 public interface BlogDao {
+    /**
+     * 后台展示博客
+     * @param id
+     * @return
+     */
+    Blog getBlog(Long id);
 
-    Blog getBlog(Long id);  //后台展示博客
+    /**
+     *  博客详情
+     * @param id
+     * @return
+     */
+    Blog getDetailedBlog(@Param("id") Long id);
 
-    Blog getDetailedBlog(@Param("id") Long id);  //博客详情
-
+    /**
+     * 得到所有博客
+     * @return
+     */
     List<Blog> getAllBlog();
 
-    int updateViews(Long id); //访问量自增
+    /**
+     * 访问量修改
+     * @param id
+     * @return
+     */
+    int updateViews(Long id,int values);
 
-    List<Blog> getByTypeId(Long typeId);  //根据类型id获取博客
+    /**
+     * 根据类型id获取博客
+     * @param typeId
+     * @return
+     */
+    List<Blog> getByTypeId(Long typeId);
 
-    List<Blog> getByTagId(Long tagId);  //根据标签id获取博客
+    /**
+     * 根据标签id获取博客
+     * @param tagId
+     * @return
+     */
+    List<Blog> getByTagId(Long tagId);
 
-    List<Blog> getIndexBlog();  //主页博客展示
+    /**
+     * 主页博客展示
+     * @return
+     */
+    List<Blog> getIndexBlog();
 
-    List<Blog> getAllRecommendBlog();  //推荐博客展示
+    /**
+     * 推荐博客展示
+     * @return
+     */
+    List<Blog> getAllRecommendBlog();
 
-    List<Blog> getSearchBlog(String query);  //全局搜索博客
+    /**
+     * 全局搜索博客
+     * @param query
+     * @return
+     */
+    List<Blog> getSearchBlog(String query);
 
-    List<Blog> searchAllBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客
+    /**
+     * 后台根据标题、分类、推荐搜索博客
+     * @param blog
+     * @return
+     */
+    List<Blog> searchAllBlog(Blog blog);
 
-    List<String> findGroupYear();  //查询所有年份，返回一个集合
+    /**
+     * 查询所有年份，返回一个集合
+     * @return
+     */
+    List<String> findGroupYear();
 
-    List<Blog> findByYear(@Param("year") String year);  //按年份查询博客
+    /**
+     *  按年份查询博客
+     * @param year
+     * @return
+     */
+    List<Blog> findByYear(@Param("year") String year);
 
+    /**
+     * 保存博客
+     * @param blog
+     * @return
+     */
     int saveBlog(Blog blog);
 
+    /**
+     * 保存博客和标签
+     * @param blogAndTag
+     * @return
+     */
     int saveBlogAndTag(BlogAndTag blogAndTag);
 
+    /**
+     * 更新博客
+     * @param blog
+     * @return
+     */
     int updateBlog(Blog blog);
 
+    /**
+     * 删除博客
+     * @param id
+     * @return
+     */
     int deleteBlog(Long id);
 
+    /**
+     * 热门博客推荐
+     * @return
+     */
     List<Blog> getHotBlog();
 }

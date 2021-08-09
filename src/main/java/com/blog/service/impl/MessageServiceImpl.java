@@ -11,13 +11,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Service
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
     private MessageDao messageDao;
 
-    //存放迭代找出的所有子代的集合
+    /**
+     * 存放迭代找出的所有子代的集合
+     */
     private List<Message> tempReplys = new ArrayList<>();
 
     /**
@@ -89,13 +94,18 @@ public class MessageServiceImpl implements MessageService {
         }
     }
     @Override
-    //存储留言信息
+    /**
+     * 存储留言信息
+     */
     public int saveMessage(Message message) {
         message.setCreateTime(new Date());
         return messageDao.saveMessage(message);
     }
 
-    //    删除留言
+    /**
+     *   删除留言
+     * @param id
+     */
     @Override
     public void deleteMessage(Long id) {
         messageDao.deleteMessage(id);

@@ -25,11 +25,11 @@ public class TypeShowController {
     @Autowired
     private BlogService blogService;
 
-    @Cacheable(cacheNames = "types#7200", key = "#id")
     @GetMapping(value = {"/types/{id}","/types"})
     public String types(@PathVariable(required = false) Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
                         Model model){
-        PageHelper.startPage(pagenum, 1000);  //开启分页
+        //开启分页
+        PageHelper.startPage(pagenum, 1000);
         List<Type> types = typeService.getBlogType();
         //-1从导航点过来的
         if (id == null){

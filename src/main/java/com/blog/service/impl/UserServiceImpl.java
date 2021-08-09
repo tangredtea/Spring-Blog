@@ -13,9 +13,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+
     @Override
     public User checkUser(String username, String password) {
         User user = userDao.queryByUsernameAndPassword(username, MD5Utils.code(password));
         return user;
     }
+
 }

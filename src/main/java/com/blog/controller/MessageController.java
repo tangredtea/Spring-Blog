@@ -33,7 +33,11 @@ public class MessageController {
         return "message";
     }
 
-    //    查询留言
+    /**
+     * 查询留言
+     * @param model
+     * @return
+     */
     @GetMapping("/messagecomment")
     public String messages(Model model) {
         List<Message> messages = messageService.listMessage();
@@ -41,7 +45,13 @@ public class MessageController {
         return "message::messageList";
     }
 
-    //    新增留言
+    /**
+     * 新增留言
+     * @param message
+     * @param session
+     * @param model
+     * @return
+     */
     @PostMapping("/message")
     public String post(Message message, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
@@ -61,7 +71,13 @@ public class MessageController {
         return "message::messageList";
     }
 
-    //    删除留言
+    /**
+     * 删除留言
+     * @param id
+     * @param attributes
+     * @param model
+     * @return
+     */
     @GetMapping("/messages/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes, Model model){
         messageService.deleteMessage(id);

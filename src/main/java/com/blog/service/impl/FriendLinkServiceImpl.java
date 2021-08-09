@@ -3,11 +3,15 @@ package com.blog.service.impl;
 import com.blog.dao.FriendLinkDao;
 import com.blog.pojo.FriendLink;
 import com.blog.service.FriendLinkService;
+import com.blog.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Service
 public class FriendLinkServiceImpl implements FriendLinkService {
 
@@ -30,8 +34,8 @@ public class FriendLinkServiceImpl implements FriendLinkService {
     }
 
     @Override
-    public FriendLink getFriendLinkByBlogaddress(String blogaddress) {
-        return friendLinkDao.getFriendLinkByBlogaddress(blogaddress);
+    public FriendLink getFriendLinkByBlogAddress(String blogAddress) {
+        return friendLinkDao.getFriendLinkByBlogaddress(blogAddress);
     }
 
     @Override
