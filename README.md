@@ -6,7 +6,7 @@
 [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 # Spring-Blog
 
-# 此版本不再维护，仅适用于新手学习，后端管理平台可以自己开发，有个bug不会修复，接下来会开一个分支，用别人写好的后台框架进行重写改版。即SpringBoot+Vue版本
+# 此版本不再维护，仅适用于新手学习，[后台UI建议自己开发，我不会前端]，接下来会开一个分支，用别人写好的后台框架进行重写改版。即SpringBoot+Vue版本
 
 框架：Springboot
 
