@@ -6,7 +6,7 @@
 [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 # Spring-Blog
 
-# 此版本不再维护，仅适用于新手学习，[后台UI建议自己开发，我不会前端]，接下来会开一个分支，用别人写好的后台框架进行重写改版。即SpringBoot+Vue版本
+# 重构版本请看分支main，SpringBoot+Vue版本，目前还基本重构完成，还在做一些修改，之后会编写docker脚本、反向代理等配置文件。
 
 框架：Springboot
 
