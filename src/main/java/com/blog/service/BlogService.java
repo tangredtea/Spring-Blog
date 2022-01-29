@@ -1,6 +1,6 @@
 package com.blog.service;
 
-import com.blog.pojo.Blog;
+import com.blog.entity.Blog;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.blog.dao;
 
-import com.blog.pojo.Message;
+import com.blog.entity.Message;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

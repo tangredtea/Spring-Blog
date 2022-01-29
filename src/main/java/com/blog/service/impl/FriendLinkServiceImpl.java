@@ -1,9 +1,8 @@
 package com.blog.service.impl;
 
 import com.blog.dao.FriendLinkDao;
-import com.blog.pojo.FriendLink;
+import com.blog.entity.FriendLink;
 import com.blog.service.FriendLinkService;
-import com.blog.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

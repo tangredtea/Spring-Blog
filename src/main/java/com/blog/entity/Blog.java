@@ -1,4 +1,4 @@
-package com.blog.pojo;
+package com.blog.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,7 +35,7 @@ public class Blog implements Serializable {
      * 这个属性用来在mybatis中进行连接查询的
      */
     private Long typeId;
-    private Long userId;
+    private Integer userId;
 
     /**
      * 获取多个标签的id

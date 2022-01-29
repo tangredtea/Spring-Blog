@@ -1,4 +1,4 @@
-package com.blog.pojo;
+package com.blog.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -15,7 +15,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tag implements Serializable {
+public class Type implements Serializable {
+
     private Long id;
     private String name;
 

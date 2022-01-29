@@ -1,6 +1,6 @@
 package com.blog.controller.admin;
 
-import com.blog.pojo.Type;
+import com.blog.entity.Type;
 import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

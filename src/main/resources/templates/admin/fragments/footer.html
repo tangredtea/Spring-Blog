@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="footer-content">
+
+
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by <a th:href="@{https://github.com/laowenruo}" target="_blank">学编程的文若</a> 2021</p>
+        </div>
+
+</div>
+<body th:fragment="footer">
+<!-- Required vendors -->
+<script th:src="@{/backend/vendor/global/global.min.js}"></script>
+<script th:src="@{/backend/vendor/jquery-nice-select/js/jquery.nice-select.min.js}"></script>
+
+<!-- Dashboard 1 -->
+
+
+<script th:src="@{/backend/js/custom.min.js}"></script>
+<script th:src="@{/backend/js/deznav-init.js}"></script>
+<script th:src="@{/backend/js/demo.js}"></script>
+<script th:src="@{/backend/js/styleSwitcher.js}"></script>
+</body>
+</html>

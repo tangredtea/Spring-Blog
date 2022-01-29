@@ -1,14 +1,11 @@
 package com.blog.service.impl;
 
 import com.blog.dao.TypeDao;
-import com.blog.pojo.Tag;
-import com.blog.pojo.Type;
+import com.blog.entity.Type;
 import com.blog.service.RedisService;
 import com.blog.service.TypeService;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

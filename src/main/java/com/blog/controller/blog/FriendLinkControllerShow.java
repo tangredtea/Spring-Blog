@@ -1,4 +1,4 @@
-package com.blog.controller;
+package com.blog.controller.blog;
 
 import com.blog.service.FriendLinkService;
 import org.springframework.beans.factory.annotation.Autowired;

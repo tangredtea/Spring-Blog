@@ -1,7 +1,7 @@
-package com.blog.controller;
+package com.blog.controller.blog;
 
-import com.blog.pojo.Blog;
-import com.blog.pojo.Message;
+import com.blog.entity.Blog;
+import com.blog.entity.Message;
 import com.blog.service.BlogService;
 import com.blog.service.MessageService;
 import com.blog.service.TagService;
@@ -9,7 +9,6 @@ import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

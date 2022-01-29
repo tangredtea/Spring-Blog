@@ -1,6 +1,6 @@
 package com.blog.service;
 
-import com.blog.pojo.FriendLink;
+import com.blog.entity.FriendLink;
 
 import java.util.List;
 

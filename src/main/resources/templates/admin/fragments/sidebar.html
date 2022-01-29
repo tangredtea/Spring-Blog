@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside id="sidebar" class="sidebar" th:fragment="sidebar">
+    <div class="deznav">
+        <div class="deznav-scroll">
+            <div class="dropdown header-profile">
+                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+                    <img src="" th:src="@{backedn/images/profile/pic1.jpg}" width="20" alt=""/>
+                    <div class="header-info">
+                        <span class="font-w400 mb-0">Hello,<b>William</b></span>
+                        <small class="text-end font-w400">williamfrancisson@mail.com</small>
+                    </div>
+                </a>
+            </div>
+            <ul class="metismenu" id="menu">
+                <li><a th:href="@{/admin}" >
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">仪表盘</span>
+                </a>
+
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
+                    <i class="flaticon-050-info"></i>
+                    <span class="nav-text">文章管理</span>
+                </a>
+                    <ul aria-expanded="false">
+                        <li><a th:href="@{/admin/blogs/input}">发布文章</a></li>
+                        <li><a th:href="@{/admin/blogs}">文章列表</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
+                    <i class="flaticon-041-graph"></i>
+                    <span class="nav-text">分类管理</span>
+                </a>
+                    <ul aria-expanded="false">
+                        <li><a th:href="@{/admin/types/input}">新增分类</a></li>
+                        <li><a th:href="@{/admin/types}">分类列表</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false" >
+                    <i class="flaticon-086-star"></i>
+                    <span class="nav-text">标签管理</span>
+                </a>
+                    <ul aria-expanded="false">
+                        <li><a th:href="@{/admin/tags/input}">新增标签</a></li>
+                        <li><a th:href="@{/admin/tags}">标签列表</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false" >
+                    <i class="flaticon-045-heart"></i>
+                    <span class="nav-text">友链管理</span>
+                </a>
+                    <ul >
+                        <li><a th:href="@{/admin/friendlinks/input}">新增友链</a></li>
+                        <li><a th:href="@{/admin/friendlinks}">友链管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="copyright">
+                <p><strong>博客后台管理</strong> © 2022 All Rights Reserved</p>
+                <p class="fs-12">Made with <span class="heart"></span> by 学编程的文若</p>
+            </div>
+        </div>
+    </div>
+</aside>
+</body>
+</html>

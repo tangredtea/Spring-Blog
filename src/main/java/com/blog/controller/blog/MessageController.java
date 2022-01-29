@@ -1,7 +1,7 @@
-package com.blog.controller;
+package com.blog.controller.blog;
 
-import com.blog.pojo.Message;
-import com.blog.pojo.User;
+import com.blog.entity.Message;
+import com.blog.entity.User;
 import com.blog.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -57,7 +56,6 @@ public class MessageController {
         User user = (User) session.getAttribute("user");
         //设置头像
         if (user != null) {
-            message.setAvatar(user.getAvatar());
             message.setAdminMessage(true);
         } else {
             message.setAvatar(avatar);

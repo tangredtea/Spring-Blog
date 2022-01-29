@@ -1,9 +1,7 @@
 package com.blog.controller.admin;
 
-import com.blog.pojo.Tag;
-import com.blog.pojo.Type;
+import com.blog.entity.Tag;
 import com.blog.service.TagService;
-import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

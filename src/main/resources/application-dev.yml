@@ -60,7 +60,7 @@ logging:
 #Mybatis
 mybatis:
   #设置别名
-  type-aliases-package: com.blog.pojo
+  type-aliases-package: com.blog.entity
   #ָ指定myBatis的核心配置文件与Mapper映射文件
   mapper-locations: classpath:mapper/*.xml
   #驼峰命名
@@ -74,8 +74,3 @@ pagehelper:
   params:
 server:
   port: 8081
-jwt:
-  header: "Authorization" #token返回头部
-  tokenPrefix: "Bearer " #token前缀
-  secret: "isbut.cn1314520" #密钥
-  expireTime: 360 #token有效时间 (分钟) 建议一小时以上

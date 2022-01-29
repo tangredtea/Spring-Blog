@@ -1,6 +1,6 @@
 package com.blog.service;
 
-import com.blog.pojo.Message;
+import com.blog.entity.Message;
 
 import java.util.List;
 

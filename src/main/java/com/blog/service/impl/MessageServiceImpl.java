@@ -1,9 +1,8 @@
 package com.blog.service.impl;
 
 import com.blog.dao.MessageDao;
-import com.blog.pojo.Message;
+import com.blog.entity.Message;
 import com.blog.service.MessageService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

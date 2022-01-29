@@ -1,7 +1,7 @@
 package com.blog.controller.admin;
 
-import com.blog.pojo.Blog;
-import com.blog.pojo.User;
+import com.blog.entity.Blog;
+import com.blog.entity.User;
 import com.blog.service.BlogService;
 import com.blog.service.TagService;
 import com.blog.service.TypeService;

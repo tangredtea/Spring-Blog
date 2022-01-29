@@ -3,13 +3,13 @@
 <mapper namespace="com.blog.dao.MessageDao">
 
     <!--添加留言-->
-    <insert id="saveMessage" parameterType="com.blog.pojo.Message">
+    <insert id="saveMessage" parameterType="com.blog.entity.Message">
         insert into blog.t_message (nickname,email,content,avatar,create_time,parent_message_id,admin_message)
         values (#{nickname},#{email},#{content},#{avatar},#{createTime},#{parentMessageId},#{adminMessage});
     </insert>
 
     <!--查询父级留言-->
-    <select id="findByParentIdNull" resultType="com.blog.pojo.Message">
+    <select id="findByParentIdNull" resultType="com.blog.entity.Message">
         select *
         from blog.t_message c
         where c.parent_message_id = #{ParentId}
@@ -17,7 +17,7 @@
     </select>
 
     <!--查询一级回复-->
-    <select id="findByParentIdNotNull" resultType="com.blog.pojo.Message">
+    <select id="findByParentIdNotNull" resultType="com.blog.entity.Message">
         select *
         from blog.t_message c
         where c.parent_message_id = #{id}
@@ -25,7 +25,7 @@
     </select>
 
     <!--首页推荐评论-->
-    <select id="findByIndexParentId" resultType="com.blog.pojo.Message">
+    <select id="findByIndexParentId" resultType="com.blog.entity.Message">
         select *
         from blog.t_message c
         where c.parent_message_id = #{id}
@@ -33,7 +33,7 @@
     </select>
 
     <!--查询二级以及所有子集回复-->
-    <select id="findByReplayId" resultType="com.blog.pojo.Message">
+    <select id="findByReplayId" resultType="com.blog.entity.Message">
         select *
         from blog.t_message c
         where c.parent_message_id = #{childId}

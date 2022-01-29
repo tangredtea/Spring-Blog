@@ -1,17 +1,15 @@
 package com.blog.service.impl;
 
 import com.blog.dao.BlogDao;
-import com.blog.entity.RedisKey;
+import com.blog.config.RedisKey;
 import com.blog.exception.NotFoundException;
-import com.blog.pojo.Blog;
-import com.blog.pojo.BlogAndTag;
-import com.blog.pojo.Tag;
+import com.blog.entity.Blog;
+import com.blog.entity.BlogAndTag;
+import com.blog.entity.Tag;
 import com.blog.service.BlogService;
 import com.blog.service.RedisService;
 import com.blog.util.MarkdownUtils;
-import com.blog.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

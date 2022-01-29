@@ -1,4 +1,4 @@
-package com.blog.handler;
+package com.blog.controller.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,27 +24,23 @@ public class ControllerExceptionHandler {
     /**
      * 表示该方法可以处理所有类型异常
      * @param request
-     * @param e
-     * @return
+     * @param e 异常
+     * @return 错误页面
      * @throws Exception
      */
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
-
         //日志打印异常信息
         logger.error("Request url: {}, Exception: {}", request.getRequestURI(), e);
-
         //不处理带有ResponseStatus注解的异常
         if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             throw e;
         }
-
         //返回异常信息到自定义error页面
         ModelAndView mv = new ModelAndView();
         mv.addObject("url", request.getRequestURI());
         mv.addObject("exception",e);
         mv.setViewName("error/error");
-
         return mv;
     }
 }

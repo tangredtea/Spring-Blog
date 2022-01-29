@@ -1,15 +1,14 @@
 package com.blog.controller.admin;
 
-import com.blog.pojo.User;
+import com.blog.entity.User;
 import com.blog.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -18,16 +17,11 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("/admin")
-public class LoginController {
+public class AdminController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    /**
-     * 修复后台路径访问
-     * @param session
-     * @return
-     */
     @GetMapping()
     public String loginPage(HttpSession session){
         if (session.getAttribute("user")!=null) {
@@ -43,6 +37,7 @@ public class LoginController {
             return "redirect:/admin";
         }
     }
+
     @PostMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
@@ -63,4 +58,5 @@ public class LoginController {
         session.removeAttribute("user");
         return "redirect:/admin";
     }
+
 }

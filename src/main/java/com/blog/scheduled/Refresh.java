@@ -1,8 +1,8 @@
 package com.blog.scheduled;
 
 import com.blog.dao.BlogDao;
-import com.blog.entity.RedisKey;
-import com.blog.pojo.Blog;
+import com.blog.config.RedisKey;
+import com.blog.entity.Blog;
 import com.blog.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

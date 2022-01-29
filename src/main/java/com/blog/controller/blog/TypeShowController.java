@@ -1,13 +1,12 @@
-package com.blog.controller;
+package com.blog.controller.blog;
 
-import com.blog.pojo.Blog;
-import com.blog.pojo.Type;
+import com.blog.entity.Blog;
+import com.blog.entity.Type;
 import com.blog.service.BlogService;
 import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package com.blog.dao;
 
-import com.blog.pojo.FriendLink;
+import com.blog.entity.FriendLink;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

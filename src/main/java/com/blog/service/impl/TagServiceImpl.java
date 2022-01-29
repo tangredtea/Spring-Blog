@@ -1,7 +1,7 @@
 package com.blog.service.impl;
 
 import com.blog.dao.TagDao;
-import com.blog.pojo.Tag;
+import com.blog.entity.Tag;
 import com.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

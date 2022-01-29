@@ -1,7 +1,5 @@
 package com.blog.exception;
 
-import com.blog.entity.CommonResult;
-
 /**
  * @author Ryan
  */

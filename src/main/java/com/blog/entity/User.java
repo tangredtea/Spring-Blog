@@ -1,4 +1,4 @@
-package com.blog.pojo;
+package com.blog.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,15 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements Serializable {
-    private Long id;
+    private Integer id;
     private String nickname;
     private String username;
     private String password;
     private String email;
-    private String avatar;
-    private Integer type;
-    private Date createTime;
-    private Date updateTime;
 
     private List<Blog> blogs = new ArrayList<>();
 }

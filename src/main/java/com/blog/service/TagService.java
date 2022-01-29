@@ -1,6 +1,6 @@
 package com.blog.service;
 
-import com.blog.pojo.Tag;
+import com.blog.entity.Tag;
 
 import java.util.List;
 
