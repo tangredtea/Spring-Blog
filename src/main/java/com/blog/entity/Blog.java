@@ -21,11 +21,11 @@ public class Blog implements Serializable {
     private String title;
     private String content;
     private String firstPicture;
-    private String flag;
     private Integer views;
+    private boolean flag;
     private boolean appreciation;
     private boolean shareStatement;
-    private boolean commentabled;
+    private boolean commentable;
     private boolean published;
     private boolean recommend;
     private Date createTime;
@@ -55,12 +55,12 @@ public class Blog implements Serializable {
 
     /**
      * 将tags集合转换为tagIds字符串形式：“1,2,3”,用于编辑博客时显示博客的tag
-     * @param tags
-     * @return
+     * @param tags 标签
+     * @return 标签id
      */
     private String tagsToIds(List<Tag> tags){
         if(!tags.isEmpty()){
-            StringBuffer ids = new StringBuffer();
+            StringBuilder ids = new StringBuilder();
             boolean flag = false;
             for(Tag tag: tags){
                 if(flag){

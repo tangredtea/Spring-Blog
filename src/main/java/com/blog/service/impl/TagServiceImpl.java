@@ -3,9 +3,8 @@ package com.blog.service.impl;
 import com.blog.dao.TagDao;
 import com.blog.entity.Tag;
 import com.blog.service.TagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class TagServiceImpl implements TagService {
 
-    @Autowired
+    @Resource
     TagDao tagDao;
 
     @Override
@@ -24,7 +23,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag getTag(Long id) {
+    public Tag getTag(Integer id) {
         return tagDao.getTag(id);
     }
 
@@ -51,9 +50,9 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> getTagByString(String text) {
         List<Tag> tags = new ArrayList<>();
-        List<Long> longs = convertToList(text);
-        for (Long long1 : longs) {
-            tags.add(tagDao.getTag(long1));
+        List<Integer> nums = convertToList(text);
+        for (Integer num : nums) {
+            tags.add(tagDao.getTag(num));
         }
         return tags;
     }
@@ -63,12 +62,12 @@ public class TagServiceImpl implements TagService {
      * @param ids
      * @return
      */
-    private List<Long> convertToList(String ids) {
-        List<Long> list = new ArrayList<>();
+    private List<Integer> convertToList(String ids) {
+        List<Integer> list = new ArrayList<>();
         if (!"".equals(ids) && ids != null) {
-            String[] idarray = ids.split(",");
-            for (int i=0; i < idarray.length;i++) {
-                list.add(new Long(idarray[i]));
+            String[] idArrays = ids.split(",");
+            for (int i = 0; i < idArrays.length;i++) {
+                list.add(Integer.valueOf(idArrays[i]));
             }
         }
         return list;
@@ -80,7 +79,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public int deleteTag(Long id) {
+    public int deleteTag(Integer id) {
         return tagDao.deleteTag(id);
     }
 }

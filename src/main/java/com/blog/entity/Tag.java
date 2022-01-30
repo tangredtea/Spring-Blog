@@ -16,8 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tag implements Serializable {
-    private Long id;
+    private Integer id;
     private String name;
-
     private List<Blog> blogs = new ArrayList<>();
 }

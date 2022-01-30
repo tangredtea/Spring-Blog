@@ -23,10 +23,10 @@ public class ControllerExceptionHandler {
 
     /**
      * 表示该方法可以处理所有类型异常
-     * @param request
+     * @param request 请求
      * @param e 异常
      * @return 错误页面
-     * @throws Exception
+     * @throws Exception 异常
      */
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {

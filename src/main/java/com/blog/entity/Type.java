@@ -17,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Type implements Serializable {
 
-    private Long id;
+    private Integer id;
     private String name;
-
     private List<Blog> blogs = new ArrayList<>();
 }

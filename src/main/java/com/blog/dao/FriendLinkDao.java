@@ -3,7 +3,6 @@ package com.blog.dao;
 import com.blog.entity.FriendLink;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 /**
@@ -14,42 +13,42 @@ import java.util.List;
 public interface FriendLinkDao {
     /**
      * 列出友情链接
-     * @return
+     * @return 友链列表
      */
     List<FriendLink> listFriendLink();
 
     /**
      * 保存友情链接
-     * @param friendLink
-     * @return
+     * @param friendLink 友链
+     * @return 状态值
      */
     int saveFriendLink(FriendLink friendLink);
 
     /**
      * 获取友情链接
-     * @param id
-     * @return
+     * @param id 友链id
+     * @return 友链
      */
-    FriendLink getFriendLink(Long id);
+    FriendLink getFriendLink(Integer id);
 
     /**
      * 通过地址得到友情链接
-     * @param blogaddress
-     * @return
+     * @param blogAddress 友链地址
+     * @return 友链
      */
-    FriendLink getFriendLinkByBlogaddress(String blogaddress);
+    FriendLink getFriendLinkByBlogAddress(String blogAddress);
 
     /**
      * 更新友情链接
-     * @param friendLink
-     * @return
+     * @param friendLink 友链
+     * @return 状态值
      */
     int updateFriendLink(FriendLink friendLink);
 
     /**
      * 删除友情链接
-     * @param id
+     * @param id 友链id
      */
-    void deleteFriendLink(Long id);
+    void deleteFriendLink(Integer id);
 
 }

@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class BlogAndTag implements Serializable {
 
-    private Long tagId;
+    private Integer tagId;
 
     private Long blogId;
 }

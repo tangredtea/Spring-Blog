@@ -3,9 +3,9 @@ package com.blog.service.impl;
 import com.blog.dao.MessageDao;
 import com.blog.entity.Message;
 import com.blog.service.MessageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,26 +16,26 @@ import java.util.List;
 @Service
 public class MessageServiceImpl implements MessageService {
 
-    @Autowired
+    @Resource
     private MessageDao messageDao;
 
     /**
      * 存放迭代找出的所有子代的集合
      */
-    private List<Message> tempReplys = new ArrayList<>();
+    private List<Message> tempReplies = new ArrayList<>();
 
     /**
      * 首页推荐评论
-     * @return
+     * @return 留言列表
      */
     @Override
     public  List<Message> findByIndexParentId(){
-        List<Message> messages = messageDao.findByParentIdNull(Long.parseLong("-1"));
-        return messages;
+        return messageDao.findByParentIdNull(Long.parseLong("-1"));
     }
+
     /**
-     * @Description: 查询留言
-     * @Return: 留言消息
+     * 列出留言
+     * @return 留言列表
      */
     @Override
     public List<Message> listMessage() {
@@ -47,16 +47,17 @@ public class MessageServiceImpl implements MessageService {
             List<Message> childMessages = messageDao.findByParentIdNotNull(id);
             //查询出子留言
             combineChildren(childMessages, parentNickname1);
-            message.setReplyMessages(tempReplys);
-            tempReplys = new ArrayList<>();
+            message.setReplyMessages(tempReplies);
+            tempReplies = new ArrayList<>();
         }
         return messages;
     }
 
 
     /**
-     * @Description: 查询出子留言
-     * @Return:
+     * 查询子留言
+     * @param childMessages 子留言
+     * @param parentNickname1 父留言名称
      */
     private void combineChildren(List<Message> childMessages, String parentNickname1) {
         //判断是否有一级子回复
@@ -65,7 +66,7 @@ public class MessageServiceImpl implements MessageService {
             for(Message childMessage : childMessages){
                 String parentNickname = childMessage.getNickname();
                 childMessage.setParentNickname(parentNickname1);
-                tempReplys.add(childMessage);
+                tempReplies.add(childMessage);
                 Long childId = childMessage.getId();
                 //查询二级以及所有子集回复
                 recursively(childId, parentNickname);
@@ -74,36 +75,39 @@ public class MessageServiceImpl implements MessageService {
     }
 
     /**
-     * @Description: 循环迭代找出子集回复
-     * @Return:
+     * 循环迭代找出子集回复
+     * @param childId 子集id
+     * @param parentNickname1 父名称
      */
     private void recursively(Long childId, String parentNickname1) {
         //根据子一级留言的id找到子二级留言
         List<Message> replayMessages = messageDao.findByReplayId(childId);
-
         if(replayMessages.size() > 0){
             for(Message replayMessage : replayMessages){
                 String parentNickname = replayMessage.getNickname();
                 replayMessage.setParentNickname(parentNickname1);
                 Long replayId = replayMessage.getId();
-                tempReplys.add(replayMessage);
+                tempReplies.add(replayMessage);
                 //循环迭代找出子集回复
                 recursively(replayId,parentNickname);
             }
         }
     }
-    @Override
+
     /**
-     * 存储留言信息
+     * 保存留言
+     * @param message 留言
+     * @return 状态
      */
+    @Override
     public int saveMessage(Message message) {
         message.setCreateTime(new Date());
         return messageDao.saveMessage(message);
     }
 
     /**
-     *   删除留言
-     * @param id
+     *  删除留言
+     * @param id 留言id
      */
     @Override
     public void deleteMessage(Long id) {

@@ -15,10 +15,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class FriendLink implements Serializable {
 
-    private Long id;
-    private String blogname;
-    private String blogaddress;
-    private String pictureaddress;
+    private Integer id;
+    private String blogName;
+    private String blogAddress;
+    private String pictureAddress;
     private Date createTime;
 
 }

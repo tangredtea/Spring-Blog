@@ -3,25 +3,23 @@ package com.blog.controller.blog;
 import com.blog.entity.Message;
 import com.blog.entity.User;
 import com.blog.service.MessageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @Description: 留言页面控制器
+ * @author Ryan
  */
 @Controller
 public class MessageController {
 
-    @Autowired
+    @Resource
     private MessageService messageService;
 
     @Value("/static/images/logo.png")
@@ -34,22 +32,22 @@ public class MessageController {
 
     /**
      * 查询留言
-     * @param model
-     * @return
+     * @param model 视图
+     * @return 渲染视图
      */
-    @GetMapping("/messagecomment")
+    @GetMapping("/messageComment")
     public String messages(Model model) {
         List<Message> messages = messageService.listMessage();
         model.addAttribute("messages", messages);
-        return "message::messageList";
+        return "message";
     }
 
     /**
      * 新增留言
-     * @param message
-     * @param session
-     * @param model
-     * @return
+     * @param message 留言
+     * @param session 用户
+     * @param model 视图
+     * @return 渲染视图
      */
     @PostMapping("/message")
     public String post(Message message, HttpSession session, Model model) {
@@ -66,20 +64,18 @@ public class MessageController {
         messageService.saveMessage(message);
         List<Message> messages = messageService.listMessage();
         model.addAttribute("messages", messages);
-        return "message::messageList";
+        return "message";
     }
 
     /**
      * 删除留言
-     * @param id
-     * @param attributes
-     * @param model
-     * @return
+     * @param id 留言id
+     * @return 渲染视图
      */
     @GetMapping("/messages/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes, Model model){
+    public String delete(@PathVariable Long id){
         messageService.deleteMessage(id);
-        return "redirect:/message";
+        return "message";
     }
 
 }

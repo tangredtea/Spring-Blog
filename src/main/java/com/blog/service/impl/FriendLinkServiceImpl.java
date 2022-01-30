@@ -3,9 +3,9 @@ package com.blog.service.impl;
 import com.blog.dao.FriendLinkDao;
 import com.blog.entity.FriendLink;
 import com.blog.service.FriendLinkService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class FriendLinkServiceImpl implements FriendLinkService {
 
-    @Autowired
+    @Resource
     private FriendLinkDao friendLinkDao;
 
     @Override
@@ -28,13 +28,13 @@ public class FriendLinkServiceImpl implements FriendLinkService {
     }
 
     @Override
-    public FriendLink getFriendLink(Long id) {
+    public FriendLink getFriendLink(Integer id) {
         return friendLinkDao.getFriendLink(id);
     }
 
     @Override
     public FriendLink getFriendLinkByBlogAddress(String blogAddress) {
-        return friendLinkDao.getFriendLinkByBlogaddress(blogAddress);
+        return friendLinkDao.getFriendLinkByBlogAddress(blogAddress);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class FriendLinkServiceImpl implements FriendLinkService {
     }
 
     @Override
-    public void deleteFriendLink(Long id) {
+    public void deleteFriendLink(Integer id) {
         friendLinkDao.deleteFriendLink(id);
     }
 

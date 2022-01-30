@@ -4,12 +4,12 @@ import com.blog.entity.Tag;
 import com.blog.service.TagService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -19,14 +19,13 @@ import java.util.List;
 @RequestMapping("/admin")
 public class TagController {
 
-    @Autowired
+    @Resource
     TagService tagService;
 
     @GetMapping("/tags")
-    public String tags(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
-        PageHelper.startPage(pagenum, 5);
+    public String tags(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum, Model model){
+        PageHelper.startPage(pageNum, 5);
         List<Tag> allTag = tagService.getAllTag();
-        //得到分页结果对象
         PageInfo<Tag> pageInfo = new PageInfo<>(allTag);
         model.addAttribute("pageInfo", pageInfo);
         return "admin/tags";
@@ -40,13 +39,13 @@ public class TagController {
     }
 
     @GetMapping("/tags/{id}/input")
-    public String toEditTag(@PathVariable Long id, Model model){
+    public String toEditTag(@PathVariable Integer id, Model model){
         model.addAttribute("tag", tagService.getTag(id));
         return "admin/tags-input";
     }
 
     @PostMapping("/tags")
-    public String addTag(Tag tag, RedirectAttributes attributes){   //新增
+    public String addTag(Tag tag, RedirectAttributes attributes){
         Tag t = tagService.getTagByName(tag.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的标签");
@@ -55,12 +54,11 @@ public class TagController {
             attributes.addFlashAttribute("msg", "添加成功");
         }
         tagService.saveTag(tag);
-        //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
         return "redirect:/admin/tags";
     }
 
     @PostMapping("/tags/{id}")
-    public String editTag(@PathVariable Long id, Tag tag, RedirectAttributes attributes){  //修改
+    public String editTag(@PathVariable Long id, Tag tag, RedirectAttributes attributes){
         Tag t = tagService.getTagByName(tag.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的标签");
@@ -69,7 +67,6 @@ public class TagController {
             attributes.addFlashAttribute("msg", "修改成功");
         }
         tagService.updateTag(tag);
-        //不能直接跳转到tags页面，否则不会显示tag数据(没经过tags方法)
         return "redirect:/admin/tags";
     }
 

@@ -7,12 +7,11 @@ import com.blog.service.TagService;
 import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -23,13 +22,13 @@ import java.util.List;
 @RequestMapping("/admin")
 public class BlogController {
 
-    @Autowired
+    @Resource
     private BlogService blogService;
 
-    @Autowired
+    @Resource
     private TypeService typeService;
 
-    @Autowired
+    @Resource
     private TagService tagService;
 
     public void setTypeAndTag(Model model) {
@@ -39,35 +38,34 @@ public class BlogController {
 
     /**
      * 后台显示博客列表
-     * @param pagenum
-     * @param model
-     * @return
+     * @param pageNum 页数
+     * @param model 视图
+     * @return 渲染视图
      */
     @GetMapping("/blogs")
-    public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
-        PageHelper.startPage(pagenum, 5);
+    public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum, Model model){
+        PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.getAllBlog();
         //得到分页结果对象
-        PageInfo pageInfo = new PageInfo(allBlog);
+        PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
         model.addAttribute("pageInfo", pageInfo);
         setTypeAndTag(model);
-
         return "admin/blogs";
     }
 
     /**
-     *  按条件查询博客
-     * @param blog
-     * @param pagenum
-     * @param model
-     * @return
+     * 按条件查询博客
+     * @param blog 博文
+     * @param pageNum 页数
+     * @param model 视图
+     * @return 渲染视图
      */
     @PostMapping("/blogs/search")
-    public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
-        PageHelper.startPage(pagenum, 5);
+    public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum, Model model){
+        PageHelper.startPage(pageNum, 5);
         List<Blog> allBlog = blogService.searchAllBlog(blog);
         //得到分页结果对象
-        PageInfo pageInfo = new PageInfo(allBlog);
+        PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("message", "查询成功");
         setTypeAndTag(model);
@@ -75,9 +73,9 @@ public class BlogController {
     }
 
     /**
-     * 去新增博客页面
-     * @param model
-     * @return
+     * 新增博客页
+     * @param model 视图
+     * @return 渲染视图
      */
     @GetMapping("/blogs/input")
     public String toAddBlog(Model model){
@@ -88,10 +86,10 @@ public class BlogController {
     }
 
     /**
-     * 去编辑博客页面
-     * @param id
-     * @param model
-     * @return
+     * 博文编辑页
+     * @param id 博文id
+     * @param model 视图
+     * @return 渲染视图
      */
     @GetMapping("/blogs/{id}/input")
     public String toEditBlog(@PathVariable Long id, Model model){
@@ -106,30 +104,23 @@ public class BlogController {
 
     /**
      * 新增、编辑博客
-     * @param blog
-     * @param session
-     * @param attributes
-     * @return
+     * @param blog 博文
+     * @param session session
+     * @param attributes 属性
+     * @return 重定向到博文页
      */
     @PostMapping("/blogs")
     public String addBlog(Blog blog, HttpSession session, RedirectAttributes attributes){
-        //设置user属性
         blog.setUser((User) session.getAttribute("user"));
-        //设置用户id
         blog.setUserId(blog.getUser().getId());
-        //设置blog的type
         blog.setType(typeService.getType(blog.getType().getId()));
-        //设置blog中typeId属性
         blog.setTypeId(blog.getType().getId());
-        //给blog中的List<Tag>赋值
         blog.setTags(tagService.getTagByString(blog.getTagIds()));
-        //id为空，则为新增
         if (blog.getId() == null) {
             blogService.saveBlog(blog);
         } else {
             blogService.updateBlog(blog);
         }
-
         attributes.addFlashAttribute("msg", "新增成功");
         return "redirect:/admin/blogs";
     }

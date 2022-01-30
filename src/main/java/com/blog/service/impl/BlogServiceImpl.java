@@ -9,9 +9,9 @@ import com.blog.entity.Tag;
 import com.blog.service.BlogService;
 import com.blog.service.RedisService;
 import com.blog.util.MarkdownUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -20,10 +20,10 @@ import java.util.*;
 @Service
 public class BlogServiceImpl implements BlogService {
 
-    @Autowired
+    @Resource
     RedisService cache;
 
-    @Autowired
+    @Resource
     BlogDao blogDao;
 
     @Override
@@ -34,7 +34,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getDetailedBlog(Long id) {
-        Blog blog=null;
+        Blog blog;
         //如果缓存中有这个键值的话
         if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
             blog= (Blog) cache.hGet(RedisKey.ARTCILE,String.valueOf(id));
@@ -62,12 +62,12 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getByTypeId(Long typeId) {
+    public List<Blog> getByTypeId(Integer typeId) {
         return blogDao.getByTypeId(typeId);
     }
 
     @Override
-    public List<Blog> getByTagId(Long tagId) {
+    public List<Blog> getByTagId(Integer tagId) {
         return blogDao.getByTagId(tagId);
     }
 
@@ -91,7 +91,7 @@ public class BlogServiceImpl implements BlogService {
         List<String> years = blogDao.findGroupYear();
         //set去掉重复的年份
         Set<String> set = new HashSet<>(years);  
-        Map<String, List<Blog>> map = new HashMap<>();
+        Map<String, List<Blog>> map = new HashMap<>(8);
         for (String year : set) {
             map.put(year, blogDao.findByYear(year));
         }
@@ -114,9 +114,9 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
-     * 新增博客
-     * @param blog
-     * @return
+     * 状态值
+     * @param blog 博文
+     * @return 保存博文
      */
     @Override    
     public int saveBlog(Blog blog) {
@@ -129,7 +129,7 @@ public class BlogServiceImpl implements BlogService {
         Long id = blog.getId();
         //将标签的数据存到t_blogs_tag表中
         List<Tag> tags = blog.getTags();
-        BlogAndTag blogAndTag = null;
+        BlogAndTag blogAndTag;
         for (Tag tag : tags) {
             //新增时无法获取自增的id,在mybatis里修改
             blogAndTag = new BlogAndTag(tag.getId(), id);
@@ -140,15 +140,15 @@ public class BlogServiceImpl implements BlogService {
 
     /**
      * 编辑博客
-     * @param blog
-     * @return
+     * @param blog 博文
+     * @return 状态值
      */
     @Override   
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
         //将标签的数据存到t_blogs_tag表中
         List<Tag> tags = blog.getTags();
-        BlogAndTag blogAndTag = null;
+        BlogAndTag blogAndTag;
         for (Tag tag : tags) {
             blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);

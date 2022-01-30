@@ -4,15 +4,13 @@ import com.blog.entity.Blog;
 import com.blog.entity.Message;
 import com.blog.service.BlogService;
 import com.blog.service.MessageService;
-import com.blog.service.TagService;
-import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,23 +19,17 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    @Autowired
+    @Resource
     private BlogService blogService;
 
-    @Autowired
-    private TypeService typeService;
-
-    @Autowired
+    @Resource
     private MessageService messageService;
-
-    @Autowired
-    private TagService tagService;
 
     /**
      * 首页数据
-     * @param model
-     * @param pageNum
-     * @return
+     * @param model 视图
+     * @param pageNum 分页
+     * @return 渲染视图
      */
     @RequestMapping("/")
     public String toIndex(@RequestParam(required = false,defaultValue = "1") int pageNum,Model model){
@@ -46,23 +38,23 @@ public class IndexController {
         //获取推荐博客
         List<Blog> recommendBlog =blogService.getAllRecommendBlog();
         //得到分页结果对象
-        PageInfo pageInfo = new PageInfo(allBlog);
+        PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
         List<Message> messages = messageService.findByIndexParentId();
-        model.addAttribute("messages", messages);
+        model.addAttribute("msg", messages);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("recommendBlogs", recommendBlog);
-        List<Blog> HotBlog=blogService.getHotBlog();
-        model.addAttribute("HotBlog", HotBlog);
+        List<Blog> hotBlogs=blogService.getHotBlog();
+        model.addAttribute("hotBlogs", hotBlogs);
         return "index";
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
+    public String search(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum,
                          @RequestParam String query, Model model){
 
-        PageHelper.startPage(pagenum, 5);
+        PageHelper.startPage(pageNum, 5);
         List<Blog> searchBlog = blogService.getSearchBlog(query);
-        PageInfo pageInfo = new PageInfo(searchBlog);
+        PageInfo<? extends Blog> pageInfo = new PageInfo<>(searchBlog);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("query", query);
         return "search";

@@ -7,15 +7,40 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment="重构">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/backend/vendor/animate/animate.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/backend/vendor/aos/css/aos.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/backend/vendor/jquery-nice-select/css/nice-select.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/backend/vendor/metismenu/css/metisMenu.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/backend/vendor/perfect-scrollbar/css/perfect-scrollbar.css" afterDir="false" />
+    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment="重构--精简文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/interceptor/LoginInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/BlogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/BlogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/FriendLinkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/FriendLinkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/TagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/TypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/ArchiveShowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/ArchiveShowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/FriendLinkControllerShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/FriendLinkControllerShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/TagShowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/TagShowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/TypeShowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/blog/TypeShowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/common/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/common/ControllerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/dao/BlogDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/dao/BlogDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/dao/FriendLinkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/dao/FriendLinkDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/dao/MessageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/dao/MessageDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/dao/TagDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/dao/TagDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/dao/TypeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/dao/TypeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/BlogAndTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/BlogAndTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/FriendLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/FriendLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/BlogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/FriendLinkService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/FriendLinkService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/BlogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/BlogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/FriendLinkServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/FriendLinkServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/MessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FriendLinkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FriendLinkDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blogs-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blogs-input.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +330,7 @@
       <workItem from="1643427693028" duration="118000" />
       <workItem from="1643427850159" duration="692000" />
       <workItem from="1643430031791" duration="21039000" />
-      <workItem from="1643529902195" duration="1329000" />
+      <workItem from="1643529902195" duration="9874000" />
     </task>
     <task id="LOCAL-00001" summary="update md5">
       <created>1584841437407</created>
@@ -363,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643470794703</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="重构--精简文件">
+      <created>1643531275249</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1643531275249</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +410,8 @@
     <MESSAGE value="简化" />
     <MESSAGE value="更改了下配置文件" />
     <MESSAGE value="重构" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构" />
+    <MESSAGE value="重构--精简文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构--精简文件" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

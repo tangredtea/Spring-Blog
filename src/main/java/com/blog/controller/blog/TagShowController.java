@@ -6,29 +6,32 @@ import com.blog.service.BlogService;
 import com.blog.service.TagService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author Ryan
+ */
 @Controller
 public class TagShowController {
 
-    @Autowired
+    @Resource
     private TagService tagService;
 
-    @Autowired
+    @Resource
     private BlogService blogService;
 
     @GetMapping(value = {"/tags/{id}","/tags"})
-    public String types(@PathVariable(required = false)  Long id, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,
+    public String types(@PathVariable(required = false) Integer id, @RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum,
                         Model model){
         //开启分页
-        PageHelper.startPage(pagenum, 100);
+        PageHelper.startPage(pageNum, 100);
         List<Tag> tags = tagService.getBlogTag();
         //从导航点过来的
         if (id == null){
@@ -42,7 +45,6 @@ public class TagShowController {
         model.addAttribute("tags", tags);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("activeTagId", id);
-
         return "tags";
     }
 }

@@ -1,10 +1,11 @@
 package com.blog.controller.blog;
 
 import com.blog.service.BlogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.annotation.Resource;
 
 /**
  * @author Ryan
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ArchiveShowController {
 
-    @Autowired
+    @Resource
     private BlogService blogService;
 
     @GetMapping("/time")
