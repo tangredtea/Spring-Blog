@@ -22,20 +22,9 @@ public class AdminController {
     @Resource
     private UserService userService;
 
-    @GetMapping()
-    public String loginPage(HttpSession session){
-        if (session.getAttribute("user")!=null) {
-            return "admin/index";
-        }
+    @GetMapping
+    public String loginPage() {
         return "admin/login";
-    }
-    @GetMapping("/login")
-    public String login(HttpSession session){
-        if (session.getAttribute("user")!=null) {
-            return "admin/index";
-        } else {
-            return "redirect:/admin";
-        }
     }
 
     @PostMapping("/login")
