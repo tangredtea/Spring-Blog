@@ -50,6 +50,11 @@ spring:
     prefix: classpath:/templates/
     # 在构建 URL 时添加到视图名称后的后缀（默认值： .html ）
     suffix: .html
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
 #日志输出
 logging:
   level:

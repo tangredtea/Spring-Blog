@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@localhost">
+<dataSource name="MySQL - @localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.32">
-    <root id="1"/>
+    <root id="1">
+      <DefaultCasing>lower/lower</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <Grants>|root||root|localhost|ALTER|G
+|root||root|localhost|ALTER ROUTINE|G
+|root||root|localhost|CREATE|G
+|root||root|localhost|CREATE ROUTINE|G
+|root||root|localhost|CREATE TABLESPACE|G
+|root||root|localhost|CREATE TEMPORARY TABLES|G
+|root||root|localhost|CREATE USER|G
+|root||root|localhost|CREATE VIEW|G
+|root||root|localhost|DELETE|G
+|root||root|localhost|DROP|G
+|root||root|localhost|EVENT|G
+|root||root|localhost|EXECUTE|G
+|root||root|localhost|FILE|G
+|root||root|localhost|INDEX|G
+|root||root|localhost|INSERT|G
+|root||root|localhost|LOCK TABLES|G
+|root||root|localhost|PROCESS|G
+|root||root|localhost|REFERENCES|G
+|root||root|localhost|RELOAD|G
+|root||root|localhost|REPLICATION CLIENT|G
+|root||root|localhost|REPLICATION SLAVE|G
+|root||root|localhost|SELECT|G
+|root||root|localhost|SHOW DATABASES|G
+|root||root|localhost|SHOW VIEW|G
+|root||root|localhost|SHUTDOWN|G
+|root||mysql.session|localhost|SUPER|G
+|root||root|localhost|SUPER|G
+|root||root|localhost|TRIGGER|G
+|root||root|localhost|UPDATE|G
+|root||root|localhost|grant option|G
+performance_schema|schema||mysql.session|localhost|SELECT|G
+sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
+      <ServerVersion>5.7.32</ServerVersion>
+    </root>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
     </collation>
@@ -125,761 +162,916 @@
       <Charset>euckr</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="38" parent="1" name="gb2312_bin">
+    <collation id="38" parent="1" name="gb18030_bin">
+      <Charset>gb18030</Charset>
+    </collation>
+    <collation id="39" parent="1" name="gb18030_chinese_ci">
+      <Charset>gb18030</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="40" parent="1" name="gb18030_unicode_520_ci">
+      <Charset>gb18030</Charset>
+    </collation>
+    <collation id="41" parent="1" name="gb2312_bin">
       <Charset>gb2312</Charset>
     </collation>
-    <collation id="39" parent="1" name="gb2312_chinese_ci">
+    <collation id="42" parent="1" name="gb2312_chinese_ci">
       <Charset>gb2312</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="40" parent="1" name="gbk_bin">
+    <collation id="43" parent="1" name="gbk_bin">
       <Charset>gbk</Charset>
     </collation>
-    <collation id="41" parent="1" name="gbk_chinese_ci">
+    <collation id="44" parent="1" name="gbk_chinese_ci">
       <Charset>gbk</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="42" parent="1" name="geostd8_bin">
+    <collation id="45" parent="1" name="geostd8_bin">
       <Charset>geostd8</Charset>
     </collation>
-    <collation id="43" parent="1" name="geostd8_general_ci">
+    <collation id="46" parent="1" name="geostd8_general_ci">
       <Charset>geostd8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="44" parent="1" name="greek_bin">
+    <collation id="47" parent="1" name="greek_bin">
       <Charset>greek</Charset>
     </collation>
-    <collation id="45" parent="1" name="greek_general_ci">
+    <collation id="48" parent="1" name="greek_general_ci">
       <Charset>greek</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="46" parent="1" name="hebrew_bin">
+    <collation id="49" parent="1" name="hebrew_bin">
       <Charset>hebrew</Charset>
     </collation>
-    <collation id="47" parent="1" name="hebrew_general_ci">
+    <collation id="50" parent="1" name="hebrew_general_ci">
       <Charset>hebrew</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="48" parent="1" name="hp8_bin">
+    <collation id="51" parent="1" name="hp8_bin">
       <Charset>hp8</Charset>
     </collation>
-    <collation id="49" parent="1" name="hp8_english_ci">
+    <collation id="52" parent="1" name="hp8_english_ci">
       <Charset>hp8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="50" parent="1" name="keybcs2_bin">
+    <collation id="53" parent="1" name="keybcs2_bin">
       <Charset>keybcs2</Charset>
     </collation>
-    <collation id="51" parent="1" name="keybcs2_general_ci">
+    <collation id="54" parent="1" name="keybcs2_general_ci">
       <Charset>keybcs2</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="52" parent="1" name="koi8r_bin">
+    <collation id="55" parent="1" name="koi8r_bin">
       <Charset>koi8r</Charset>
     </collation>
-    <collation id="53" parent="1" name="koi8r_general_ci">
+    <collation id="56" parent="1" name="koi8r_general_ci">
       <Charset>koi8r</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="54" parent="1" name="koi8u_bin">
+    <collation id="57" parent="1" name="koi8u_bin">
       <Charset>koi8u</Charset>
     </collation>
-    <collation id="55" parent="1" name="koi8u_general_ci">
+    <collation id="58" parent="1" name="koi8u_general_ci">
       <Charset>koi8u</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="56" parent="1" name="latin1_bin">
+    <collation id="59" parent="1" name="latin1_bin">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="57" parent="1" name="latin1_danish_ci">
+    <collation id="60" parent="1" name="latin1_danish_ci">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="58" parent="1" name="latin1_general_ci">
+    <collation id="61" parent="1" name="latin1_general_ci">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="59" parent="1" name="latin1_general_cs">
+    <collation id="62" parent="1" name="latin1_general_cs">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="60" parent="1" name="latin1_german1_ci">
+    <collation id="63" parent="1" name="latin1_german1_ci">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="61" parent="1" name="latin1_german2_ci">
+    <collation id="64" parent="1" name="latin1_german2_ci">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="62" parent="1" name="latin1_spanish_ci">
+    <collation id="65" parent="1" name="latin1_spanish_ci">
       <Charset>latin1</Charset>
     </collation>
-    <collation id="63" parent="1" name="latin1_swedish_ci">
+    <collation id="66" parent="1" name="latin1_swedish_ci">
       <Charset>latin1</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="64" parent="1" name="latin2_bin">
+    <collation id="67" parent="1" name="latin2_bin">
       <Charset>latin2</Charset>
     </collation>
-    <collation id="65" parent="1" name="latin2_croatian_ci">
+    <collation id="68" parent="1" name="latin2_croatian_ci">
       <Charset>latin2</Charset>
     </collation>
-    <collation id="66" parent="1" name="latin2_czech_cs">
+    <collation id="69" parent="1" name="latin2_czech_cs">
       <Charset>latin2</Charset>
     </collation>
-    <collation id="67" parent="1" name="latin2_general_ci">
+    <collation id="70" parent="1" name="latin2_general_ci">
       <Charset>latin2</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="68" parent="1" name="latin2_hungarian_ci">
+    <collation id="71" parent="1" name="latin2_hungarian_ci">
       <Charset>latin2</Charset>
     </collation>
-    <collation id="69" parent="1" name="latin5_bin">
+    <collation id="72" parent="1" name="latin5_bin">
       <Charset>latin5</Charset>
     </collation>
-    <collation id="70" parent="1" name="latin5_turkish_ci">
+    <collation id="73" parent="1" name="latin5_turkish_ci">
       <Charset>latin5</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="71" parent="1" name="latin7_bin">
+    <collation id="74" parent="1" name="latin7_bin">
       <Charset>latin7</Charset>
     </collation>
-    <collation id="72" parent="1" name="latin7_estonian_cs">
+    <collation id="75" parent="1" name="latin7_estonian_cs">
       <Charset>latin7</Charset>
     </collation>
-    <collation id="73" parent="1" name="latin7_general_ci">
+    <collation id="76" parent="1" name="latin7_general_ci">
       <Charset>latin7</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="74" parent="1" name="latin7_general_cs">
+    <collation id="77" parent="1" name="latin7_general_cs">
       <Charset>latin7</Charset>
     </collation>
-    <collation id="75" parent="1" name="macce_bin">
+    <collation id="78" parent="1" name="macce_bin">
       <Charset>macce</Charset>
     </collation>
-    <collation id="76" parent="1" name="macce_general_ci">
+    <collation id="79" parent="1" name="macce_general_ci">
       <Charset>macce</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="77" parent="1" name="macroman_bin">
+    <collation id="80" parent="1" name="macroman_bin">
       <Charset>macroman</Charset>
     </collation>
-    <collation id="78" parent="1" name="macroman_general_ci">
+    <collation id="81" parent="1" name="macroman_general_ci">
       <Charset>macroman</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="79" parent="1" name="sjis_bin">
+    <collation id="82" parent="1" name="sjis_bin">
       <Charset>sjis</Charset>
     </collation>
-    <collation id="80" parent="1" name="sjis_japanese_ci">
+    <collation id="83" parent="1" name="sjis_japanese_ci">
       <Charset>sjis</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="81" parent="1" name="swe7_bin">
+    <collation id="84" parent="1" name="swe7_bin">
       <Charset>swe7</Charset>
     </collation>
-    <collation id="82" parent="1" name="swe7_swedish_ci">
+    <collation id="85" parent="1" name="swe7_swedish_ci">
       <Charset>swe7</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="83" parent="1" name="tis620_bin">
+    <collation id="86" parent="1" name="tis620_bin">
       <Charset>tis620</Charset>
     </collation>
-    <collation id="84" parent="1" name="tis620_thai_ci">
+    <collation id="87" parent="1" name="tis620_thai_ci">
       <Charset>tis620</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="85" parent="1" name="ucs2_bin">
+    <collation id="88" parent="1" name="ucs2_bin">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="86" parent="1" name="ucs2_czech_ci">
+    <collation id="89" parent="1" name="ucs2_croatian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="87" parent="1" name="ucs2_danish_ci">
+    <collation id="90" parent="1" name="ucs2_czech_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="88" parent="1" name="ucs2_esperanto_ci">
+    <collation id="91" parent="1" name="ucs2_danish_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="89" parent="1" name="ucs2_estonian_ci">
+    <collation id="92" parent="1" name="ucs2_esperanto_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="90" parent="1" name="ucs2_general_ci">
+    <collation id="93" parent="1" name="ucs2_estonian_ci">
+      <Charset>ucs2</Charset>
+    </collation>
+    <collation id="94" parent="1" name="ucs2_general_ci">
       <Charset>ucs2</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="91" parent="1" name="ucs2_hungarian_ci">
+    <collation id="95" parent="1" name="ucs2_general_mysql500_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="92" parent="1" name="ucs2_icelandic_ci">
+    <collation id="96" parent="1" name="ucs2_german2_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="93" parent="1" name="ucs2_latvian_ci">
+    <collation id="97" parent="1" name="ucs2_hungarian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="94" parent="1" name="ucs2_lithuanian_ci">
+    <collation id="98" parent="1" name="ucs2_icelandic_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="95" parent="1" name="ucs2_persian_ci">
+    <collation id="99" parent="1" name="ucs2_latvian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="96" parent="1" name="ucs2_polish_ci">
+    <collation id="100" parent="1" name="ucs2_lithuanian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="97" parent="1" name="ucs2_roman_ci">
+    <collation id="101" parent="1" name="ucs2_persian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="98" parent="1" name="ucs2_romanian_ci">
+    <collation id="102" parent="1" name="ucs2_polish_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="99" parent="1" name="ucs2_sinhala_ci">
+    <collation id="103" parent="1" name="ucs2_roman_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="100" parent="1" name="ucs2_slovak_ci">
+    <collation id="104" parent="1" name="ucs2_romanian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="101" parent="1" name="ucs2_slovenian_ci">
+    <collation id="105" parent="1" name="ucs2_sinhala_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="102" parent="1" name="ucs2_spanish2_ci">
+    <collation id="106" parent="1" name="ucs2_slovak_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="103" parent="1" name="ucs2_spanish_ci">
+    <collation id="107" parent="1" name="ucs2_slovenian_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="104" parent="1" name="ucs2_swedish_ci">
+    <collation id="108" parent="1" name="ucs2_spanish2_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="105" parent="1" name="ucs2_turkish_ci">
+    <collation id="109" parent="1" name="ucs2_spanish_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="106" parent="1" name="ucs2_unicode_ci">
+    <collation id="110" parent="1" name="ucs2_swedish_ci">
       <Charset>ucs2</Charset>
     </collation>
-    <collation id="107" parent="1" name="ujis_bin">
+    <collation id="111" parent="1" name="ucs2_turkish_ci">
+      <Charset>ucs2</Charset>
+    </collation>
+    <collation id="112" parent="1" name="ucs2_unicode_520_ci">
+      <Charset>ucs2</Charset>
+    </collation>
+    <collation id="113" parent="1" name="ucs2_unicode_ci">
+      <Charset>ucs2</Charset>
+    </collation>
+    <collation id="114" parent="1" name="ucs2_vietnamese_ci">
+      <Charset>ucs2</Charset>
+    </collation>
+    <collation id="115" parent="1" name="ujis_bin">
       <Charset>ujis</Charset>
     </collation>
-    <collation id="108" parent="1" name="ujis_japanese_ci">
+    <collation id="116" parent="1" name="ujis_japanese_ci">
       <Charset>ujis</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="109" parent="1" name="utf16_bin">
+    <collation id="117" parent="1" name="utf16_bin">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="110" parent="1" name="utf16_czech_ci">
+    <collation id="118" parent="1" name="utf16_croatian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="111" parent="1" name="utf16_danish_ci">
+    <collation id="119" parent="1" name="utf16_czech_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="112" parent="1" name="utf16_esperanto_ci">
+    <collation id="120" parent="1" name="utf16_danish_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="113" parent="1" name="utf16_estonian_ci">
+    <collation id="121" parent="1" name="utf16_esperanto_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="114" parent="1" name="utf16_general_ci">
+    <collation id="122" parent="1" name="utf16_estonian_ci">
+      <Charset>utf16</Charset>
+    </collation>
+    <collation id="123" parent="1" name="utf16_general_ci">
       <Charset>utf16</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="115" parent="1" name="utf16_hungarian_ci">
+    <collation id="124" parent="1" name="utf16_german2_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="116" parent="1" name="utf16_icelandic_ci">
+    <collation id="125" parent="1" name="utf16_hungarian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="117" parent="1" name="utf16_latvian_ci">
+    <collation id="126" parent="1" name="utf16_icelandic_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="118" parent="1" name="utf16_lithuanian_ci">
+    <collation id="127" parent="1" name="utf16_latvian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="119" parent="1" name="utf16_persian_ci">
+    <collation id="128" parent="1" name="utf16_lithuanian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="120" parent="1" name="utf16_polish_ci">
+    <collation id="129" parent="1" name="utf16_persian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="121" parent="1" name="utf16_roman_ci">
+    <collation id="130" parent="1" name="utf16_polish_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="122" parent="1" name="utf16_romanian_ci">
+    <collation id="131" parent="1" name="utf16_roman_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="123" parent="1" name="utf16_sinhala_ci">
+    <collation id="132" parent="1" name="utf16_romanian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="124" parent="1" name="utf16_slovak_ci">
+    <collation id="133" parent="1" name="utf16_sinhala_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="125" parent="1" name="utf16_slovenian_ci">
+    <collation id="134" parent="1" name="utf16_slovak_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="126" parent="1" name="utf16_spanish2_ci">
+    <collation id="135" parent="1" name="utf16_slovenian_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="127" parent="1" name="utf16_spanish_ci">
+    <collation id="136" parent="1" name="utf16_spanish2_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="128" parent="1" name="utf16_swedish_ci">
+    <collation id="137" parent="1" name="utf16_spanish_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="129" parent="1" name="utf16_turkish_ci">
+    <collation id="138" parent="1" name="utf16_swedish_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="130" parent="1" name="utf16_unicode_ci">
+    <collation id="139" parent="1" name="utf16_turkish_ci">
       <Charset>utf16</Charset>
     </collation>
-    <collation id="131" parent="1" name="utf32_bin">
+    <collation id="140" parent="1" name="utf16_unicode_520_ci">
+      <Charset>utf16</Charset>
+    </collation>
+    <collation id="141" parent="1" name="utf16_unicode_ci">
+      <Charset>utf16</Charset>
+    </collation>
+    <collation id="142" parent="1" name="utf16_vietnamese_ci">
+      <Charset>utf16</Charset>
+    </collation>
+    <collation id="143" parent="1" name="utf16le_bin">
+      <Charset>utf16le</Charset>
+    </collation>
+    <collation id="144" parent="1" name="utf16le_general_ci">
+      <Charset>utf16le</Charset>
+      <DefaultForCharset>1</DefaultForCharset>
+    </collation>
+    <collation id="145" parent="1" name="utf32_bin">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="132" parent="1" name="utf32_czech_ci">
+    <collation id="146" parent="1" name="utf32_croatian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="133" parent="1" name="utf32_danish_ci">
+    <collation id="147" parent="1" name="utf32_czech_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="134" parent="1" name="utf32_esperanto_ci">
+    <collation id="148" parent="1" name="utf32_danish_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="135" parent="1" name="utf32_estonian_ci">
+    <collation id="149" parent="1" name="utf32_esperanto_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="136" parent="1" name="utf32_general_ci">
+    <collation id="150" parent="1" name="utf32_estonian_ci">
+      <Charset>utf32</Charset>
+    </collation>
+    <collation id="151" parent="1" name="utf32_general_ci">
       <Charset>utf32</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="137" parent="1" name="utf32_hungarian_ci">
+    <collation id="152" parent="1" name="utf32_german2_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="138" parent="1" name="utf32_icelandic_ci">
+    <collation id="153" parent="1" name="utf32_hungarian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="139" parent="1" name="utf32_latvian_ci">
+    <collation id="154" parent="1" name="utf32_icelandic_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="140" parent="1" name="utf32_lithuanian_ci">
+    <collation id="155" parent="1" name="utf32_latvian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="141" parent="1" name="utf32_persian_ci">
+    <collation id="156" parent="1" name="utf32_lithuanian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="142" parent="1" name="utf32_polish_ci">
+    <collation id="157" parent="1" name="utf32_persian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="143" parent="1" name="utf32_roman_ci">
+    <collation id="158" parent="1" name="utf32_polish_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="144" parent="1" name="utf32_romanian_ci">
+    <collation id="159" parent="1" name="utf32_roman_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="145" parent="1" name="utf32_sinhala_ci">
+    <collation id="160" parent="1" name="utf32_romanian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="146" parent="1" name="utf32_slovak_ci">
+    <collation id="161" parent="1" name="utf32_sinhala_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="147" parent="1" name="utf32_slovenian_ci">
+    <collation id="162" parent="1" name="utf32_slovak_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="148" parent="1" name="utf32_spanish2_ci">
+    <collation id="163" parent="1" name="utf32_slovenian_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="149" parent="1" name="utf32_spanish_ci">
+    <collation id="164" parent="1" name="utf32_spanish2_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="150" parent="1" name="utf32_swedish_ci">
+    <collation id="165" parent="1" name="utf32_spanish_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="151" parent="1" name="utf32_turkish_ci">
+    <collation id="166" parent="1" name="utf32_swedish_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="152" parent="1" name="utf32_unicode_ci">
+    <collation id="167" parent="1" name="utf32_turkish_ci">
       <Charset>utf32</Charset>
     </collation>
-    <collation id="153" parent="1" name="utf8_bin">
+    <collation id="168" parent="1" name="utf32_unicode_520_ci">
+      <Charset>utf32</Charset>
+    </collation>
+    <collation id="169" parent="1" name="utf32_unicode_ci">
+      <Charset>utf32</Charset>
+    </collation>
+    <collation id="170" parent="1" name="utf32_vietnamese_ci">
+      <Charset>utf32</Charset>
+    </collation>
+    <collation id="171" parent="1" name="utf8_bin">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="154" parent="1" name="utf8_czech_ci">
+    <collation id="172" parent="1" name="utf8_croatian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="155" parent="1" name="utf8_danish_ci">
+    <collation id="173" parent="1" name="utf8_czech_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="156" parent="1" name="utf8_esperanto_ci">
+    <collation id="174" parent="1" name="utf8_danish_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="157" parent="1" name="utf8_estonian_ci">
+    <collation id="175" parent="1" name="utf8_esperanto_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="158" parent="1" name="utf8_general_ci">
+    <collation id="176" parent="1" name="utf8_estonian_ci">
+      <Charset>utf8</Charset>
+    </collation>
+    <collation id="177" parent="1" name="utf8_general_ci">
       <Charset>utf8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="159" parent="1" name="utf8_hungarian_ci">
+    <collation id="178" parent="1" name="utf8_general_mysql500_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="160" parent="1" name="utf8_icelandic_ci">
+    <collation id="179" parent="1" name="utf8_german2_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="161" parent="1" name="utf8_latvian_ci">
+    <collation id="180" parent="1" name="utf8_hungarian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="162" parent="1" name="utf8_lithuanian_ci">
+    <collation id="181" parent="1" name="utf8_icelandic_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="163" parent="1" name="utf8_persian_ci">
+    <collation id="182" parent="1" name="utf8_latvian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="164" parent="1" name="utf8_polish_ci">
+    <collation id="183" parent="1" name="utf8_lithuanian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="165" parent="1" name="utf8_roman_ci">
+    <collation id="184" parent="1" name="utf8_persian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="166" parent="1" name="utf8_romanian_ci">
+    <collation id="185" parent="1" name="utf8_polish_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="167" parent="1" name="utf8_sinhala_ci">
+    <collation id="186" parent="1" name="utf8_roman_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="168" parent="1" name="utf8_slovak_ci">
+    <collation id="187" parent="1" name="utf8_romanian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="169" parent="1" name="utf8_slovenian_ci">
+    <collation id="188" parent="1" name="utf8_sinhala_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="170" parent="1" name="utf8_spanish2_ci">
+    <collation id="189" parent="1" name="utf8_slovak_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="171" parent="1" name="utf8_spanish_ci">
+    <collation id="190" parent="1" name="utf8_slovenian_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="172" parent="1" name="utf8_swedish_ci">
+    <collation id="191" parent="1" name="utf8_spanish2_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="173" parent="1" name="utf8_turkish_ci">
+    <collation id="192" parent="1" name="utf8_spanish_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="174" parent="1" name="utf8_unicode_ci">
+    <collation id="193" parent="1" name="utf8_swedish_ci">
       <Charset>utf8</Charset>
     </collation>
-    <collation id="175" parent="1" name="utf8mb4_bin">
+    <collation id="194" parent="1" name="utf8_turkish_ci">
+      <Charset>utf8</Charset>
+    </collation>
+    <collation id="195" parent="1" name="utf8_unicode_520_ci">
+      <Charset>utf8</Charset>
+    </collation>
+    <collation id="196" parent="1" name="utf8_unicode_ci">
+      <Charset>utf8</Charset>
+    </collation>
+    <collation id="197" parent="1" name="utf8_vietnamese_ci">
+      <Charset>utf8</Charset>
+    </collation>
+    <collation id="198" parent="1" name="utf8mb4_bin">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="176" parent="1" name="utf8mb4_czech_ci">
+    <collation id="199" parent="1" name="utf8mb4_croatian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="177" parent="1" name="utf8mb4_danish_ci">
+    <collation id="200" parent="1" name="utf8mb4_czech_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="178" parent="1" name="utf8mb4_esperanto_ci">
+    <collation id="201" parent="1" name="utf8mb4_danish_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="179" parent="1" name="utf8mb4_estonian_ci">
+    <collation id="202" parent="1" name="utf8mb4_esperanto_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="180" parent="1" name="utf8mb4_general_ci">
+    <collation id="203" parent="1" name="utf8mb4_estonian_ci">
+      <Charset>utf8mb4</Charset>
+    </collation>
+    <collation id="204" parent="1" name="utf8mb4_general_ci">
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>1</DefaultForCharset>
     </collation>
-    <collation id="181" parent="1" name="utf8mb4_hungarian_ci">
+    <collation id="205" parent="1" name="utf8mb4_german2_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="182" parent="1" name="utf8mb4_icelandic_ci">
+    <collation id="206" parent="1" name="utf8mb4_hungarian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="183" parent="1" name="utf8mb4_latvian_ci">
+    <collation id="207" parent="1" name="utf8mb4_icelandic_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="184" parent="1" name="utf8mb4_lithuanian_ci">
+    <collation id="208" parent="1" name="utf8mb4_latvian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="185" parent="1" name="utf8mb4_persian_ci">
+    <collation id="209" parent="1" name="utf8mb4_lithuanian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="186" parent="1" name="utf8mb4_polish_ci">
+    <collation id="210" parent="1" name="utf8mb4_persian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="187" parent="1" name="utf8mb4_roman_ci">
+    <collation id="211" parent="1" name="utf8mb4_polish_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="188" parent="1" name="utf8mb4_romanian_ci">
+    <collation id="212" parent="1" name="utf8mb4_roman_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="189" parent="1" name="utf8mb4_sinhala_ci">
+    <collation id="213" parent="1" name="utf8mb4_romanian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="190" parent="1" name="utf8mb4_slovak_ci">
+    <collation id="214" parent="1" name="utf8mb4_sinhala_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="191" parent="1" name="utf8mb4_slovenian_ci">
+    <collation id="215" parent="1" name="utf8mb4_slovak_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="192" parent="1" name="utf8mb4_spanish2_ci">
+    <collation id="216" parent="1" name="utf8mb4_slovenian_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="193" parent="1" name="utf8mb4_spanish_ci">
+    <collation id="217" parent="1" name="utf8mb4_spanish2_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="194" parent="1" name="utf8mb4_swedish_ci">
+    <collation id="218" parent="1" name="utf8mb4_spanish_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="195" parent="1" name="utf8mb4_turkish_ci">
+    <collation id="219" parent="1" name="utf8mb4_swedish_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <collation id="196" parent="1" name="utf8mb4_unicode_ci">
+    <collation id="220" parent="1" name="utf8mb4_turkish_ci">
       <Charset>utf8mb4</Charset>
     </collation>
-    <schema id="197" parent="1" name="blog">
+    <collation id="221" parent="1" name="utf8mb4_unicode_520_ci">
+      <Charset>utf8mb4</Charset>
+    </collation>
+    <collation id="222" parent="1" name="utf8mb4_unicode_ci">
+      <Charset>utf8mb4</Charset>
+    </collation>
+    <collation id="223" parent="1" name="utf8mb4_vietnamese_ci">
+      <Charset>utf8mb4</Charset>
+    </collation>
+    <schema id="224" parent="1" name="blog">
       <Current>1</Current>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </schema>
+    <schema id="225" parent="1" name="information_schema">
       <CollationName>utf8_general_ci</CollationName>
     </schema>
-    <schema id="198" parent="1" name="how2java">
+    <schema id="226" parent="1" name="mysql">
       <CollationName>latin1_swedish_ci</CollationName>
     </schema>
-    <schema id="199" parent="1" name="information_schema">
+    <schema id="227" parent="1" name="performance_schema">
       <CollationName>utf8_general_ci</CollationName>
     </schema>
-    <schema id="200" parent="1" name="mybatis">
+    <schema id="228" parent="1" name="sys">
       <CollationName>utf8_general_ci</CollationName>
     </schema>
-    <schema id="201" parent="1" name="mysql">
-      <CollationName>latin1_swedish_ci</CollationName>
-    </schema>
-    <schema id="202" parent="1" name="performance_schema">
+    <schema id="229" parent="1" name="test">
       <CollationName>utf8_general_ci</CollationName>
     </schema>
-    <schema id="203" parent="1" name="spring">
+    <user id="230" parent="1" name="mysql.session">
+      <Host>localhost</Host>
+    </user>
+    <user id="231" parent="1" name="mysql.sys">
+      <Host>localhost</Host>
+    </user>
+    <user id="232" parent="1" name="root">
+      <Host>localhost</Host>
+    </user>
+    <table id="233" parent="224" name="t_blog">
+      <Engine>InnoDB</Engine>
       <CollationName>utf8_general_ci</CollationName>
-    </schema>
-    <schema id="204" parent="1" name="ssmbuild">
-      <CollationName>latin1_swedish_ci</CollationName>
-    </schema>
-    <schema id="205" parent="1" name="test">
-      <CollationName>latin1_swedish_ci</CollationName>
-    </schema>
-    <table id="206" parent="197" name="t_blog"/>
-    <table id="207" parent="197" name="t_blog_tags"/>
-    <table id="208" parent="197" name="t_comment"/>
-    <table id="209" parent="197" name="t_tag"/>
-    <table id="210" parent="197" name="t_type"/>
-    <table id="211" parent="197" name="t_user"/>
-    <column id="212" parent="206" name="id">
+    </table>
+    <table id="234" parent="224" name="t_blog_tags">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <table id="235" parent="224" name="t_friend">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <table id="236" parent="224" name="t_message">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <table id="237" parent="224" name="t_tag">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <table id="238" parent="224" name="t_type">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <table id="239" parent="224" name="t_user">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8_general_ci</CollationName>
+    </table>
+    <column id="240" parent="233" name="id">
+      <Comment>博客表主键id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="213" parent="206" name="title">
+    <column id="241" parent="233" name="title">
+      <Comment>博客标题</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="214" parent="206" name="content">
+    <column id="242" parent="233" name="description">
+      <Comment>文章描述</Comment>
       <DataType>text|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="215" parent="206" name="first_picture">
-      <DataType>varchar(255)|0s</DataType>
+    <column id="243" parent="233" name="content">
+      <Comment>博文内容</Comment>
+      <DataType>mediumtext|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="216" parent="206" name="flag">
+    <column id="244" parent="233" name="first_picture">
+      <Comment>博文封面</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="217" parent="206" name="views">
+    <column id="245" parent="233" name="views">
+      <Comment>文章阅读量</Comment>
       <DataType>int(11)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
       <Position>6</Position>
     </column>
-    <column id="218" parent="206" name="appreciation">
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="246" parent="233" name="flag">
+      <Comment>文章状态位，1：原创，0：转载</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="219" parent="206" name="share_statement">
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="247" parent="233" name="appreciation">
+      <Comment>文章状态位，1：开启，0：关闭</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>8</Position>
     </column>
-    <column id="220" parent="206" name="commentabled">
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="248" parent="233" name="share_statement">
+      <Comment>分享状态位，1：开启，0：关闭</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>9</Position>
     </column>
-    <column id="221" parent="206" name="published">
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="249" parent="233" name="commentable">
+      <Comment>评论状态位，1：开启，0：关闭</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>10</Position>
     </column>
-    <column id="222" parent="206" name="recommend">
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <NotNull>1</NotNull>
+    <column id="250" parent="233" name="published">
+      <Comment>发布状态位，1：开启，0：关闭</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>11</Position>
     </column>
-    <column id="223" parent="206" name="create_time">
-      <DataType>datetime|0s</DataType>
+    <column id="251" parent="233" name="recommend">
+      <Comment>推荐状态位，1：开启，0：关闭</Comment>
+      <DataType>bit(1)|0s</DataType>
       <Position>12</Position>
     </column>
-    <column id="224" parent="206" name="update_time">
+    <column id="252" parent="233" name="create_time">
+      <Comment>文章创建时间</Comment>
       <DataType>datetime|0s</DataType>
       <Position>13</Position>
     </column>
-    <column id="225" parent="206" name="type_id">
-      <DataType>bigint(20)|0s</DataType>
+    <column id="253" parent="233" name="update_time">
+      <Comment>文章修改时间</Comment>
+      <DataType>datetime|0s</DataType>
       <Position>14</Position>
     </column>
-    <column id="226" parent="206" name="user_id">
+    <column id="254" parent="233" name="type_id">
+      <Comment>关联的分类id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <Position>15</Position>
     </column>
-    <column id="227" parent="206" name="description">
-      <DataType>text|0s</DataType>
+    <column id="255" parent="233" name="user_id">
+      <Comment>关联的用户id</Comment>
+      <DataType>bigint(20)|0s</DataType>
       <Position>16</Position>
     </column>
-    <column id="228" parent="206" name="tag_ids">
+    <column id="256" parent="233" name="tag_ids">
+      <Comment>关联标签</Comment>
       <DataType>varchar(100)|0s</DataType>
       <Position>17</Position>
     </column>
-    <key id="229" parent="206" name="PRIMARY">
+    <index id="257" parent="233" name="KEY1">
+      <ColNames>type_id
+user_id
+tag_ids</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="258" parent="233" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="230" parent="207" name="id">
+    <column id="259" parent="234" name="id">
+      <Comment>关联表主键</Comment>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="231" parent="207" name="tag_id">
-      <DataType>bigint(20)|0s</DataType>
+    <column id="260" parent="234" name="tag_id">
+      <Comment>标签id</Comment>
+      <DataType>int(11)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="232" parent="207" name="blog_id">
-      <DataType>varchar(255)|0s</DataType>
+    <column id="261" parent="234" name="blog_id">
+      <Comment>博文id</Comment>
+      <DataType>bigint(20)|0s</DataType>
       <Position>3</Position>
     </column>
-    <key id="233" parent="207" name="PRIMARY">
+    <key id="262" parent="234" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="234" parent="208" name="id">
+    <column id="263" parent="235" name="id">
+      <Comment>友链表主键</Comment>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="264" parent="235" name="blog_address">
+      <Comment>友链地址</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="265" parent="235" name="blog_name">
+      <Comment>友链名字</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="266" parent="235" name="picture_address">
+      <Comment>友链图标</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="267" parent="235" name="create_time">
+      <Comment>创建时间</Comment>
+      <DataType>datetime|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <key id="268" parent="235" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="269" parent="236" name="id">
+      <Comment>留言表主键id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="235" parent="208" name="nickname">
+    <column id="270" parent="236" name="nickname">
+      <Comment>昵称</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="236" parent="208" name="email">
+    <column id="271" parent="236" name="email">
+      <Comment>邮箱</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="237" parent="208" name="content">
+    <column id="272" parent="236" name="content">
+      <Comment>内容</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="238" parent="208" name="avatar">
+    <column id="273" parent="236" name="avatar">
+      <Comment>头像</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="239" parent="208" name="create_time">
+    <column id="274" parent="236" name="create_time">
+      <Comment>创建时间</Comment>
       <DataType>datetime|0s</DataType>
       <Position>6</Position>
     </column>
-    <column id="240" parent="208" name="blog_id">
+    <column id="275" parent="236" name="parent_message_id">
+      <Comment>父留言id</Comment>
       <DataType>bigint(20)|0s</DataType>
       <Position>7</Position>
     </column>
-    <column id="241" parent="208" name="parent_comment_id">
-      <DataType>bigint(20)|0s</DataType>
+    <column id="276" parent="236" name="admin_message">
+      <Comment>是否为管理员评论</Comment>
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="242" parent="208" name="admincomment">
+    <key id="277" parent="236" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="278" parent="237" name="id">
+      <Comment>标签表主键</Comment>
       <DataType>int(11)|0s</DataType>
-      <Position>9</Position>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <key id="243" parent="208" name="PRIMARY">
+    <column id="279" parent="237" name="name">
+      <Comment>标签名字</Comment>
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <key id="280" parent="237" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="244" parent="209" name="id">
-      <DataType>bigint(20)|0s</DataType>
+    <column id="281" parent="238" name="id">
+      <Comment>分类主键id</Comment>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="245" parent="209" name="name">
+    <column id="282" parent="238" name="name">
+      <Comment>分类名</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <key id="246" parent="209" name="PRIMARY">
+    <key id="283" parent="238" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="247" parent="210" name="id">
-      <DataType>bigint(20)|0s</DataType>
+    <column id="284" parent="239" name="id">
+      <Comment>用户表主键id</Comment>
+      <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="248" parent="210" name="name">
+    <column id="285" parent="239" name="nickname">
+      <Comment>用户昵称</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <key id="249" parent="210" name="PRIMARY">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-    </key>
-    <column id="250" parent="211" name="id">
-      <DataType>bigint(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="251" parent="211" name="nickname">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>2</Position>
-    </column>
-    <column id="252" parent="211" name="username">
+    <column id="286" parent="239" name="username">
+      <Comment>用户名</Comment>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="253" parent="211" name="password">
+    <column id="287" parent="239" name="password">
+      <Comment>用户密码</Comment>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;&apos;</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="254" parent="211" name="email">
+    <column id="288" parent="239" name="email">
+      <Comment>用户邮箱</Comment>
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="255" parent="211" name="avatar">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>6</Position>
-    </column>
-    <column id="256" parent="211" name="type">
-      <DataType>int(10)|0s</DataType>
-      <Position>7</Position>
-    </column>
-    <column id="257" parent="211" name="create_time">
-      <DataType>datetime|0s</DataType>
-      <Position>8</Position>
-    </column>
-    <column id="258" parent="211" name="update_time">
-      <DataType>datetime|0s</DataType>
-      <Position>9</Position>
-    </column>
-    <key id="259" parent="211" name="PRIMARY">
+    <key id="289" parent="239" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

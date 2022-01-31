@@ -4,9 +4,9 @@ import com.blog.dao.TypeDao;
 import com.blog.entity.Type;
 import com.blog.service.RedisService;
 import com.blog.service.TypeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class TypeServiceImpl implements TypeService {
 
-    @Autowired
+    @Resource
     RedisService cache;
 
-    @Autowired
+    @Resource
     private TypeDao typeDao;
 
     @Override
@@ -27,7 +27,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public Type getType(Long id) {
+    public Type getType(Integer id) {
         return typeDao.getType(id);
     }
 
@@ -53,7 +53,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public int deleteType(Long id) {
+    public int deleteType(Integer id) {
         return typeDao.deleteType(id);
     }
 }

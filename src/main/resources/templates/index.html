@@ -32,7 +32,7 @@
                 console.error(err);
             })
     </script>
-    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 <style>
 
 </style>
@@ -128,13 +128,13 @@
                 <a href="/category" class="ui header title"><i class="red fire icon"></i>热点文章</a>
             </div>
             <div class="row hotArticles">
-                <div class="four wide column hotArticle" th:each="HotArticle:${HotBlog}">
-                    <a th:href="@{/blog/{id}(id=${HotArticle.id})}">
+                <div class="four wide column hotArticle" th:each="hotArticle:${hotBlogs}">
+                    <a th:href="@{/blog/{id}(id=${hotArticle.id})}">
                         <div class="ui special cards">
                             <div class="ui fluid raised link card">
 
                                 <div class="blurring dimmable image" >
-                                    <img src="http://5b0988e595225.cdn.sohucs.com/images/20190112/12a825d7c0f94223a0b1fc3dcddc6570.jpeg" th:src="${HotArticle.firstPicture}"  >
+                                    <img src="http://5b0988e595225.cdn.sohucs.com/images/20190112/12a825d7c0f94223a0b1fc3dcddc6570.jpeg" th:src="${hotArticle.firstPicture}"  >
                                 </div>
                             </div>
                         </div>
@@ -146,21 +146,21 @@
                 <a href="/message" class="ui header title"><i class="orange codiepie icon"></i>最新留言</a>
             </div>
             <div class="row comments">
-                <div class="four wide column comment" th:each="messages : ${messages}">
+                <div class="four wide column comment" th:each="message : ${messages}">
                     <a class="ui fluid raised link card" href="/message" >
                         <div class="content">
-                            <div class="header"th:text="${messages.nickname}">评论名字</div>
+                            <div class="header"th:text="${message.nickname}">评论名字</div>
                             <div class="meta">
-                                <span class="right floated time" th:text="${#dates.format(messages.createTime, 'yyyy-MM-dd')}">创建时间</span>
+                                <span class="right floated time" th:text="${#dates.format(message.createTime, 'yyyy-MM-dd')}">创建时间</span>
                                 <span class="comment">comment</span>
                             </div>
-                            <div class="description" th:text="${messages.content}">
+                            <div class="description" th:text="${message.content}">
                               评论内容
                             </div>
                         </div>
                         <div class="extra content">
                             <div class="right floated author">
-                                <img class="ui avatar image" src="https://www.xiaoxuya.top/img/user/190.jpg" th:text="${messages.nickname}">
+                                <img class="ui avatar image" src="https://www.xiaoxuya.top/img/user/190.jpg" th:text="${message.nickname}">
                             </div>
                         </div>
                     </a>

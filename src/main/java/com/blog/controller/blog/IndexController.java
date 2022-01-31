@@ -40,8 +40,9 @@ public class IndexController {
         //得到分页结果对象
         PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
         List<Message> messages = messageService.findByIndexParentId();
-        model.addAttribute("msg", messages);
+        model.addAttribute("messages", messages);
         model.addAttribute("pageInfo", pageInfo);
+        System.out.println(pageInfo.getList());
         model.addAttribute("recommendBlogs", recommendBlog);
         List<Blog> hotBlogs=blogService.getHotBlog();
         model.addAttribute("hotBlogs", hotBlogs);

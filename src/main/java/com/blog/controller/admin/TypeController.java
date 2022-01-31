@@ -39,7 +39,7 @@ public class TypeController {
     }
 
     @GetMapping("/types/{id}/input")
-    public String toEditType(@PathVariable Long id, Model model){
+    public String toEditType(@PathVariable Integer id, Model model){
         model.addAttribute("type", typeService.getType(id));
         return "admin/types-input";
     }
@@ -58,7 +58,7 @@ public class TypeController {
     }
 
     @PostMapping("/types/{id}")
-    public String editType(@PathVariable Long id, Type type, RedirectAttributes attributes){
+    public String editType(@PathVariable Integer id, Type type, RedirectAttributes attributes){
         Type t = typeService.getTypeByName(type.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的分类");
@@ -71,7 +71,7 @@ public class TypeController {
     }
 
     @GetMapping("/types/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes){
+    public String delete(@PathVariable Integer id, RedirectAttributes attributes){
         typeService.deleteType(id);
         attributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/admin/types";

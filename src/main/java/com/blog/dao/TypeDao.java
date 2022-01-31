@@ -24,7 +24,7 @@ public interface TypeDao {
      * @param id 分类id
      * @return 分类
      */
-    Type getType(Long id);
+    Type getType(Integer id);
 
     /**
      * 通过分类名搜索
@@ -57,5 +57,5 @@ public interface TypeDao {
      * @param id 分类id
      * @return 状态值
      */
-    int deleteType(Long id);
+    int deleteType(Integer id);
 }

@@ -58,7 +58,7 @@ public class TagController {
     }
 
     @PostMapping("/tags/{id}")
-    public String editTag(@PathVariable Long id, Tag tag, RedirectAttributes attributes){
+    public String editTag(@PathVariable Integer id, Tag tag, RedirectAttributes attributes){
         Tag t = tagService.getTagByName(tag.getName());
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的标签");
@@ -71,7 +71,7 @@ public class TagController {
     }
 
     @GetMapping("/tags/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes attributes){
+    public String delete(@PathVariable Integer id, RedirectAttributes attributes){
         tagService.deleteTag(id);
         attributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/admin/tags";

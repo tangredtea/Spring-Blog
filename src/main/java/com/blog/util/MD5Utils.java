@@ -19,9 +19,9 @@ public class MD5Utils {
             md.update(str.getBytes());
             byte[]byteDigest = md.digest();
             int i;
-            StringBuffer buf = new StringBuffer("");
-            for (int offset = 0; offset < byteDigest.length; offset++) {
-                i = byteDigest[offset];
+            StringBuilder buf = new StringBuilder();
+            for (byte b : byteDigest) {
+                i = b;
                 if (i < 0) {
                     i += 256;
                 }
@@ -32,8 +32,6 @@ public class MD5Utils {
             }
             //32位加密
             return buf.toString();
-            // 16位的加密
-            //return buf.toString().substring(8, 24);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;

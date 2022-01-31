@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blog.dao.UserDao">
-    <update id="updateUser"></update>
+    <update id="updateUser"/>
 
     <select id="queryByUsernameAndPassword" resultType="User">
         select * from blog.t_user
         where username = #{username} and password = #{password};
     </select>
 
-    <select id="getUserInfoById" resultType="com.blog.entity.User"></select>
+    <select id="getUserInfoById" resultType="com.blog.entity.User"/>
 
 </mapper>

@@ -44,8 +44,8 @@ public class TagServiceImpl implements TagService {
 
     /**
      * 从tagIds字符串中获取id，根据id获取tag集合
-     * @param text
-     * @return
+     * @param text 标签名
+     * @return 标签列表
      */
     @Override
     public List<Tag> getTagByString(String text) {
@@ -59,15 +59,15 @@ public class TagServiceImpl implements TagService {
 
     /**
      * 把前端的tagIds字符串转换为list集合
-     * @param ids
-     * @return
+     * @param ids id
+     * @return id列表
      */
     private List<Integer> convertToList(String ids) {
         List<Integer> list = new ArrayList<>();
         if (!"".equals(ids) && ids != null) {
             String[] idArrays = ids.split(",");
-            for (int i = 0; i < idArrays.length;i++) {
-                list.add(Integer.valueOf(idArrays[i]));
+            for (String idArray : idArrays) {
+                list.add(Integer.valueOf(idArray));
             }
         }
         return list;

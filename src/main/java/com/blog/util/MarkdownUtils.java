@@ -8,8 +8,6 @@ import org.commonmark.node.Link;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.AttributeProvider;
-import org.commonmark.renderer.html.AttributeProviderContext;
-import org.commonmark.renderer.html.AttributeProviderFactory;
 import org.commonmark.renderer.html.HtmlRenderer;
 
 import java.util.*;
@@ -22,8 +20,8 @@ public class MarkdownUtils {
 
     /**
      * markdown格式转换成HTML格式
-     * @param markdown
-     * @return
+     * @param markdown 文本
+     * @return 渲染后的文本
      */
     public static String markdownToHtml(String markdown) {
         Parser parser = Parser.builder().build();
@@ -35,14 +33,14 @@ public class MarkdownUtils {
     /**
      * 增加扩展[标题锚点，表格生成]
      * Markdown转换成HTML
-     * @param markdown
-     * @return
+     * @param markdown 文本
+     * @return 渲染后的文本
      */
     public static String markdownToHtmlExtensions(String markdown) {
         //h标题生成id
         Set<Extension> headingAnchorExtensions = Collections.singleton(HeadingAnchorExtension.create());
         //转换table的HTML
-        List<Extension> tableExtension = Arrays.asList(TablesExtension.create());
+        List<Extension> tableExtension = Collections.singletonList(TablesExtension.create());
         Parser parser = Parser.builder()
                 .extensions(tableExtension)
                 .build();
@@ -50,11 +48,7 @@ public class MarkdownUtils {
         HtmlRenderer renderer = HtmlRenderer.builder()
                 .extensions(headingAnchorExtensions)
                 .extensions(tableExtension)
-                .attributeProviderFactory(new AttributeProviderFactory() {
-                    public AttributeProvider create(AttributeProviderContext context) {
-                        return new CustomAttributeProvider();
-                    }
-                })
+                .attributeProviderFactory(context -> new CustomAttributeProvider())
                 .build();
         return renderer.render(document);
     }

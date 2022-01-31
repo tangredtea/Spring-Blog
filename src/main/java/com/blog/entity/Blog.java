@@ -34,7 +34,7 @@ public class Blog implements Serializable {
     /**
      * 这个属性用来在mybatis中进行连接查询的
      */
-    private Long typeId;
+    private Integer typeId;
     private Integer userId;
 
     /**
