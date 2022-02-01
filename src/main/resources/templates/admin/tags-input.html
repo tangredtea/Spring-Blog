@@ -96,7 +96,7 @@
 
                 <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
                 <div class="ui right aligned container">
-                  <button type="button" class="btn btn-rounded btn-dark"onclick="window.history.go(-1)" >返回</button>
+                  <button type="button" class="btn btn-rounded btn-dark" onclick="window.history.go(-1)" >返回</button>
                   <button class="btn btn-rounded btn-secondary">提交</button>
                 </div>
 
@@ -134,17 +134,14 @@
 ***********************************-->
 <script>
 
-  $('.ui.dropdown').dropdown({
-    on : 'hover'
-  });
 
   $('.ui.form').form({
     fields : {
       title : {
-        identifier: 'namedd',
+        identifier: 'name',
         rules: [{
           type : 'empty',
-          prompt: '请输入分类名称'
+          prompt: '请输入标签名称'
         }]
       }
     }

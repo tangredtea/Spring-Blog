@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
-<link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+<link rel="stylesheet" href="/lib/editormd/css/editormd.min.css" >
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 <style>
   .ui.basic.teal.label {
@@ -187,8 +187,8 @@
 
                 <div class="field">
                   <div class="ui checkbox">
-                    <input type="checkbox" id="commentabled" name="commentabled" th:checked="*{Commentable}" class="hidden">
-                    <label for="commentabled">评论</label>
+                    <input type="checkbox" id="commentable" name="commentable" th:checked="*{commentable}" class="hidden">
+                    <label for="commentable">评论</label>
                   </div>
                 </div>
 
@@ -196,7 +196,7 @@
 
               <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
 
-              <div class="ui right aligned container" style="poistion:relative;height:50px">
+              <div class="ui right aligned container" style="position:relative;height:50px">
                 <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
                 <button type="button" id="save-btn" class="ui secondary button">保存</button>
                 <button type="button" id="publish-btn" class="ui teal button">发布</button>
@@ -234,11 +234,11 @@
 ***********************************-->
 <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
-<script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+<script src="/lib/editormd/editormd.min.js" ></script>
 <script>
 
   //初始化Markdown编辑器
-  var contentEditor;
+  let contentEditor;
   $(function() {
     contentEditor = editormd("md-content", {
       width   : "100%",
@@ -250,10 +250,6 @@
 
   $('.menu.toggle').click(function () {
     $('.m-item').toggleClass('m-mobile-hide');
-  });
-
-  $('.ui.dropdown').dropdown({
-    on : 'hover'
   });
 
   $('#save-btn').click(function () {     //点击保存，修改发布状态为false

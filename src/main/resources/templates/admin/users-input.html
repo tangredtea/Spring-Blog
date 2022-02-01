@@ -146,17 +146,13 @@
 ***********************************-->
 <script>
 
-  $('.ui.dropdown').dropdown({
-    on : 'hover'
-  });
-
   $('.ui.form').form({
     fields : {
       title : {
-        identifier: 'namedd',
+        identifier: 'username',
         rules: [{
           type : 'empty',
-          prompt: '请输入分类名称'
+          prompt: '请输入用户名称'
         }]
       }
     }
