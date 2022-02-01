@@ -7,20 +7,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment=" 💵重构--修复第二波bug及后台用户管理功能">
+    <list default="true" id="08ebf5d0-8ae2-4bb1-9acc-7568cc9c269a" name="Default Changelist" comment="🤷重构--后台添加友好提示信息">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Ryan.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/FriendLinkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controller/admin/FriendLinkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/blogs-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/blogs-input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/friendLinks-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/friendLinks-input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/friendLinks.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/friendLinks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/tags-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/tags-input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/tags.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/tags.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/types-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/types-input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/types.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/types.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/users-input.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/users-input.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/users.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/users.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/backend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/backend/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/backend/images/like.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/backend/images/like.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin/fragments/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +113,6 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/admin/fragments" />
@@ -154,9 +145,9 @@
       <recent name="C:\Users\Ryan\Desktop\博客\blog-master\blog\src\main\resources\static\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\static\backend\images" />
       <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\static\backend\vendor" />
       <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\templates\admin" />
-      <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\static\backend\images" />
       <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\static\backend\images\profile" />
       <recent name="C:\Users\Ryan\Desktop\github项目\Spring-Blog\src\main\resources\static\backend\images\demo" />
     </key>
@@ -318,7 +309,7 @@
       <workItem from="1643427693028" duration="118000" />
       <workItem from="1643427850159" duration="692000" />
       <workItem from="1643430031791" duration="21039000" />
-      <workItem from="1643529902195" duration="43716000" />
+      <workItem from="1643529902195" duration="44429000" />
     </task>
     <task id="LOCAL-00001" summary="update md5">
       <created>1584841437407</created>
@@ -411,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643719316977</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="🤷重构--后台添加友好提示信息">
+      <created>1643721017162</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643721017162</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +429,8 @@
     <MESSAGE value="重构--改前端" />
     <MESSAGE value="重构--修复第一波后台bug" />
     <MESSAGE value=" 重构--修复第二波bug及后台用户管理功能" />
-    <option name="LAST_COMMIT_MESSAGE" value=" 重构--修复第二波bug及后台用户管理功能" />
+    <MESSAGE value="重构--后台添加友好提示信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构--后台添加友好提示信息" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
