@@ -10,7 +10,7 @@
     <!--添加友链-->
     <insert id="saveFriendLink" parameterType="com.blog.entity.FriendLink">
         insert into blog.t_friend (blog_name,blog_address,picture_address,create_time)
-        values (#{blogname},#{blogaddress},#{pictureaddress},#{createTime})
+        values (#{blogName},#{blogAddress},#{pictureAddress},#{createTime})
     </insert>
 
     <!--根据id查询友链-->
@@ -20,12 +20,12 @@
 
     <!--根据网址查询友链-->
     <select id="getFriendLinkByBlogAddress" resultType="com.blog.entity.FriendLink">
-        select * from blog.t_friend f where f.blog_address = #{blogaddress}
+        select * from blog.t_friend f where f.blog_address = #{blogAddress}
     </select>
 
     <!--编辑修改友链-->
     <update id="updateFriendLink" parameterType="com.blog.entity.FriendLink">
-        update blog.t_friend set blog_name = #{blogname}, blog_address = #{blogaddress}, picture_address = #{pictureaddress} where id = #{id};
+        update blog.t_friend set blog_name = #{blogName}, blog_address = #{blogAddress}, picture_address = #{pictureAddress} where id = #{id};
     </update>
 
     <!--删除友链-->

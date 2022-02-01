@@ -22,12 +22,12 @@ public class Blog implements Serializable {
     private String content;
     private String firstPicture;
     private Integer views;
-    private boolean flag;
-    private boolean appreciation;
-    private boolean shareStatement;
-    private boolean commentable;
-    private boolean published;
-    private boolean recommend;
+    private Boolean flag;
+    private Boolean appreciation;
+    private Boolean shareStatement;
+    private Boolean commentable;
+    private Boolean published;
+    private Boolean recommend;
     private Date createTime;
     private Date updateTime;
 

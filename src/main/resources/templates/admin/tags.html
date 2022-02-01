@@ -126,13 +126,13 @@
                                         <nav>
                                             <ul class="pagination pagination-gutter">
                                                 <li class="page-item page-indicator">
-                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/tags(pagenum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">
+                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/tags(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">
                                                         <i class="la la-angle-left"></i></a></li>
                                                 <li class="page-item" th:each="i:${#numbers.sequence(0,pageInfo.pages - 1)}">
-                                                    <a class="page-link" th:href="@{/admin/tags(pagenum=${i + 1})}"  th:text="${i + 1}">1</a>
+                                                    <a class="page-link" th:href="@{/admin/tags(pageNum=${i + 1})}"  th:text="${i + 1}">1</a>
                                                 </li>
                                                 <li class="page-item page-indicator">
-                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/tags(pagenum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">
+                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/tags(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">
                                                         <i class="la la-angle-right"></i></a></li>
                                             </ul>
                                         </nav>

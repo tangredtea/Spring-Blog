@@ -99,13 +99,12 @@
               <div class="required field">
                 <div class="ui left labeled input">
                   <div class="ui selection compact teal basic dropdown label">
-                    <input type="hidden" value="原创" name="flag" th:value="*{flag}" >
+                    <input type="hidden" value="true" name="flag" th:value="*{flag}" >
                     <i class="dropdown icon"></i>
                     <div class="text">原创</div>
                     <div class="menu">
-                      <div class="item" data-value="原创">原创</div>
-                      <div class="item" data-value="转载">转载</div>
-                      <div class="item" data-value="翻译">翻译</div>
+                      <div class="item" data-value="true" >原创</div>
+                      <div class="item" data-value="false" >转载</div>
                     </div>
                   </div>
                   <input type="text" name="title" placeholder="标题" th:value="*{title}">
@@ -119,7 +118,7 @@
                     <label class="ui compact teal basic label">分类</label>
                     <div class="ui fluid selection dropdown">
                       <!-- type.id 会将id值赋给blog的type对象-->
-                      <input type="hidden" name="type.id" th:value="*{type} != null ? *{type.id}">
+                      <input type="hidden" name="type.id" th:value="*{typeId}">
                       <i class="dropdown icon"></i>
                       <div class="default text">分类</div>
                       <div class="menu">
@@ -188,7 +187,7 @@
 
                 <div class="field">
                   <div class="ui checkbox">
-                    <input type="checkbox" id="commentabled" name="commentabled" th:checked="*{isCommentable}" class="hidden">
+                    <input type="checkbox" id="commentabled" name="commentabled" th:checked="*{Commentable}" class="hidden">
                     <label for="commentabled">评论</label>
                   </div>
                 </div>

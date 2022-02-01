@@ -22,7 +22,7 @@ public class AdminController {
     @Resource
     private UserService userService;
 
-    @GetMapping
+    @GetMapping()
     public String loginPage() {
         return "admin/login";
     }

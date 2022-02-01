@@ -99,12 +99,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="friendlink, iterStat : ${pageInfo.list}">
+                                    <tr th:each="friendLink, iterStat : ${pageInfo.list}">
                                         <td th:text="${iterStat.count}"><strong>序号</strong></td>
-                                        <td th:text="${friendlink.blogname}">网站名字</td>
-                                        <td th:text="${friendlink.blogaddress}">address</td>
-                                        <td th:text="${friendlink.pictureaddress}">picture</td>
-                                        <td th:text="${#dates.format(friendlink.createTime,'yyyy-MM-dd HH:mm')}">时间</td>
+                                        <td th:text="${friendLink.blogName}">网站名字</td>
+                                        <td th:text="${friendLink.blogAddress}">address</td>
+                                        <td th:text="${friendLink.pictureAddress}">picture</td>
+                                        <td th:text="${#dates.format(friendLink.createTime,'yyyy-MM-dd HH:mm')}">时间</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button type="button" class="btn btn-success light sharp" data-bs-toggle="dropdown">
@@ -117,8 +117,8 @@
                                                         </g>
                                                     </svg> </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" th:href="@{/admin/friendlinks/{id}/input(id=${friendlink.id})}" href="#">Edit</a>
-                                                    <a class="dropdown-item" th:href="@{/admin/friendlinks/{id}/delete(id=${friendlink.id})}" onclick="return confirm('确定要删除吗？三思啊! 删了可就没了！')" href="#">Delete</a>
+                                                    <a class="dropdown-item" th:href="@{/admin/friendLinks/{id}/input(id=${friendLink.id})}" href="#">Edit</a>
+                                                    <a class="dropdown-item" th:href="@{/admin/friendLinks/{id}/delete(id=${friendLink.id})}" onclick="return confirm('确定要删除吗？三思啊! 删了可就没了！')" href="#">Delete</a>
                                                 </div>
                                             </div> </td>
                                     </tr>
@@ -132,13 +132,13 @@
                                         <nav>
                                             <ul class="pagination pagination-gutter">
                                                 <li class="page-item page-indicator">
-                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/friendlinks(pagenum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">
+                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/friendLinks(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">
                                                         <i class="la la-angle-left"></i></a></li>
                                                 <li class="page-item" th:each="i:${#numbers.sequence(0,pageInfo.pages - 1)}">
-                                                    <a class="page-link" th:href="@{/admin/friendlinks(pagenum=${i + 1})}"  th:text="${i + 1}">1</a>
+                                                    <a class="page-link" th:href="@{/admin/friendLinks(pageNum=${i + 1})}"  th:text="${i + 1}">1</a>
                                                 </li>
                                                 <li class="page-item page-indicator">
-                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/friendlinks(pagenum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">
+                                                    <a class="page-link" href="javascript:void(0)" th:href="@{/admin/friendLinks(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">
                                                         <i class="la la-angle-right"></i></a></li>
                                             </ul>
                                         </nav>

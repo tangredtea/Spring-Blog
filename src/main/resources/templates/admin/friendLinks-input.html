@@ -85,20 +85,20 @@
 
 
                         <div class="card-body">
-                            <form action="#" method="post" th:action="*{id}==null ? @{/admin/friendlinks} : @{/admin/friendlinks/{id}(id=*{id})} " th:object="${friendlink}" class="ui form">
+                            <form action="#" method="post" th:action="*{id}==null ? @{/admin/friendLinks} : @{/admin/friendLinks/{id}(id=*{id})} " th:object="${friendLink}" class="ui form">
                                 <input type="hidden" name="id" th:value="*{id}">
                                 <div class=" field">
                                     <div class="input-group mb-3 ">
                                         <span class="input-group-text">博客名称</span>
-                                        <input type="text" class="form-control input-default " placeholder="博客名称" th:value="*{blogname}">
+                                        <input type="text" class="form-control input-default "  name="blogName" placeholder="博客名称" th:value="*{blogName}">
                                     </div>
                                     <div class="input-group mb-3 ">
                                         <span class="input-group-text">博客地址</span>
-                                        <input type="text" class="form-control input-default " name="blogaddress" placeholder="博客地址" th:value="*{blogaddress}">
+                                        <input type="text" class="form-control input-default " name="blogAddress" placeholder="博客地址" th:value="*{blogAddress}">
                                     </div>
                                     <div class="input-group mb-3 ">
                                         <span class="input-group-text">图片地址</span>
-                                        <input type="text" class="form-control input-default " name="pictureaddress" placeholder="图片地址" th:value="*{pictureaddress}">
+                                        <input type="text" class="form-control input-default " name="pictureAddress" placeholder="图片地址" th:value="*{pictureAddress}">
                                     </div>
                                 </div>
 
