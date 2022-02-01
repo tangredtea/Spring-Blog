@@ -4,33 +4,33 @@
 
     <!--查询所有友链-->
     <select id="listFriendLink" resultType="com.blog.entity.FriendLink">
-        select * from blog.t_friend order by t_friend.create_time desc
+        select * from t_friend order by t_friend.create_time desc
     </select>
 
     <!--添加友链-->
     <insert id="saveFriendLink" parameterType="com.blog.entity.FriendLink">
-        insert into blog.t_friend (blog_name,blog_address,picture_address,create_time)
+        insert into t_friend (blog_name,blog_address,picture_address,create_time)
         values (#{blogName},#{blogAddress},#{pictureAddress},#{createTime})
     </insert>
 
     <!--根据id查询友链-->
     <select id="getFriendLink" resultType="com.blog.entity.FriendLink">
-        select * from blog.t_friend f where f.id = #{id}
+        select * from t_friend f where f.id = #{id}
     </select>
 
     <!--根据网址查询友链-->
     <select id="getFriendLinkByBlogAddress" resultType="com.blog.entity.FriendLink">
-        select * from blog.t_friend f where f.blog_address = #{blogAddress}
+        select * from t_friend f where f.blog_address = #{blogAddress}
     </select>
 
     <!--编辑修改友链-->
     <update id="updateFriendLink" parameterType="com.blog.entity.FriendLink">
-        update blog.t_friend set blog_name = #{blogName}, blog_address = #{blogAddress}, picture_address = #{pictureAddress} where id = #{id};
+        update t_friend set blog_name = #{blogName}, blog_address = #{blogAddress}, picture_address = #{pictureAddress} where id = #{id};
     </update>
 
     <!--删除友链-->
     <delete id="deleteFriendLink" >
-        delete from blog.t_friend where id = #{id}
+        delete from t_friend where id = #{id}
     </delete>
 
 </mapper>

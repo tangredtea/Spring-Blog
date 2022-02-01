@@ -3,13 +3,34 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blog.dao.UserDao">
-    <update id="updateUser"/>
+
+    <update id="updateUser">
+        update t_user set username = #{username} , nickname = #{nickname} , password = #{password} , email = #{email} where id = #{id};
+    </update>
+
+    <delete id="deleteUser">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <insert id="saveUser" parameterType="Tag">
+        insert into t_user values (#{id}, #{username}, #{password}, #{nickname}, #{email});
+    </insert>
 
     <select id="queryByUsernameAndPassword" resultType="User">
-        select * from blog.t_user
+        select * from t_user
         where username = #{username} and password = #{password};
     </select>
 
-    <select id="getUserInfoById" resultType="com.blog.entity.User"/>
+    <select id="getUserInfoById" resultType="com.blog.entity.User">
+        select nickname, username, id , email from t_user where id = #{id}
+    </select>
+
+    <select id="getAllUser" resultType="com.blog.entity.User">
+        select * from t_user
+    </select>
+
+    <select id="getUserInfoByUsername" resultType="java.lang.Integer">
+        select count(username) from t_user where username = #{username}
+    </select>
 
 </mapper>

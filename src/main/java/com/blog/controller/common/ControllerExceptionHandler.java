@@ -31,7 +31,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
         //日志打印异常信息
-        logger.error("Request url: {}, Exception: {}", request.getRequestURI(), e);
+        logger.error("Request url: {}, Exception: {} ", request.getRequestURI(), e);
         //不处理带有ResponseStatus注解的异常
         if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
             throw e;
@@ -43,4 +43,5 @@ public class ControllerExceptionHandler {
         mv.setViewName("error/error");
         return mv;
     }
+
 }

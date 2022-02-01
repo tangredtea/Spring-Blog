@@ -6,7 +6,7 @@
         <div class="deznav-scroll">
             <div class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="" th:src="@{backedn/images/profile/pic1.jpg}" width="20" alt=""/>
+                    <img src="/backend/images/profile/pic1.jpg" width="20" alt=""/>
                     <div class="header-info">
                         <span class="font-w400 mb-0">Hello,<b>William</b></span>
                         <small class="text-end font-w400">williamfrancisson@mail.com</small>
@@ -21,7 +21,7 @@
 
                 </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
-                    <i class="flaticon-050-info"></i>
+                    <i class="flaticon-381-notebook-5"></i>
                     <span class="nav-text">文章管理</span>
                 </a>
                     <ul aria-expanded="false">
@@ -54,6 +54,16 @@
                     <ul >
                         <li><a th:href="@{/admin/friendLinks/input}">新增友链</a></li>
                         <li><a th:href="@{/admin/friendLinks}">友链管理</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false" >
+                    <i class="flaticon-381-user-8"></i>
+                    <span class="nav-text">用户管理</span>
+                </a>
+                    <ul >
+                        <li><a th:href="@{/admin/users/input}">新增用户</a></li>
+                        <li><a th:href="@{/admin/users}">用户列表</a></li>
+                        <li><a th:href="@{/admin/logout}">注销</a></li>
                     </ul>
                 </li>
             </ul>

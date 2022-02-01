@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Ryan
  */
@@ -21,15 +23,42 @@ public interface UserDao {
 
     /**
      * 通过id查询用户信息
-     * @param userId 用户id
+     * @param id 用户id
      * @return user
      */
-    User getUserInfoById(Integer userId);
+    User getUserInfoById(Integer id);
+
+    /**
+     * 得到所有用户
+     * @return 标签列表
+     */
+    List<User> getAllUser();
 
     /**
      * 修改用户信息
      * @param user 用户
      * @return boolean
      */
-    boolean updateUser(User user);
+    int updateUser(User user);
+
+    /**
+     * 删除用户
+     * @param id 用户id
+     * @return 状态值
+     */
+    int deleteUser(Integer id);
+
+    /**
+     * 保存用户
+     * @param user 用户
+     * @return 状态值
+     */
+    int saveUser(User user);
+
+    /**
+     * 查询用户名数量
+     * @param name
+     * @return 数量
+     */
+    int getUserInfoByUsername(String name);
 }

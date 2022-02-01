@@ -6,11 +6,11 @@
 
 
     <select id="getType" resultType="Type">
-        select id,name from blog.t_type where id = #{id}
+        select id,name from t_type where id = #{id}
     </select>
 
     <insert id="saveType" parameterType="Type">
-        insert into blog.t_type values (#{id},#{name});
+        insert into t_type values (#{id},#{name});
     </insert>
 
     <!--两个id可能会相冲，取别名即可-->
@@ -36,15 +36,15 @@
     </select>
 
     <select id="getTypeByName" resultType="Type">
-        select * from blog.t_type where name = #{name}
+        select * from t_type where name = #{name}
     </select>
 
     <delete id="deleteType" >
-        delete from blog.t_type where id = #{id}
+        delete from t_type where id = #{id}
     </delete>
 
     <update id="updateType" parameterType="Type">
-        update blog.t_type set name = #{name} where id = #{id};
+        update t_type set name = #{name} where id = #{id};
     </update>
 
 </mapper>

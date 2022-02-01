@@ -1,5 +1,4 @@
 "use strict"
-//更多精品模板：http://www.bootstrapmb.com
 var themeOptionArr = {
 			typography: '',
 			version: '',

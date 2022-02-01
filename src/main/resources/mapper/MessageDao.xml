@@ -4,14 +4,14 @@
 
     <!--添加留言-->
     <insert id="saveMessage" parameterType="com.blog.entity.Message">
-        insert into blog.t_message (nickname,email,content,avatar,create_time,parent_message_id,admin_message)
+        insert into t_message (nickname,email,content,avatar,create_time,parent_message_id,admin_message)
         values (#{nickname},#{email},#{content},#{avatar},#{createTime},#{parentMessageId},#{adminMessage});
     </insert>
 
     <!--查询父级留言-->
     <select id="findByParentIdNull" resultType="com.blog.entity.Message">
         select *
-        from blog.t_message c
+        from t_message c
         where c.parent_message_id = #{ParentId}
         order by c.create_time desc
     </select>
@@ -19,7 +19,7 @@
     <!--查询一级回复-->
     <select id="findByParentIdNotNull" resultType="com.blog.entity.Message">
         select *
-        from blog.t_message c
+        from t_message c
         where c.parent_message_id = #{id}
         order by c.create_time desc
     </select>
@@ -27,7 +27,7 @@
     <!--首页推荐评论-->
     <select id="findByIndexParentId" resultType="com.blog.entity.Message">
         select *
-        from blog.t_message c
+        from t_message c
         where c.parent_message_id = #{id}
         order by c.create_time desc limit 0,3
     </select>
@@ -35,14 +35,14 @@
     <!--查询二级以及所有子集回复-->
     <select id="findByReplayId" resultType="com.blog.entity.Message">
         select *
-        from blog.t_message c
+        from t_message c
         where c.parent_message_id = #{childId}
         order by c.create_time desc
     </select>
 
     <!--删除留言-->
     <delete id="deleteMessage" >
-        delete from blog.t_message where id = #{id}
+        delete from t_message where id = #{id}
     </delete>
 
 

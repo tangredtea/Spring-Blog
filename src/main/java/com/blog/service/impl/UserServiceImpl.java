@@ -7,6 +7,7 @@ import com.blog.util.MD5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Ryan
@@ -24,17 +25,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfoById(Integer uid) {
-        return userDao.getUserInfoById(uid);
+    public User getUserInfoById(Integer id) {
+        return userDao.getUserInfoById(id);
     }
 
     @Override
-    public boolean updateUserInfo(User user, String username, String password) {
-        if (checkUser(username, password) != null){
-            return userDao.updateUser(user);
-        }else {
-            return false;
-        }
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public int saveUser(User user) {
+        return userDao.saveUser(user);
+    }
+
+    @Override
+    public List<User> getUsers() {
+        return userDao.getAllUser();
+    }
+
+    @Override
+    public int deleteUser(Integer id) {
+        return userDao.deleteUser(id);
+    }
+
+    @Override
+    public int getUserInfoByUsername(String name) {
+        return userDao.getUserInfoByUsername(name);
     }
 
 }
