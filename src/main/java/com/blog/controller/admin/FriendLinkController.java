@@ -30,7 +30,7 @@ public class FriendLinkController {
      * @param pageNum 页数
      * @return 渲染视图
      */
-    @GetMapping("/friendLinks")
+    @GetMapping({"/friendLinks","/friendlinks"})
     public String friend(Model model, @RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
         PageHelper.startPage(pageNum,10);
         List<FriendLink> listFriendLink = friendLinkService.listFriendLink();

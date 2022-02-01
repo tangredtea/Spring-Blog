@@ -194,7 +194,7 @@
 
               </div>
 
-              <div class="ui error message"></div>
+              <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
 
               <div class="ui right aligned container" style="poistion:relative;height:50px">
                 <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>

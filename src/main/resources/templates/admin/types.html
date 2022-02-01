@@ -121,6 +121,8 @@
                 <div class="ui segment m-inline-block">
                   <p >当前第<span th:text="${pageInfo.pageNum}"></span>页，总<span th:text="${pageInfo.pages}"></span>页，共<span th:text="${pageInfo.total}"></span>条记录</p>
                 </div>
+                <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
+
                 <div class="card">
                   <div class="card-body">
                     <nav>
