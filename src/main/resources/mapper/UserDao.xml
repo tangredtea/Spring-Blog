@@ -13,7 +13,7 @@
     </delete>
 
     <insert id="saveUser" parameterType="Tag">
-        insert into t_user values (#{id}, #{username}, #{password}, #{nickname}, #{email});
+        insert into t_user values (#{id}, #{username}, #{password}, #{nickname}, #{email}, #{avatar});
     </insert>
 
     <select id="queryByUsernameAndPassword" resultType="User">

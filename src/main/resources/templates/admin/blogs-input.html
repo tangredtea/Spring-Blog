@@ -238,7 +238,7 @@
 <script>
 
   //初始化Markdown编辑器
-  let contentEditor;
+  var contentEditor;
   $(function() {
     contentEditor = editormd("md-content", {
       width   : "100%",
@@ -250,6 +250,10 @@
 
   $('.menu.toggle').click(function () {
     $('.m-item').toggleClass('m-mobile-hide');
+  });
+
+  $('.ui.dropdown').dropdown({
+    on : 'hover'
   });
 
   $('#save-btn').click(function () {     //点击保存，修改发布状态为false

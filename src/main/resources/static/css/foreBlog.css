@@ -7,44 +7,12 @@ body{
 
 }
 
-.m-margin-tb-tiny {
-    margin-top: 0.3em !important;
-    margin-bottom: 0.3em !important;
-}
-.box-shadow-max{
-    margin-bottom: 15px;
-    border-radius: 2px;
-    background-color: #fff;
-    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, .05);
-    -webkit-box-shadow: #000000 0px 0px 10px;
-    -moz-box-shadow: #000000 0px 0px 10px;
-}
-.friends-link{
-    width: 160px;
-    height: 220px;
-    border: 1px solid #999;
-    box-shadow: 5px 5px 5px #999;
-    border-radius:8px;
-}
-
-.friends-link-image{
-    width: 160px;
-    height: 170px;
-    border-radius: 8px 8px 0px 0px;
-
-}
-.m-font-size-text-friends{
-    font-size: 16px;
-    color: #000000;
-    font-family: STSong;
-}
-
 
 /*  页面头部部分  */
 /* logo */
 .logo{
-    width: 5em;
-    height: 5em;
+    width: 4em;
+    height: 4em;
     /* margin: 0.3em !important; */
     margin-right: 1em !important;
     padding: 0.1em !important;
@@ -70,7 +38,7 @@ body{
 
 
 /* 因为semanticUI存在自己的css,而且我们优先级还没它高,那么使用!important提高优先级
-                1em 默认等于浏览器字体大小16px
+				1em 默认等于浏览器字体大小16px
  */
 .navdiv{
     position: absolute !important;
@@ -83,11 +51,21 @@ body{
     display: block !important;
 }
 
-
+.navDiv-active{
+    /* position: fixed  是相对于窗体而言的，也即相对于整个窗体布局 */
+    position: fixed !important;
+    top: 0em !important;
+    margin-top: 0em !important;
+    padding:0em !important;
+    opacity: 0.8;
+    z-index: 100;
+    width: 100%;
+    display: block !important;
+}
 
 #navMenu .mobileButton{
     position: absolute;
-    top: 1.5em;
+    top: 1em;
     right: 0em;
 }
 
@@ -108,9 +86,9 @@ body{
 /* 手机端显示的title */
 #navMenu .mobileTitle{
     position: absolute;
-    top: 0.8em;
-    left: 45%;
-    font-size: 2.5em;
+    top: 0.6em;
+    left: 43%;
+    font-size: 2em;
     font-weight: bolder;
     color: #00B5AD;
 }
@@ -140,6 +118,12 @@ body{
         display: block !important;
     }
     #indexNavMenu{
+        display: none !important;
+    }
+    #music-icon{
+        display: none !important;
+    }
+    #music-iframe{
         display: none !important;
     }
     .pageHeadContainer,.articleHeadContainer{
@@ -216,8 +200,8 @@ body{
 }
 
 /* 相对布局只是在当前位置 进行移动，文档并不会删除该节点/对象 ，
-    此时图片已经沾满了相对布局的位置，后来元素，就不会显示了
-    因此使用绝对布局，定位到容器内部
+	此时图片已经沾满了相对布局的位置，后来元素，就不会显示了
+	因此使用绝对布局，定位到容器内部
  */
 .headContainer .backgroundLayout{
     position: absolute;
@@ -318,6 +302,46 @@ body{
     color: whitesmoke;
 }
 
+
+.recommendation .hotArticles .hotArticle .content{
+    background: rgba(0,0,0,0) !important;
+}
+
+.recommendation .hotArticles .hotArticle .header{
+    font-size: 1.5em !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.recommendation .hotArticles .hotArticle .description{
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*font-size: 1.2em !important;*/
+    /*font-weight: 500;*/
+}
+
+.recommendation .hotArticles .hotArticle .description{
+    padding-top: 5px;
+}
+
+.recommendation .hotArticles .hotArticle .content .meta{
+    padding-top: 5px;
+    font-size: 13px;
+}
+
+.recommendation .hotArticles .hotArticle .content .hot-article-author{
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+}
+
+.recommendation .hotArticles .hotArticle .content .meta .noWrap {
+    white-space: nowrap;
+}
+
+
 .recommendation .articleBrief .hotArticleTitle{
     font-size: 1.3em !important;
     overflow: hidden !important;
@@ -349,6 +373,12 @@ body{
 .recommendation .comments .comment .card .content .description{
     height: 4em;
     overflow: hidden;
+}
+
+.recommendation .comments .comment .card .content .comment-user {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
 }
 
 
@@ -464,6 +494,9 @@ body{
 }
 
 
+
+
+
 /* 置顶图标   */
 #toTop{
     position: fixed;
@@ -479,12 +512,39 @@ body{
     display: inline-block !important;
 }
 
+.iframe-active{
+    display: inline-block !important;
+}
+
 #toTop i{
     margin: 0em;
     padding-top: 0.2em;
     color: teal;
     font-size: 1.5em;
 }
+
+
+#music-icon{
+    position: fixed;
+    right: 3.3em;
+    bottom: 4em;
+    z-index: 10000;
+    /* border-radius: 100px; */
+    margin: 0em;
+    font-size: 1.2em;
+}
+
+/* 音乐frame */
+#music-iframe{
+    position: fixed;
+    left: 0em;
+    bottom: 0em;
+    /*background-color: whitesmoke;*/
+    z-index: 9999;
+    /* border-radius: 100px; */
+    margin: 0em;
+}
+
 
 .newArticles{
     max-width: 1000px !important;
@@ -506,65 +566,74 @@ body{
 
 
 
-.article .content{
+.newArticles .article .content{
     padding: 0.4em 0.4em 0.4em 0.6em !important;
     position: relative;
 }
-.article .articleHeader{
+.newArticles .article .articleHeader{
     position: absolute;
-    left: 0.5em;
+    left: 0.3em;
     top: 0.5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 22px;
+    font-size: 1.5em;
 }
 
-.article .articleHeader a{
+.newArticles .article .articleHeader a{
     color: #000000;
 }
-.article .articleHeader a:hover{
+
+.newArticles .article .articleHeader a:hover{
     color: #00B5AD;
 }
 
-.article .overView{
-    height: 4em !important;
-    font-size: 1.2em !important;
+.newArticles .article .overView{
+    height: 5em !important;
+    /* font-size: 1.2em !important; */
     color: #E0E1E2;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
+    padding-top: 5px;
+    overflow: hidden;
 
 }
 
-.article .overView a{
+.newArticles .article .overView a{
     display: block !important;
     width: 100%;
     height: 100%;
     color: #4c4f52 !important;
+    font-size: 15px;
 }
 
-.article .overView a:hover{
+.newArticles .article .overView a:hover{
     /*color: #299999 !important;*/
 }
 
-.article .description{
+.newArticles .article .description{
     padding-top: 10px;
 }
 
-.article .description span{
+.newArticles .article .description span{
     margin-right: 0.5em;
     color: #999999;
 }
 
-.article .description .tags a{
-     margin: 0em !important;
-     padding: 0.3em !important;
+.newArticles .article .description .tags a{
+    margin: 0em !important;
+    padding: 0.3em !important;
 }
 
 /* 内部元素垂直居中 */
-.article .imageDiv{
+.newArticles .article .imageDiv{
     /* display: inline-block !important;
     vertical-align: middle !important; */
     /* line-height 不能居中图片 */
     /* line-height: 200px !important; */
 }
 
-.imageDiv .categoryImg{
+.newArticles .article .imageDiv .categoryImg{
     width: 180px;
     height: 150px;
     border-radius: 8px;
@@ -593,11 +662,11 @@ body{
     margin: 0em auto;
 }
 
-.categoryTags button{
+.categoryContent .categoryTags button{
     margin-top: 0.6em !important;
 }
 
-.categoryTags button:hover{
+.categoryContent .categoryTags button:hover{
     color: #00827C !important;
 }
 
@@ -606,11 +675,12 @@ body{
     margin-bottom: 1em !important;
 }
 
-.article .content{
+.categoryContent .article .content{
     padding: 0em 0.4em 0.4em 0.6em !important;
     position: relative;
 }
-.article .articleHeader{
+
+.categoryContent .article .articleHeader{
     position: absolute;
     left: 0.3em;
     top: 0.1em;
@@ -618,15 +688,15 @@ body{
     font-weight: 500;
 }
 
-.article .articleHeader a{
+.categoryContent .article .articleHeader a{
     color: #000000;
 }
-.article .articleHeader a:hover{
+.categoryContent .article .articleHeader a:hover{
     color: #00B5AD;
 }
 
-.article .overView{
-    margin-top: 1em;
+.categoryContent .article .overView{
+
     height: 5.5em !important;
     font-size: 1.1em !important;
     color: #747474;
@@ -635,27 +705,40 @@ body{
     text-overflow:ellipsis;
 }
 
-.article .description{
+.categoryContent .article .overView a{
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    color: #4c4f52 !important;
+    font-size: 15px;
+}
+
+.categoryContent .article .description{
     padding-top: 10px;
 }
 
-.article .description span{
+.categoryContent .article .description span{
     margin-right: 0.5em;
     color: #999999;
 }
 
+.categoryContent .article .description .tags a{
+    margin: 0em !important;
+    padding: 0.3em !important;
+}
+
 /* 内部元素垂直居中
 .article .imageDiv{
-    /* display: inline-block !important;
-    vertical-align: middle !important; */
+	/* display: inline-block !important;
+	vertical-align: middle !important; */
 /* line-height 不能居中图片 */
 /* line-height: 200px !important; */
 /* } */
 
 /* .imageDiv .categoryImg{
-    width: 180px;
-    height: 150px;
-    border-radius: 8px;
+	width: 180px;
+	height: 150px;
+	border-radius: 8px;
 } */
 
 .paginationDiv{
@@ -683,20 +766,36 @@ body{
 2. 父容器css rgb为0。也即css加上background: rgba(0,0,0,0);
 */
 .articleContent{
+    position: relative;
     max-width: 1000px !important;
-    margin: 3em auto 1em;
+    margin: 1em auto 1em;
     padding: 1em 1em !important;
     background: rgba(0,0,0,0);
 }
 
-.articleContent .segment{
+.articleContent .ui.raised.teal.segment{
     background: rgba(0,0,0,0) !important;
+    padding: 0 !important;
+
 }
+
+/*.articleContent .waitLayer{*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 0px;*/
+/*    right: 0px;*/
+/*    bottom: 0px;*/
+/*    !*height: 500px;*!*/
+/*    !*max-width: 1000px !important;*!*/
+/*    !*margin: 0em auto 0em;*!*/
+/*    background: white;*/
+/*}*/
+
 
 @media only screen and (max-width: 767px){
     .typo.ui.container {
         width: auto!important;
-         margin-left: 0em!important;
+        margin-left: 0em!important;
         margin-right: 1em!important;
     }
 }
@@ -704,8 +803,9 @@ body{
 
 
 .articleContent .articleTitle{
-    margin: 1em auto  0em!important;
-    font-size: 2em !important;
+    margin: 1em auto 0em!important;
+    font-size: 1.5em !important;
+    padding: 5px;
 }
 
 .articleContent .aticleInfo{
@@ -771,9 +871,9 @@ body{
 }
 
 /*  comment部分 */
- .commentContent{
-     max-width: 1000px !important;
-     margin: 1em auto 1em;
+.commentContent{
+    max-width: 1000px !important;
+    margin: 1em auto 1em;
     padding: 1em 1em !important;
 }
 
@@ -811,7 +911,7 @@ body{
     margin: 0.8em 0em !important;
 }
 
-.comment{
+.commentContent .comment{
     width: 100%;
     /* min-height: 70px;
     /* max-height: 200px; */
@@ -819,45 +919,45 @@ body{
     /* overflow: hidden; */
 }
 
-.comment img{
+.commentContent .comment img{
     width: 60px;
     height: 60px;
     float: left;
 }
 
-.comment .content{
+.commentContent .comment .content{
     overflow: hidden;
     min-height: 70px;
     max-height: 270px;
     padding-left: 1.2em;
 }
 
-.comment .content .userName{
+.commentContent .comment .content .userName{
     font-size: 1.2em;
     color: #00B5AD;
 }
 
-.comment .content .commentTime{
+.commentContent .comment .content .commentTime{
     float: right;
     color: #999999;
 }
 
-.comment .content .contentDetails{
+.commentContent .comment .content .contentDetails{
     max-height: 200px;
     padding: 0.5em 0em;
     overflow: hidden;
 }
 
-.comment .content .actions a{
+.commentContent .comment .content .actions a{
     color: darkgray;
     margin-right: 0.5em;
 }
 
-.comment .content .actions a:hover{
+.commentContent .comment .content .actions a:hover{
     color: red;
 }
 
-.comment .content .replay{
+.commentContent .comment .content .replay{
     /* color: #909090; */
 }
 
@@ -866,6 +966,142 @@ body{
     margin: 1em auto !important;
     color: #999999;
 }
+
+/* music页 */
+.musicContent{
+    max-width: 800px !important;
+    margin: 5em auto 1em;
+    padding: 1em 0em !important;
+    background: rgba(0,0,0,0) !important;
+}
+
+.musicContent .segment.musicBackground{
+    background: rgba(0,0,0,0) !important;
+}
+
+
+.musicContent .musicTitle{
+    margin: 1em auto  0em!important;
+    font-size: 2em !important;
+}
+
+/* .musicContent{
+	margin: 5em auto !important;
+	max-width: 800px;
+} */
+.musicContent .musicBackground{
+    height: 40em !important;
+}
+.musicContent .musicTitle{
+    margin: 0.5em auto !important;
+    text-align: center;
+    color: #00B5AD;
+}
+
+.musicContent .aplayer{
+    overflow: visible !important;
+}
+
+
+.musicContent .aplayer-lrc{
+    position: absolute !important;
+    top: 9em !important;
+    left: 20% !important;
+    height: 22em !important;
+    text-align: center !important;
+}
+
+.musicContent .aplayer .aplayer-lrc p{
+    /* font-size: 12px !important;			 */
+    font-size: 0.9em !important;
+    margin: 0.5em 0em !important;
+    color: #000000;
+}
+
+.musicContent .aplayer-list{
+    position: relative !important;
+    z-index: 100 !important;
+    background-color: #F0F0F0;
+}
+
+.musicContent .aplayer .aplayer-lrc .aplayer-lrc-currents{
+    /* 过渡属性,过渡时间，过渡效果，过渡延迟 */
+    /* transition: all 0.6s ease-out !important; */
+}
+
+.musicContent .aplayer .aplayer-lrc .aplayer-lrc-current{
+    color: #00B5AD !important;
+    font-size: 17px !important;
+}
+
+/* video页 */
+
+
+.videoContent{
+    max-width: 1000px !important;
+    margin: 1em auto 1em;
+    padding: 1em 1em !important;
+    background: rgba(0,0,0,0);
+}
+
+.videoContent .raised.teal.segment{
+    background: rgba(0,0,0,0);
+}
+
+
+
+.videoContent .videoTitle{
+    margin: 1em auto  0em!important;
+    font-size: 2em !important;
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+/* videoPlay页 */
+
+.videoPlayContent{
+    max-width: 1000px !important;
+    margin: 1em auto 1em;
+    padding: 1em 1em !important;
+    background: rgba(0,0,0,0);
+}
+
+.videoPlayContent .raised.teal.segment{
+    background: rgba(0,0,0,0);
+}
+
+
+
+.videoPlayContent .videoHeader{
+    margin: 1em auto  0em!important;
+    font-size: 2em !important;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.videoPlayContent .videoRow{
+    margin: 1em 0em !important;
+}
+
+.videoContent .videoRow{
+    margin: 2em 0em !important;
+}
+
+.videoContent .video{
+    padding-bottom: 20px;
+}
+
+.video .videoHeader{
+    color: #373737;
+    margin: 0.2em 0em;
+}
+
+.video .videoAuthor{
+    color: #676767;
+    font-size: 0.9em;
+}
+
 
 /*  commentWall页 */
 
@@ -994,17 +1230,20 @@ body{
 
 .aboutMeContent{
     max-width: 1000px !important;
-    margin: 2em auto 1em;
-    padding: 1em 2em !important;
+    margin: 1em auto 1em;
+    padding: 1em 1em !important;
     background: rgba(0,0,0,0);
 }
 
 .aboutMeContent .raised.teal.segment{
     background: rgba(0,0,0,0);
+    padding: 0em 0em !important;
+
 }
 
-
-
+.aboutMeContent .typo.ui{
+    width:100% !important;
+}
 
 .aboutMeContent .aboutMeTitle{
     margin: 1em auto  0em!important;
@@ -1025,7 +1264,7 @@ body{
     margin: 1em;
 }
 
-.introduction .aboutMe,.blog,.logUpdate,.futurePlan{
+.aboutMeContent .introduction .aboutMe,.blog,.logUpdate,.futurePlan{
     width: 100%;
 }
 
@@ -1062,10 +1301,30 @@ body{
 }
 
 
+/* 项目介绍 */
+.projectContent{
+    max-width: 1000px !important;
+    margin: 1em auto 1em;
+    padding: 1em 1em !important;
+    background: rgba(0,0,0,0);
+}
+
+.projectContent .raised.teal.segment{
+    background: rgba(0,0,0,0);
+    padding: 0em 0em !important;
+
+}
+
+.projectContent .projectTitle{
+    margin: 1em auto  0em!important;
+    font-size: 2em !important;
+}
+
+
 /* friendLink */
 .friendLinkContent{
     max-width: 1000px !important;
-    margin: 4em auto 1em;
+    margin: 1em auto 1em;
     padding: 1em 1em !important;
     background: rgba(0,0,0,0);
 }
@@ -1239,6 +1498,7 @@ body{
     padding: 0em 1em !important;
 }
 
+
 .searchPageContent  .article{
     /* border: solid #DEDEDF 2px !important; */
     /* border-radius: 0.4em !important; */
@@ -1246,12 +1506,87 @@ body{
     margin: 1em 0em !important;
 }
 
-.searchPageContent .searchTitle{
-    font-weight: bolder;
-    font-size: 1.5em;
-    display: block !important;
-    margin: 1em auto;
+.searchPageContent .categoryTags{
+    margin: 0em auto;
 }
+
+.searchPageContent .categoryTags button{
+    margin-top: 0.6em !important;
+}
+
+.searchPageContent .categoryTags button:hover{
+    color: #00827C !important;
+}
+
+.searchPageContent .searchTitle{
+    display: inline-block;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    color: withe !important;
+    color: aliceblue;
+    text-align: center;
+    font-size: 1.5em;
+    /* background-image: linear-gradient(to right, #00fff0, #0083fe); */
+    border-radius: 5px;
+    background: #74ebd5;
+    background: -webkit-linear-gradient(to top, #ACB6E5, #74ebd5);
+    background: linear-gradient(to top, #ACB6E5, #74ebd5);
+
+}
+
+.searchPageContent .article .content{
+    padding: 0em 0.4em 0.4em 0.6em !important;
+    position: relative;
+}
+
+.searchPageContent .article .articleHeader{
+    position: absolute;
+    left: 0.3em;
+    top: 0.1em;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.searchPageContent .article .articleHeader a{
+    color: #000000;
+}
+.searchPageContent .article .articleHeader a:hover{
+    color: #00B5AD;
+}
+
+.searchPageContent .article .overView{
+
+    height: 5.5em !important;
+    font-size: 1.1em !important;
+    color: #747474;
+    line-height: 1.5em;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.searchPageContent .article .overView a{
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    color: #4c4f52 !important;
+    font-size: 15px;
+}
+
+.searchPageContent .article .description{
+    padding-top: 10px;
+}
+
+.searchPageContent .article .description span{
+    margin-right: 0.5em;
+    color: #999999;
+}
+
+.searchPageContent .article .description .tags a{
+    margin: 0em !important;
+    padding: 0.3em !important;
+}
+
 
 .hideRow{
     display: none !important;
@@ -1452,14 +1787,3 @@ img {
     background: #20B2AA;
 }
 
-.navDiv-active{
-    /* position: fixed  是相对于窗体而言的，也即相对于整个窗体布局 */
-    position: fixed !important;
-    top: 0em !important;
-    margin-top: 0em !important;
-    padding:0em !important;
-    opacity: 0.8;
-    z-index: 100;
-    width: 100%;
-    display: block !important;
-}

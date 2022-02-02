@@ -13,8 +13,8 @@
     <meta name="description" th:content="#{web.description}">
     <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
     <!--实现每日一言-->
-    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    <script src="/js/bluebird.min.js"></script>
+    <script src="/js/whatwg-fetch@2.0.3_fetch.js"></script>
     <!--End-->
     <script>
         fetch('https://v1.hitokoto.cn/?max_length=21')
@@ -131,8 +131,8 @@
 
 <script type="text/javascript" src="/static/js/category.js" th:src="@{/js/category.js}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/Meting.min.js"></script>
 
 </body>
 </html>

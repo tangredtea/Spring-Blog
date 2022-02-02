@@ -12,47 +12,21 @@
     <meta name="keywords" th:content="#{web.keywords}">
     <meta name="description" th:content="${blog.description}?${blog.description}: #{web.description}">
     <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
-
     <!--标记处-->
+    <div th:replace="/fragments/header :: common-js"></div>
+    <link rel="stylesheet" href="/lib/prism/prism.css" >
+    <link rel="stylesheet" href="/css/donate.css" >
+    <script type="text/javascript" src="/js/article.js"></script>
+    <script src="/lib/prism/prism.js" ></script>
 
 
-    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
-    <link rel="stylesheet" href="../static/lib/prism/prism.css"  th:href="@{/lib/prism/prism.css}">
-    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
-    <link rel="stylesheet" href="../static/css/timeline.css" th:href="@{/css/timeline.css}">
-
-    <div th:insert="~{common::common-js}">
-</div>
-    <style>
-        #vcomments .vat {
-            color: rgb(0, 0, 0);
-            font-size: 0.7125rem;
-            padding: 0px 0.8rem;
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgb(0, 0, 0);
-            border-image: initial;
-            border-radius: 5px;
-            transition: all 0.3s ease 0s;
-        }
-        /*提交评论按钮颜色*/
-        #vcomments button {
-            background-color: rgb(0, 0, 0);
-            color: rgb(255, 255, 255);
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
-            border-color: rgb(255, 255, 255);
-            transition: all 0.3s ease 0s;}
-    </style>
 </head>
 <body>
 
 
 <div id="workingArea">
 
-    <div id="navMenu" class="ui inverted segment navDiv-active" >
-        <div th:insert="~{common :: Menu}"></div>
-    </div>
+    <div th:replace="/fragments/header :: menu"></div>
     <div class="pageHeadContainer">
         <img src="https://www.xiaoxuya.top/img/article/95.jpg" th:src="${blog.firstPicture}" class="ui image backgroundImg">
         <div class="backgroundLayout">
@@ -83,7 +57,7 @@
                     </div>
                 </div>
                 <div class="row article">
-                    <div th:utext="${blog.content}" class="typo ui container">
+                    <div th:utext="${blog.content}" class="typo ui container" id="blogContent">
 
                     </div>
                 </div>
@@ -93,20 +67,30 @@
                 </div>
                 <div class="row">
                     <div class="operation">
-                        <div class="ui blue button" data-tooltip="谢谢你的支持哦！" data-inverted=""><i class="ui star outline icon"></i>赞赏</div>
                         <div th:if="${blog.appreciation}">
-                            <div class="ui payQR flowing popup transition hidden">
-                                <div class="ui orange basic label">
-                                    <div class="ui images" style="font-size: inherit !important;">
-                                        <div class="image">
-                                            <img  src="https://www.xiaoxuya.top/img/payment/wechat.png" alt="" class="ui rounded bordered image" style="width: 120px">
-                                            <div>支付宝</div>
-                                        </div>
-                                        <div class="image">
-                                            <img src="https://www.xiaoxuya.top/img/payment/wechat.png" alt="" class="ui rounded bordered image" style="width: 120px">
-                                            <div>微信</div>
-                                        </div>
+                            <div class="ui blue button" onclick="donateToggle()" data-tooltip="谢谢你的支持哦！" data-inverted=""><i  class="ui star outline icon"></i>赞赏</div>
+                            <div class="hide_box"></div>
+                            <div class="shang_box">
+                                <a class="shang_close" href="javascript:void(0)" onclick="donateToggle()" title="关闭"><img src="/images/close.jpg" alt="取消" /></a>
+                                <div class="shang_tit">
+                                    <p>感谢您的支持，我会继续努力的!</p>
+                                </div>
+                                <div class="shang_payimg">
+                                    <img src="/images/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                                </div>
+                                <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                                <div class="shang_payselect">
+                                    <div class="pay_item checked" data-id="alipay">
+                                        <span class="radiobox"></span>
+                                        <span class="pay_logo"><img src="/images/alipay.jpg" alt="支付宝" /></span>
                                     </div>
+                                    <div class="pay_item" data-id="weipay">
+                                        <span class="radiobox"></span>
+                                        <span class="pay_logo"><img src="/images/wechat.jpg" alt="微信" /></span>
+                                    </div>
+                                </div>
+                                <div class="shang_info">
+                                    <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
                                 </div>
                             </div>
                         </div>
@@ -129,156 +113,25 @@
     <button id="toTop" class="circular ui icon button" style="display: none;">
         <i class="ui caret up icon"></i>
     </button>
-
-    <!--评论区域列表-->
-    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-    <!-- 当然啦，这个可以在<head></head>中引入 -->
-    <div class="commentContent">
-    <div id="vcomments"></div>
-    </div>
-    <script>
-        new Valine({
-            el: '#vcomments' ,
-            appId: 'm9FW1YMyjFbqpyA0oK59GG2S-gzGzoHsz',
-            appKey: 't1ktvP3L8bNkuGIt2KDQLb2j',
-            notify:false,
-            verify:false,
-            avatar:'mp',
-            placeholder: '不留下点足迹再走吗？',
-        });
-    </script>
-
-    <script th:inline="javascript">
-
-        $('.menu.toggle').click(function () {
-            $('.m-item').toggleClass('m-mobile-hide');
-        });
-
-        $('#payButton').popup({
-            popup : $('.payQR.popup'),
-            on : 'click',
-            position: 'bottom center'
-        });
-
-        tocbot.init({
-            // Where to render the table of contents.
-            tocSelector: '.js-toc',
-            // Where to grab the headings to build the table of contents.
-            contentSelector: '.js-toc-content',
-            // Which headings to grab inside of the contentSelector element.
-            headingSelector: 'h1, h2, h3',
-        });
-
-        $('.toc.button').popup({
-            popup : $('.toc-container.popup'),
-            on : 'click',
-            position: 'left center'
-        });
-
-        $('.wechat').popup({
-            popup : $('.wechat-qr'),
-            position: 'left center'
-        });
-
-        var serurl = /*[[#{blog.serurl}]]*/"127.0.0.1:8080";
-        var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
-        var qrcode = new QRCode("qrcode", {
-            text: serurl+url,
-            width: 110,
-            height: 110,
-            colorDark : "#000000",
-            colorLight : "#ffffff",
-            correctLevel : QRCode.CorrectLevel.H
-        });
-
-        $('#toTop-button').click(function () {
-            $(window).scrollTo(0,500);
-        });
-
-
-        var waypoint = new Waypoint({
-            element: document.getElementById('waypoint'),
-            handler: function(direction) {
-                if (direction == 'down') {
-                    $('#toolbar').show(100);
-                } else {
-                    $('#toolbar').hide(500);
-                }
-                console.log('Scrolled to waypoint!  ' + direction);
-            }
-        })
-
-
-        //评论表单验证
-        $('.ui.form').form({
-            fields: {
-                title: {
-                    identifier: 'content',
-                    rules: [{
-                        type: 'empty',
-                        prompt: '请输入评论内容'
-                    }
-                    ]
-                },
-                content: {
-                    identifier: 'nickname',
-                    rules: [{
-                        type: 'empty',
-                        prompt: '请输入你的大名'
-                    }]
-                },
-                type: {
-                    identifier: 'email',
-                    rules: [{
-                        type: 'email',
-                        prompt: '请填写正确的邮箱地址'
-                    }]
-                }
-            }
-        });
-
-        $(function () {
-            $("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/6");
-        });
-
-
-        //校验
-        $('#commentpost-btn').click(function () {
-            var boo = $('.ui.form').form('validate form');
-            if (boo) {
-                console.log('校验成功');
-                postData();
-            } else {
-                console.log('校验失败');
-            }
-
-        });
-
-
-
-    </script>
     <!--评论显示区，请插入合适的位置-->
 </div>
-<div id="toolbar" class="m-padded m-fixed m-right-bottom" style="display: none">
-    <div class="ui vertical icon buttons ">
-        <button type="button" class="ui toc teal button" >目录</button>
-        <a href="#comment-container" class="ui teal button" >评论</a>
-        <div id="toTop-button" class="ui icon button" ><i class="chevron up icon"></i></div>
-    </div>
+
+<div th:replace="/fragments/footer :: footer-content"></div>
 </div>
-
-<div class="ui toc-container flowing popup transition hidden" style="width: 250px!important;">
-    <ol class="js-toc">
-
-    </ol>
-</div>
-    <div th:replace="~{common::footer}"></div>
-
-<script type="text/javascript" src="../static/js/article.js" th:src="@{/js/article.js}"></script>
-<script src="../static/lib/prism/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
-
-<link rel="stylesheet" href="//www.xiaoxuya.top/js/prism/prism.css"/>
-</div>
+<script type="text/javascript">
+    $(function(){
+        $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/images/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+        });
+    });
+    function donateToggle(){
+        $(".hide_box").fadeToggle();
+        $(".shang_box").fadeToggle();
+    }
+</script>
 
 
 

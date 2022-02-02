@@ -1,14 +1,5 @@
 $(function(){
 
-    var data4Vue={
-        websiteUri:"/website",
-        websiteInfo:{},
-        searchArticleUri:"/searchArticle",
-        keyword:"",
-    }
-
-
-
     $('.mobileButton').click(function(){
         $(".navItem").toggleClass("mobileHidden");
     });

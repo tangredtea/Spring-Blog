@@ -157,6 +157,84 @@ function getTotalCommentNumber(vue){
     }
 }
 
+function elementEnableLazyLoadOfRequest(className, callback) {
+    $('.' + className)
+        .visibility({
+            once: true,
+            observeChanges: true,
+            onBottomVisible: function () {
+                callback();
+            }
+        })
+    ;
+}
+
+
+// 元素动画部分
+function multiScaleAnimation(fatherClassName, subClassName) {
+    $('.' + fatherClassName)
+        .transition({
+            animation: 'scale',
+            duration: '0s',
+            onComplete: function () {
+                $('.' + fatherClassName + ' .' + subClassName).transition({
+                    animation: 'scale',
+                    duration: '1s',
+                    reverse: 'auto', // default setting
+                    interval: 200
+                });
+            }
+        })
+    ;
+}
+
+function simpleScaleAnimation(className) {
+    $('.' + className)
+        .transition({
+            animation: 'scale',
+            duration: '0s',
+            onComplete: function () {
+                $('.' + className).transition({
+                    animation: 'scale',
+                    duration: '1s',
+                });
+            }
+        })
+    ;
+}
+
+
+
+
+function simpleAnimationOfId(fatherClass, id, animation, duration) {
+    $('.' + fatherClass + ' #' + id)
+        .transition({
+            animation: animation,
+            duration: '0s',
+            onComplete: function () {
+                $('#' + id).transition({
+                    animation: animation,
+                    duration: duration,
+                });
+            }
+        })
+    ;
+}
+
+function simpleAnimation(className, animation) {
+    $('.' + className)
+        .transition({
+            animation: animation,
+            duration: '0s',
+            onComplete: function () {
+                $('.' + className).transition({
+                    animation: animation,
+                    duration: '1s',
+                });
+            }
+        })
+    ;
+}
 
 function secondToDate(second) {
     if (!second) {
@@ -185,7 +263,7 @@ function secondToDate(second) {
     return time;
 }
 function setTime() {
-    var create_time = Math.round(new Date(Date.UTC(2021, 3, 16, 0, 0, 0)).getTime() / 1000);
+    var create_time = Math.round(new Date(Date.UTC(2020, 10, 15, 0, 0, 0)).getTime() / 1000);
     var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
     currentTime = secondToDate((timestamp - create_time));
     currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'

@@ -109,7 +109,7 @@ public class AdminController {
                 attributes.addFlashAttribute("msg", "修改成功");
             }
         }
-        if ("".equals(user.getPassword()) || user.getPassword() == null){
+        if (user.getPassword() == null){
             user.setPassword(beforeUser.getPassword());
         }
         user.setPassword(MD5Utils.code(user.getPassword()));
