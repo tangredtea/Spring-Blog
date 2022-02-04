@@ -1,9 +1,9 @@
 package com.blog.controller.blog;
 
+import com.blog.config.SettingsConfig;
 import com.blog.entity.Message;
 import com.blog.entity.User;
 import com.blog.service.MessageService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,22 +20,17 @@ import java.util.List;
 public class MessageController {
 
     @Resource
+    private SettingsConfig settingsConfig;
+
+    @Resource
     private MessageService messageService;
-
-    @Value("/static/images/logo.png")
-    private String avatar;
-
-    @GetMapping("/message")
-    public String message() {
-        return "message";
-    }
 
     /**
      * 查询留言
      * @param model 视图
      * @return 渲染视图
      */
-    @GetMapping("/messageComment")
+    @GetMapping({"/messageComment","/message"})
     public String messages(Model model) {
         List<Message> messages = messageService.listMessage();
         model.addAttribute("messages", messages);
@@ -55,8 +50,9 @@ public class MessageController {
         //设置头像
         if (user != null) {
             message.setAdminMessage(true);
+            message.setAvatar(user.getAvatar());
         } else {
-            message.setAvatar(avatar);
+            message.setAvatar(settingsConfig.getDefault_avatar());
         }
         if (message.getParentMessage().getId() != null) {
             message.setParentMessageId(message.getParentMessage().getId());

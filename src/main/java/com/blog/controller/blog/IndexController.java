@@ -39,17 +39,16 @@ public class IndexController {
         List<Blog> recommendBlog =blogService.getAllRecommendBlog();
         //得到分页结果对象
         PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
-        List<Message> messages = messageService.findByIndexParentId();
+        List<Message> messages = messageService.findByIndexParentId().subList(0, 8);
         model.addAttribute("messages", messages);
         model.addAttribute("pageInfo", pageInfo);
-        System.out.println(pageInfo.getList());
         model.addAttribute("recommendBlogs", recommendBlog);
         List<Blog> hotBlogs=blogService.getHotBlog();
         model.addAttribute("hotBlogs", hotBlogs);
         return "index";
     }
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public String search(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pageNum,
                          @RequestParam String query, Model model){
 

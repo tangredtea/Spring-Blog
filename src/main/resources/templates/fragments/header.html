@@ -7,10 +7,10 @@
         <script src="/js/jquery.min.js" ></script>
         <script src="/js/foreBlog.js" type="text/javascript" ></script>
         <script src="/js/category.js"></script>
-        <link rel="icon" href="/images/logo.png"/>
         <link rel="stylesheet" href="/css/semantic.min.css">
         <link rel="stylesheet" href="/css/typo.css">
         <link rel="stylesheet" type="text/css" href="/css/foreBlog.css"/>
+        <link rel="icon" href="/images/favicon.ico" th:href="#{web_Ico}" type="image/x-icon"/>
     </th:block>
 
 </head>
@@ -18,7 +18,7 @@
 <div id="navMenu" class="ui inverted segment navDiv-active "  th:fragment="menu">
     <div class="ui  container">
         <div class="ui stackable inverted secondary menu">
-            <img class="ui rounded image logo" th:src="#{web.logo}" alt="logo">
+            <img class="ui rounded image logo" th:src="#{web_Logo}" alt="logo">
             <a href="/" class="item mobileHidden navItem"><i class="home icon"></i>首页</a>
             <a href="/types" class="item mobileHidden navItem"><i class="list icon"></i>分类</a>
             <a href="/tags" class="item mobileHidden navItem"><i class="ui tag icon"></i>标签</a>
@@ -28,7 +28,7 @@
             <a href="/friends" class="item mobileHidden navItem"><i class="ui linkify icon"></i>友链</a>
             <div id="searchItem " class=" right menu item mobileHidden navItem">
                 <div class="ui icon search input"   >
-                    <form name="search" action="#" method="post" th:action="@{/search}" target="_blank"  >
+                    <form name="search" action="#" method="get" th:action="@{/search}" target="_blank"  >
                         <div class="ui icon search input">
                             <input class="prompt"  type="text"  name="query" placeholder="Search...." th:value="${query}">
                             <i onclick="document.forms['search'].submit()" style="color: #d2691e" class="search link icon"></i>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <span class="mobileShow mobileTitle" th:text="#{web.name}"></span>
+        <span class="mobileShow mobileTitle" th:text="#{web_Name}"></span>
         <a class="ui black button mobileButton  mobileShow"><i class="sidebar icon"></i></a>
     </div>
 </div>

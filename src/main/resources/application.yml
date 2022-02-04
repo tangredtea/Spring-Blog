@@ -3,6 +3,9 @@ spring:            #全局配置
     cache: true
   profiles:
     active: dev
+  http:
+    encoding:
+      enabled: true
 #gzip压缩
 server:
   tomcat:
@@ -13,5 +16,6 @@ server:
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
 
 

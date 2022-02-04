@@ -41,6 +41,7 @@ public class Blog implements Serializable {
      * 获取多个标签的id
      */
     private String tagIds;
+
     private String description;
 
     private Type type;
@@ -73,6 +74,23 @@ public class Blog implements Serializable {
             return ids.toString();
         }else {
             return tagIds;
+        }
+    }
+    public String tagsToNames(){
+        if(!tags.isEmpty()){
+            StringBuilder ids = new StringBuilder();
+            boolean flag = false;
+            for(Tag tag: tags){
+                if(flag){
+                    ids.append(",");
+                }else {
+                    flag = true;
+                }
+                ids.append(tag.getName());
+            }
+            return ids.toString();
+        }else {
+            return "";
         }
     }
 }

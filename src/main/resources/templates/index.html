@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <!-- Standard Meta 适配移动设备 -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <!--标记处-->
-    <title th:text="#{web.title}"></title>
-    <meta name="keywords" th:content="#{web.keywords}">
-    <meta name="description" th:content="#{web.description}">
-    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
+    <title th:text="#{web_IndexName}"></title>
+    <meta name="keywords" th:content="#{web_Keywords}">
+    <meta name="description" th:content="#{web_Description}">
 
     <!--标记处-->
-   <div th:insert="~{common :: common-js}"></div>
+    <div th:replace="/fragments/header :: common-js"></div>
     <!--实现每日一言-->
-    <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+    <script src="/js/bluebird.min.js"></script>
+    <script src="/js/whatwg-fetch@2.0.3_fetch.js"></script>
     <!--End-->
     <script>
         fetch('https://v1.hitokoto.cn/?max_length=21')
@@ -25,59 +23,55 @@
                 return res.json();
             })
             .then(function (data) {
-                var hitokoto = document.getElementById('hitokoto');
+                const hitokoto = document.getElementById('hitokoto');
                 hitokoto.innerText =data.hitokoto;
             })
             .catch(function (err) {
                 console.error(err);
             })
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
-<style>
 
-</style>
 
 </head>
 <body>
 
 <div id="workingArea">
-    <div id="navMenu" class="ui inverted segment"  style="display: none;" >
-    <div th:insert="~{common :: Menu}"></div>
+    <div th:replace="/fragments/header :: menu">
     </div>
 <!--首页顶部背景-->
     <div class="headContainer">
         <!--标记处-->
-        <img src="../static/images/background/background5.jpg"  th:src="#{web.background}" class="ui image backgroundImg">
+        <img src="/images/background/background5.jpg"  th:src="#{web_Background}" class="ui image backgroundImg" alt="首页格言背景图">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
-                <img class="ui tiny circular image" src="../static/images/aboutMe/home.jpg" th:src="#{web.home}" />
+                <img class="ui tiny circular image" src="/images/aboutMe/home.jpg" th:src="#{web_Home}" />
                 <div class="word">
 						<span>
-							 <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
+							 <div id="hitokoto" style="font-size:30px;color:#ffffff;">:D 获取中...</div>
 						</span>
                 </div>
                 <div class="myLink">
                     <a id="wechat" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
                     <a id="QQ" class="ui qq circular icon button"><i class="qq icon"></i></a>
-                    <a th:href="#{web.github}" rel="nofollow" target="_blank" class="ui circular icon button"
+                    <a th:href="#{web_Github}" rel="nofollow" target="_blank" class="ui circular icon button"
                        data-tooltip="点击进入github" data-position="bottom center" data-inverted="">
                         <i class="github icon"></i>
                     </a>
-                    <a th:href="#{web.csdn}" rel="nofollow" target="_blank"
+                    <a th:href="#{web_Csdn}" rel="nofollow" target="_blank"
                        class="ui circular icon button" data-tooltip="点击进入csdn" data-position="bottom center"
                        data-inverted="">
                         <i class="cuttlefish icon"></i>
                     </a>
-                    <a th:href="#{web.bilibili}" rel="nofollow" target="_blank" class="ui circular icon button"
+                    <a th:href="#{web_Bilibili}" rel="nofollow" target="_blank" class="ui circular icon button"
                        data-tooltip="点击进入b站" data-position="bottom center" data-inverted="">
                         <i class="bimobject icon"></i>
                     </a>
 
                     <div id="wechatPic" class="ui flowing popup transition hidden">
-                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfWeChat.png" th:src="#{web.wechat}" />
+                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfWeChat.png" th:src="#{web_Wechat}" />
                     </div>
                     <div id="QQPic" class="ui flowing popup transition hidden">
-                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfQQ.png" th:src="#{web.qq}">
+                        <img class="ui small rounded image" src="../static/images/aboutMe/contactOfQQ.png" th:src="#{web_QQ}">
                     </div>
                 </div>
                 <div id="indexNavMenu" class="nav">
@@ -119,7 +113,7 @@
 <!--格言随机背景图-->
                 </div>
                 <div class="eight wide column" align="center">
-                    <img class="ui rounded huge image" th:src="#{web.geyan}">
+                    <img class="ui rounded huge image" th:src="#{web_GeYan}">
                 </div>
             </div>
 <!--热点文章-->
@@ -134,7 +128,7 @@
                             <div class="ui fluid raised link card">
 
                                 <div class="blurring dimmable image" >
-                                    <img src="http://5b0988e595225.cdn.sohucs.com/images/20190112/12a825d7c0f94223a0b1fc3dcddc6570.jpeg" th:src="${hotArticle.firstPicture}"  >
+                                    <img src="" th:src="${hotArticle.firstPicture}"  >
                                 </div>
                             </div>
                         </div>
@@ -149,7 +143,7 @@
                 <div class="four wide column comment" th:each="message : ${messages}">
                     <a class="ui fluid raised link card" href="/message" >
                         <div class="content">
-                            <div class="header"th:text="${message.nickname}">评论名字</div>
+                            <div class="header" th:text="${message.nickname}">评论名字</div>
                             <div class="meta">
                                 <span class="right floated time" th:text="${#dates.format(message.createTime, 'yyyy-MM-dd')}">创建时间</span>
                                 <span class="comment">comment</span>
@@ -168,13 +162,13 @@
             </div>
 <!--推荐文章-->
             <div class="row recommendTitleDiv">
-                <div href="" class="recommendArticlesTitle">推荐文章</div>
+                <div class="recommendArticlesTitle">推荐文章</div>
             </div>
             <div class="three column row recommendArticles">
                 <div class="column recommendArticle" th:each="recommendBlog: ${recommendBlogs}">
                     <div class="ui fluid raised link card">
                         <a class="image" th:href="@{/blog/{id}(id=${recommendBlog.id})}">
-                            <img src="http://n.sinaimg.cn/sinacn20111/600/w1920h1080/20190331/0f41-huxwryw5226043.jpg" th:src="${recommendBlog.firstPicture}">
+                            <img src="" th:src="${recommendBlog.firstPicture}">
                         </a>
                         <div class="ui circular articleInfo">
                             <div class="articleTitle" th:text="${recommendBlog.title}">推荐文章标题</div>
@@ -195,7 +189,7 @@
             </div>
             <div class="row ui raised link card segment article" th:each="blog : ${pageInfo.list}">
                 <div class="five wide column">
-                    <img class=" ui rounded image" src=http://n.sinaimg.cn/sinacn20111/600/w1920h1080/20190331/0f41-huxwryw5226043.jpg th:src="${blog.firstPicture}">
+                    <img class=" ui rounded image" src="" th:src="${blog.firstPicture}">
                 </div>
                 <div class="eleven wide column">
                     <div class="content">
@@ -252,9 +246,9 @@
         </div>
     </div>
     </div>
-    <div th:insert="~{common :: footer}"></div>
+    <div th:replace="/fragments/footer :: footer-content"></div>
 </div>
 
-<script type="text/javascript" src="../static/js/home.js" th:src="@{/js/home.js}"></script>
+
 </body>
 </html>

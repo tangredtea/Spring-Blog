@@ -32,6 +32,7 @@
             <result property="nickname" column="nickname"/>
             <result property="username" column="username"/>
             <result property="email" column="email"/>
+            <result property="avatar" column="avatar"/>
         </association>
         <collection property="tags" ofType="Tag">
             <id property="id" column="tagId"/>
@@ -47,7 +48,7 @@
     <select id="getIndexBlog" resultMap="blog">
         select b.id, b.title, b.first_picture,b.flag, b.views, b.update_time, b.description,
         t.name typeName, t.id typeId,
-        u.nickname
+        u.nickname,u.avatar
         from t_blog b, t_type t, t_user u
         where b.type_id = t.id and  u.id = b.user_id order by b.update_time desc
     </select>
@@ -64,7 +65,7 @@
     <select id="getByTypeId" resultMap="blog">
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
         t.name typeName, t.id typeId,
-        u.nickname
+        u.nickname,u.avatar
         from t_blog b, t_type t, t_user u
         where b.type_id = t.id and u.id = b.user_id and b.type_id = #{typeId} order by b.update_time desc
     </select>
@@ -74,7 +75,7 @@
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
         t.name typeName, t.id typeId,
         t1.name tagName, t1.id tagId,
-        u.nickname
+        u.nickname,u.avatar
         from t_blog b, t_type t, t_user u, t_blog_tags tb, t_tag t1
         where b.type_id = t.id and u.id = b.user_id and tb.blog_id = b.id and tb.tag_id = t1.id and t1.id = #{tagId}
         order by b.update_time desc
@@ -102,7 +103,7 @@
     <select id="getDetailedBlog" resultMap="blog">
         select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
         b.update_time,b.commentable, b.share_statement, b.appreciation,b.description,
-        u.nickname,
+        u.nickname,u.avatar,
         tag.id tagid, tag.name tagname
         from t_blog b, t_user u, t_tag tag, t_blog_tags tb
         where b.user_id = u.id and tb.blog_id = b.id and tb.tag_id = tag.id and  b.id = #{id}
@@ -113,7 +114,7 @@
         <bind name="pattern" value="'%' + query + '%'" />
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
         t.name typename,
-        u.nickname
+        u.nickname, u.avatar
         from t_blog b, t_type t, t_user u
         where b.type_id = t.id and  u.id = b.user_id and (b.title like #{pattern} or b.content like  #{pattern})
         order by b.update_time desc

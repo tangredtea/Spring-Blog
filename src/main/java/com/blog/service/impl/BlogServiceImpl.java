@@ -34,19 +34,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getDetailedBlog(Long id) {
-        Blog blog;
-        //如果缓存中有这个键值的话
-        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
-            blog= (Blog) cache.hGet(RedisKey.ARTCILE,String.valueOf(id));
-            Long aLong = cache.hIncr(RedisKey.ARTCILEVIEWS, String.valueOf(id), 1L);
-            blog.setViews(Math.toIntExact(aLong));
-        }
-        else {
-            //缓存中无的话，存储到缓存中
-            blog = blogDao.getDetailedBlog(id);
-            cache.hSet(RedisKey.ARTCILE,String.valueOf(id),blog);
-            cache.hSet(RedisKey.ARTCILEVIEWS, String.valueOf(id),blog.getViews()+1);
-        }
+        Blog blog = blogDao.getDetailedBlog(id);
         if (blog == null) {
             throw new NotFoundException("该博客不存在");
         }

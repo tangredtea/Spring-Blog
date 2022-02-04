@@ -6,10 +6,10 @@
         <div class="deznav-scroll">
             <div class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="/backend/images/profile/pic1.jpg" width="20" alt=""/>
+                    <img src="/backend/images/profile/pic1.jpg" width="20" alt=""  th:src="${session.user.getAvatar()}" />
                     <div class="header-info">
-                        <span class="font-w400 mb-0">Hello,<b>William</b></span>
-                        <small class="text-end font-w400">williamfrancisson@mail.com</small>
+                        <span class="font-w400 mb-0">Hello,<b th:text="${session.user.getNickname()}">William</b></span>
+                        <small class="text-end font-w400" th:text="${session.user.getEmail()}">williamfrancisson@mail.com</small>
                     </div>
                 </a>
             </div>
@@ -65,6 +65,11 @@
                         <li><a th:href="@{/admin/users}">用户列表</a></li>
                         <li><a th:href="@{/admin/logout}">注销</a></li>
                     </ul>
+                </li>
+                <li><a class="has-arrow ai-icon" href="/admin/settings" aria-expanded="false" >
+                    <i class="flaticon-022-copy"></i>
+                    <span class="nav-text">网站设置</span>
+                </a>
                 </li>
             </ul>
             <div class="copyright">

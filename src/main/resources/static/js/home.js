@@ -9,34 +9,6 @@ function jumpPage(pageNumber) {
 
 $(function(){
 
-    var data4Vue = {
-        listArticleUri:"/list/article",
-        hotArticleUri:"/article/recommend",
-        newVideoUri:"/video/recommend",
-        authorRecommendArticleUri:"/author/article/recommend",
-        authorRecommendVideoUri:"/author/video/recommend",
-        commentWallUri:"/commentWall/recommend",
-        backgroundUri:"/background",
-        searchArticleUri:"/searchArticle",
-        keyword:"",
-        websiteUri:"/website",
-        websiteInfo:{},
-        background:{},
-        newArticles:[],
-        hotArticles:[],
-        authorRecommendArticles:[],
-        authorRecommendVideos:[],
-        bigVideo:{id:""},
-        newVideos:[],
-        commentWalls:[],
-        data:{},
-
-    }
-
-
-
-
-
 
     window.addEventListener('scroll', function() {
         var t = $('body, html').scrollTop();

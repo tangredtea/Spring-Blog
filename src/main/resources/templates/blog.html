@@ -8,18 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!--标记处-->
-    <title th:text="${blog.title}+#{web.name}">博客标题</title>
-    <meta name="keywords" th:content="#{web.keywords}">
-    <meta name="description" th:content="${blog.description}?${blog.description}: #{web.description}">
-    <link rel="icon" href="../static/images/favicon.ico" th:href="#{web.ico}" type="image/x-icon"/>
+    <title th:text="${blog.title}+ ' | ' +#{web_Name}">博客标题</title>
+    <meta name="keywords" th:content="${blog.tagsToNames()}">
+    <meta name="description" th:content="${blog.description} ? ${blog.description}: #{web_Description}">
     <!--标记处-->
     <div th:replace="/fragments/header :: common-js"></div>
     <link rel="stylesheet" href="/lib/prism/prism.css" >
     <link rel="stylesheet" href="/css/donate.css" >
     <script type="text/javascript" src="/js/article.js"></script>
     <script src="/lib/prism/prism.js" ></script>
-
-
 </head>
 <body>
 
@@ -28,13 +25,13 @@
 
     <div th:replace="/fragments/header :: menu"></div>
     <div class="pageHeadContainer">
-        <img src="https://www.xiaoxuya.top/img/article/95.jpg" th:src="${blog.firstPicture}" class="ui image backgroundImg">
+        <img src="/images/geyan.jpg" th:src="${blog.firstPicture}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
                 <div>
-                    <span class="name" th:text="#{web.name}"></span>
+                    <span class="name" th:text="#{web_Name}"></span>
                 </div>
-                <div class="word" >
+                <div class="word" th:text="${blog.description}">
                     梦里的四海为家，百花齐放，人来人往，花红柳绿。错过的年华在沙漠开出美丽的紫薇花、却荒废了轮回的春夏。缘来缘去缘如水，背负万丈尘寰，只为一句，等待下一次重逢。
                 </div>
             </div>
@@ -46,14 +43,14 @@
         <div class="ui raised teal segment">
             <div class="ui vertical stackable grid container">
                 <div class="row">
-                    <h4 class="ui header articleTitle" th:text="${blog.title}">{{article.articleTitle}}</h4>
+                    <h4 class="ui header articleTitle" th:text="${blog.title}">article.articleTitle</h4>
                 </div>
                 <div class="row">
                     <div class="aticleInfo">
-                        <span><i class="ui user circle icon"></i>作者: <span class="author" th:text="${blog.user.nickname}">{{article.author}}</span></span>
+                        <span><i class="ui user circle icon"></i>作者: <span class="author" th:text="${blog.user.nickname}">article.author</span></span>
                         <span><i class="ui clock outline icon"></i>发表时间: <span class="publishDate" th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">{article.createDate | dateFormatFilter}</span></span>
-                        <span><i class="ui eye icon"></i><span class="viewNumber" th:text="${blog.views}">{{article.viewNumber}}</span></span>
-                        <a class="ui blue button originalDesign" th:text="${blog.flag}">{{ article.originalDesign==1? '原创': '转载'}}</a>
+                        <span><i class="ui eye icon"></i><span class="viewNumber" th:text="${blog.views}">article.viewNumber</span></span>
+                        <a class="ui blue button originalDesign" th:text="${blog.flag} ? '原创' : '转载'"> '原创': '转载'}}</a>
                     </div>
                 </div>
                 <div class="row article">
@@ -76,7 +73,7 @@
                                     <p>感谢您的支持，我会继续努力的!</p>
                                 </div>
                                 <div class="shang_payimg">
-                                    <img src="/images/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                                    <img th:src="/images/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
                                 </div>
                                 <div class="pay_explain">扫码打赏，你说多少就多少</div>
                                 <div class="shang_payselect">
@@ -99,7 +96,7 @@
 
                 <div class="row typo" >
                     <blockquote>
-                        <p>本文作者： <span th:text="${blog.user.nickname}">{{article.author}}</span></p>
+                        <p>本文作者： <span th:text="${blog.user.nickname}">article.author</span></p>
                         <p>微信公众号： <span >学编程的文若</span></p>
                         <p>版权声明： <span>本博客所有文章除特别声明外，均采用  BY-NC-SA 许可协议。转载请注明出处！</span></p>
                     </blockquote>
@@ -110,27 +107,41 @@
             </div>
         </div>
     </div>
+    <div th:if="${blog.commentable}" class="commentContent" >
+        <div id="comments" ></div>
+    </div>
     <button id="toTop" class="circular ui icon button" style="display: none;">
         <i class="ui caret up icon"></i>
     </button>
     <!--评论显示区，请插入合适的位置-->
 </div>
 
+<input type="hidden" th:value="#{valine_AppID}" id="data_1">
+<input type="hidden" th:value="#{valine_AppKey}" id="data_2">
 <div th:replace="/fragments/footer :: footer-content"></div>
-</div>
-<script type="text/javascript">
+<script src='/js/Valine.min.js'></script>
+<script type="text/javascript"  th:inline="javascript">
     $(function(){
         $(".pay_item").click(function(){
             $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
-            var dataid=$(this).attr('data-id');
+            const dataid = $(this).attr('data-id');
             $(".shang_payimg img").attr("src","/images/"+dataid+"img.jpg");
-            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+            $("#shang_pay_txt").text(dataid==="alipay"?"支付宝":"微信");
         });
     });
     function donateToggle(){
         $(".hide_box").fadeToggle();
         $(".shang_box").fadeToggle();
     }
+
+    const data_1 = $("#data_1").val();
+    const data_2 = $("#data_2").val();
+    new Valine({
+        el: '#comments',
+        appId: data_1,
+        appKey: data_2
+    })
+
 </script>
 
 

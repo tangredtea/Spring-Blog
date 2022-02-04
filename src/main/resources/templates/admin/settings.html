@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:replace="admin/fragments/header::header"></header>
+<!--*******************
+  Preloader start
+********************-->
+<!--*******************
+  Preloader end
+********************-->
+<!--**********************************
+  Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+  <!--**********************************
+       Nav header start
+   ***********************************-->
+  <div class="nav-header">
+    <a th:href="@{admin/index}" class="brand-logo">
+      <svg class="logo-abbr" width="54" height="54" viewbox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="rect-primary-rect" width="54" height="54" rx="27" fill="#2258BF" />
+        <mask maskunits="userSpaceOnUse" x="0" y="0" width="54" height="54">
+          <rect width="54" height="54" rx="27" fill="#2258BF" />
+        </mask>
+        <g mask="">
+          <path d="M46.1676 26.5805C46.1217 26.129 45.8612 25.7806 45.4991 25.6835L34.9748 22.8635L42.8655 9.05303C43.0565 8.72265 43.1126 8.31849 43.0178 7.96681C42.9212 7.61451 42.6881 7.35877 42.388 7.27836L31.132 4.26233C30.7287 4.15426 30.2838 4.38142 30.0263 4.82453L14.9917 30.9187C14.8007 31.2491 14.744 31.6556 14.8406 32.0078C14.9329 32.3614 15.1678 32.6176 15.4698 32.6985L21.6719 34.3604L7.46102 59.0235C7.17542 59.5193 7.20173 60.1564 7.52473 60.5342C7.64091 60.6708 7.78346 60.7617 7.93918 60.8034C8.21123 60.8763 8.51961 60.7982 8.77813 60.5688L45.7105 27.791C46.0341 27.5062 46.2127 27.0345 46.1676 26.5805Z" fill="#FFC42C" />
+          <path d="M43.3374 21.0401C43.2915 20.5885 43.0311 20.2402 42.669 20.1431L32.1446 17.3231L40.0354 3.51262C40.2264 3.18225 40.2825 2.77808 40.1877 2.42641C40.091 2.07411 39.858 1.81836 39.5579 1.73796L28.3019 -1.27807C27.8986 -1.38614 27.4536 -1.15898 27.1962 -0.715872L12.1615 25.3783C11.9705 25.7087 11.9138 26.1152 12.0105 26.4674C12.1028 26.821 12.3377 27.0772 12.6397 27.1581L18.8418 28.82L4.63088 53.4831C4.34528 53.9789 4.37159 54.616 4.69459 54.9938C4.81077 55.1304 4.95332 55.2213 5.10904 55.263C5.38109 55.3359 5.68947 55.2578 5.94799 55.0284L42.8804 22.2506C43.204 21.9658 43.3826 21.4941 43.3374 21.0401Z" fill="white" />
+        </g>
+      </svg>
+      <svg class="brand-title" width="79" height="25" viewbox="0 0 79 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="svg-title-path" d="M0.951965 24V1.60001H13.944C15.0533 1.60001 16.056 1.84535 16.952 2.33601C17.8693 2.82668 18.5946 3.50935 19.128 4.38401C19.6826 5.25868 19.96 6.29335 19.96 7.48801C19.96 8.19201 19.8213 8.86401 19.544 9.50401C19.288 10.144 18.9146 10.7093 18.424 11.2C17.9546 11.6907 17.4106 12.0853 16.792 12.384C17.5173 12.6827 18.1573 13.1093 18.712 13.664C19.288 14.2187 19.736 14.8587 20.056 15.584C20.3973 16.3093 20.568 17.088 20.568 17.92C20.568 19.136 20.28 20.2027 19.704 21.12C19.1493 22.0373 18.4026 22.752 17.464 23.264C16.5253 23.7547 15.48 24 14.328 24H0.951965ZM6.32797 19.552H12.92C13.368 19.552 13.7626 19.4453 14.104 19.232C14.4666 19.0187 14.7546 18.7307 14.968 18.368C15.1813 18.0053 15.288 17.6107 15.288 17.184C15.288 16.736 15.1813 16.3413 14.968 16C14.7546 15.6373 14.4666 15.3493 14.104 15.136C13.7626 14.9227 13.368 14.816 12.92 14.816H6.32797V19.552ZM6.32797 10.528H12.376C12.8026 10.528 13.176 10.432 13.496 10.24C13.8373 10.0267 14.104 9.76001 14.296 9.44001C14.488 9.09868 14.584 8.72535 14.584 8.32001C14.584 7.89335 14.488 7.52001 14.296 7.20001C14.104 6.85868 13.8373 6.59201 13.496 6.40001C13.176 6.18668 12.8026 6.08002 12.376 6.08002H6.32797V10.528Z" fill="#2258BF" />
+        <path class="svg-title-path" d="M31.7027 24.384C30.0174 24.384 28.5027 24.0107 27.1587 23.264C25.8147 22.5173 24.748 21.4933 23.9587 20.192C23.1907 18.8907 22.8067 17.4293 22.8067 15.808C22.8067 14.1653 23.1907 12.704 23.9587 11.424C24.748 10.1227 25.8147 9.09868 27.1587 8.35201C28.5027 7.58401 30.0174 7.20001 31.7027 7.20001C33.3881 7.20001 34.892 7.58401 36.2147 8.35201C37.5587 9.09868 38.6147 10.1227 39.3827 11.424C40.1721 12.704 40.5667 14.1653 40.5667 15.808C40.5667 17.4293 40.1721 18.8907 39.3827 20.192C38.6147 21.4933 37.5587 22.5173 36.2147 23.264C34.8707 24.0107 33.3667 24.384 31.7027 24.384ZM31.7027 20.064C32.492 20.064 33.1747 19.872 33.7507 19.488C34.3267 19.104 34.7747 18.592 35.0947 17.952C35.4147 17.312 35.5747 16.5867 35.5747 15.776C35.5747 14.9867 35.4147 14.272 35.0947 13.632C34.7747 12.992 34.3267 12.48 33.7507 12.096C33.1747 11.712 32.492 11.52 31.7027 11.52C30.9134 11.52 30.22 11.712 29.6227 12.096C29.0467 12.48 28.5987 12.992 28.2787 13.632C27.9587 14.272 27.7987 14.9867 27.7987 15.776C27.7987 16.5867 27.9587 17.312 28.2787 17.952C28.5987 18.592 29.0467 19.104 29.6227 19.488C30.22 19.872 30.9134 20.064 31.7027 20.064Z" fill="#2258BF" />
+        <path class="svg-title-path" d="M43.5122 24V0.640015H48.4722V24H43.5122Z" fill="#2258BF" />
+        <path class="svg-title-path" d="M58.1532 24C56.6385 24 55.4545 23.5733 54.6012 22.72C53.7479 21.8453 53.3212 20.672 53.3212 19.2V3.58401H58.3132V18.912C58.3132 19.168 58.3985 19.392 58.5692 19.584C58.7612 19.7547 58.9852 19.84 59.2412 19.84H62.8252V24H58.1532ZM50.6332 11.648V7.58401H62.8252V11.648H50.6332Z" fill="#2258BF" />
+        <path class="svg-title-path" d="M69.408 24C68.4906 24 67.712 23.808 67.072 23.424C66.432 23.04 65.9306 22.528 65.568 21.888C65.2053 21.248 65.024 20.5547 65.024 19.808C65.024 19.0827 65.2053 18.432 65.568 17.856C65.952 17.2587 66.464 16.7573 67.104 16.352L72.96 12.448C73.0666 12.384 73.1413 12.32 73.184 12.256C73.2266 12.1707 73.248 12.1067 73.248 12.064C73.248 11.9573 73.2053 11.872 73.12 11.808C73.0346 11.7227 72.928 11.68 72.8 11.68H65.76L65.728 7.58401H74.528C75.3813 7.58401 76.1173 7.78668 76.736 8.19201C77.376 8.57601 77.8773 9.08801 78.24 9.72801C78.624 10.368 78.816 11.0613 78.816 11.808C78.816 12.512 78.6346 13.1733 78.272 13.792C77.9306 14.3893 77.4613 14.8907 76.864 15.296L71.008 19.136C70.9226 19.2 70.8586 19.264 70.816 19.328C70.7733 19.392 70.752 19.456 70.752 19.52C70.752 19.6267 70.7946 19.7227 70.88 19.808C70.9653 19.872 71.072 19.904 71.2 19.904H78.496V24H69.408Z" fill="#2258BF" />
+      </svg> </a>
+    <div class="nav-control">
+      <div class="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+  </div>
+  <!--**********************************
+       Nav header end
+   ***********************************-->
+  <!--**********************************
+       Chat box start
+   ***********************************-->
+  <!--**********************************
+       Chat box End
+   ***********************************-->
+  <!--**********************************
+       Header start
+   ***********************************-->
+  <!--**********************************
+       Header end ti-comment-alt
+   ***********************************-->
+  <!--**********************************
+       Sidebar start
+   ***********************************-->
+  <div th:replace="admin/fragments/sidebar :: sidebar "></div>
+  <!--**********************************
+       Sidebar end
+   ***********************************-->
+  <!--**********************************
+       Content body start
+   ***********************************-->
+  <div class="content-body">
+    <div class="container-fluid">
+      <div class="row page-titles">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active"><a href="javascript:void(0)">管理</a></li>
+          <li class="breadcrumb-item"><a href="javascript:void(0)">网站设置</a></li>
+        </ol>
+      </div>
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">网站设置</h4>
+            </div>
+
+
+            <div class="card-body">
+              <form action="/admin/settings" method="post" class="ui form">
+                <div class=" field">
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站名字</span>
+                    <input type="text" class="form-control input-default " placeholder="网站名字" name="web_Name" th:value="${settings.web_Name}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网页主页标题</span>
+                    <input type="text" class="form-control input-default " placeholder="网站主页标题" name="web_IndexName" th:value="${settings.web_IndexName}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站关键字</span>
+                    <input type="text" class="form-control input-default " placeholder="主页关键字" name="web_Keywords" th:value="${settings.web_Keywords}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站描述</span>
+                    <input type="text" class="form-control input-default " placeholder="网站描述" name="web_Description" th:value="${settings.web_Description}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站图标</span>
+                    <input type="text" class="form-control input-default " placeholder="网站图标" name="web_Ico" th:value="${settings.web_Ico}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">Github地址</span>
+                    <input type="text" class="form-control input-default " placeholder="Github地址" name="web_Github" th:value="${settings.web_Github}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">Csdn地址</span>
+                    <input type="text" class="form-control input-default " placeholder="Csdn地址" name="web_Csdn" th:value="${settings.web_Csdn}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">B站地址</span>
+                    <input type="text" class="form-control input-default " placeholder="B站地址" name="web_Bilibili" th:value="${settings.web_Bilibili}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">微信联系图片</span>
+                    <input type="text" class="form-control input-default " placeholder="微信联系图片" name="web_Wechat" th:value="${settings.web_Wechat}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">QQ联系图片</span>
+                    <input type="text" class="form-control input-default " placeholder="QQ联系图片" name="web_QQ" th:value="${settings.web_QQ}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站logo</span>
+                    <input type="text" class="form-control input-default " placeholder="网站logo" name="web_Logo" th:value="${settings.web_Logo}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">网站背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="网站背景图" name="web_Background" th:value="${settings.web_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">主页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="主页背景图" name="web_Home" th:value="${settings.web_Home}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">主页格言</span>
+                    <input type="text" class="form-control input-default " placeholder="主页格言" name="web_GeYan" th:value="${settings.web_GeYan}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">默认用户评论头像</span>
+                    <input type="text" class="form-control input-default " placeholder="默认用户评论头像" name="default_avatar" th:value="${settings.default_avatar}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">留言页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="留言页背景图" name="message_Background" th:value="${settings.message_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">关于我页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="关于我页背景图" name="about_Background" th:value="${settings.about_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">友链背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="友链背景图" name="friend_Background" th:value="${settings.friend_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">搜索页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="搜索页背景图" name="search_Background" th:value="${settings.search_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">标签页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="标签页背景图" name="tags_Background" th:value="${settings.tags_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">归档页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="归档页背景图" name="time_Background" th:value="${settings.time_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">分类页背景图</span>
+                    <input type="text" class="form-control input-default " placeholder="分类页背景图" name="types_Background" th:value="${settings.types_Background}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">Valine评论id</span>
+                    <input type="text" class="form-control input-default " placeholder="Valine评论id" name="valine_AppID" th:value="${settings.valine_AppID}">
+                  </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">Valine评论key</span>
+                    <input type="text" class="form-control input-default " placeholder="Valine评论key" name="valine_AppKey" th:value="${settings.valine_AppKey}">
+                  </div>
+                </div>
+
+                <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
+                <div class="ui right aligned container">
+                  <button type="button" class="btn btn-rounded btn-dark" onclick="window.history.go(-1)" >返回</button>
+                  <button class="btn btn-rounded btn-secondary">提交</button>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div th:replace="admin/fragments/footer :: footer-content"></div>
+    </div>
+  </div>
+</div>
+<!--**********************************
+      Content body end
+  ***********************************-->
+<!--**********************************
+      Footer start
+  ***********************************-->
+<!--**********************************
+      Footer end
+  ***********************************-->
+<!--**********************************
+     Support ticket button start
+  ***********************************-->
+<!--**********************************
+     Support ticket button end
+  ***********************************-->
+<!--**********************************
+  Main wrapper end
+***********************************-->
+<div th:replace="admin/fragments/footer :: footer"></div>
+<!--**********************************
+  Scripts
+***********************************-->
+</body>
+</html>

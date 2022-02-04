@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+  <!-- Standard Meta 适配移动设备 -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title th:text="'归档页 | '+ #{web_Name}"></title>
+  <meta name="keywords" th:content="#{web_Keywords}">
+  <meta name="description" th:content="#{web_Description}">
+
+  <div th:replace="/fragments/header :: common-js"></div>
+</head>
+<body>
+
+<div id="workingArea">
+
+  <div id="fillBackground" class="" >
+  </div>
+
+  <div th:replace="/fragments/header :: menu">
+  </div>
+
+  <div class="pageHeadContainer">
+    <img th:src="#{time_Background}" class="ui image backgroundImg">
+    <div class="backgroundLayout">
+      <div class="myInfoDiv" align="center">
+        <div>
+          <span class="name" th:text="#{web_Name}">博客名字</span>
+        </div>
+        <div class="word">
+          这不是梦境你在台下我在台上
+          我没有学过吉他但是我会为你弹唱
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="Content">
+    <div class="ui raised teal segment">
+      <div class="ui vertical stackable grid container">
+        <div class="row">
+          <h4 class="ui header projectTitle">博客文章归档</h4>
+        </div>
+
+        <div class="ui container">
+          <!--header-->
+
+          <div class="right aligned column">
+            <h2 class="ui center aligned header" th:text="共+${blogCount}+篇博客">2017</h2>
+          </div>
+
+          <th:block th:each="item : ${archiveMap}">
+            <h2 class="ui center aligned header" th:text="${item.key}">2017</h2>
+            <div class="ui fluid vertical menu">
+              <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
+          <span>
+            <i class="mini orange circle icon"> </i><span th:text="' '+ ${blog.title}">关于刻意练习的清单</span>
+            <div class="ui orange basic left pointing label m-padded-mini " th:text="${#dates.format(blog.updateTime,'MMMdd')}">9月03</div>
+          </span>
+                <div class="ui orange basic left pointing label m-padded-mini "  th:text="${blog.flag} ? '原创' : '转载'">原创</div>
+              </a>
+              <!--/*-->
+              <!--*/-->
+            </div>
+          </th:block>
+
+        </div>
+
+        <div class="row">
+          <h4 class="end">我也是有底线的哦!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end  -->
+
+  <button  id="toTop" class="circular ui icon button" style="display: none;">
+    <i class="ui caret up icon"></i>
+  </button>
+
+
+  <div>
+    <div class="ui tiny modal tipModal">
+      <div class="ui header">提示</div>
+      <div class="content">
+
+      </div>
+      <div class="actions">
+        <div class="ui teal button" id="tipCloseButton">
+          确定
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="/fragments/footer :: footer-content"></div>
+
+</div>
+
+</body>
+</html>

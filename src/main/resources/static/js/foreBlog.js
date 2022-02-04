@@ -263,7 +263,7 @@ function secondToDate(second) {
     return time;
 }
 function setTime() {
-    var create_time = Math.round(new Date(Date.UTC(2020, 10, 15, 0, 0, 0)).getTime() / 1000);
+    var create_time = Math.round(new Date(Date.UTC(2022, 1, 1, 0, 0, 0)).getTime() / 1000);
     var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
     currentTime = secondToDate((timestamp - create_time));
     currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
