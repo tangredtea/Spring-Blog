@@ -45,7 +45,10 @@ public class IndexController {
         List<Blog> recommendBlog =blogService.getAllRecommendBlog();
         //得到分页结果对象
         PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
-        List<Message> messages = messageService.findByIndexParentId().subList(0, 8);
+        List<Message> messages = messageService.findByIndexParentId();
+        if (messages.size() >= 8){
+            messages = messages.subList(0, 8);
+        }
         model.addAttribute("messages", messages);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("recommendBlogs", recommendBlog);
