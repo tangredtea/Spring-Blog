@@ -47,7 +47,7 @@ public class TypeController {
     @PostMapping("/types")
     public String addType(Type type, RedirectAttributes attributes){
         Type t = typeService.getTypeByName(type.getName());
-        System.out.println(type.toString());
+        System.out.println(type);
         if(t != null){
             attributes.addFlashAttribute("msg", "不能添加重复的分类");
             return "redirect:/admin/types/input";

@@ -33,4 +33,8 @@
         select count(username) from t_user where username = #{username}
     </select>
 
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(id) from t_user;
+    </select>
+
 </mapper>

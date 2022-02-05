@@ -4,17 +4,13 @@ import com.blog.config.SettingsConfig;
 import com.blog.util.PropertiesUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 
 /**

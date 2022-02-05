@@ -56,8 +56,14 @@ public interface UserDao {
     int saveUser(User user);
 
     /**
+     * 得到数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
      * 查询用户名数量
-     * @param name
+     * @param name 用户名
      * @return 数量
      */
     int getUserInfoByUsername(String name);

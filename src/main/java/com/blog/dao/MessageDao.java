@@ -21,6 +21,12 @@ public interface MessageDao {
     int saveMessage(Message message);
 
     /**
+     * 得到数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
      * 查询首页推荐留言
      * @param ParentId 留言父id
      * @return 留言列表

@@ -25,6 +25,12 @@ public interface FriendLinkDao {
     int saveFriendLink(FriendLink friendLink);
 
     /**
+     * 得到数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
      * 获取友情链接
      * @param id 友链id
      * @return 友链

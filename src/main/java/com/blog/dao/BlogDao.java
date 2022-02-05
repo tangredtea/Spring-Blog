@@ -127,4 +127,22 @@ public interface BlogDao {
      * @return 博文列表
      */
     List<Blog> getHotBlog();
+
+    /**
+     * 得到博文数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
+     * 得到阅读数
+     * @return 阅读量
+     */
+    int getViews();
+
+    /**
+     * 得到平均阅读数
+     * @return 阅读量
+     */
+    int getAvgViews();
 }

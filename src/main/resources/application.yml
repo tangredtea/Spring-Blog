@@ -3,9 +3,10 @@ spring:            #全局配置
     cache: true
   profiles:
     active: dev
-  http:
-    encoding:
+  devtools:
+    restart:
       enabled: true
+      additional-paths: src/main/java
 #gzip压缩
 server:
   tomcat:

@@ -1,5 +1,6 @@
 package com.blog.controller.admin;
 
+import com.blog.dao.*;
 import com.blog.entity.User;
 import com.blog.service.UserService;
 import com.blog.util.MD5Utils;
@@ -23,11 +24,37 @@ import java.util.Objects;
 public class AdminController {
 
     @Resource
+    private BlogDao blogDao;
+
+    @Resource
+    private FriendLinkDao friendLinkDao;
+
+    @Resource
+    private MessageDao messageDao;
+
+    @Resource
+    private TagDao tagDao;
+
+    @Resource
+    private TypeDao typeDao;
+
+    @Resource
+    private UserDao userDao;
+
+    @Resource
     private UserService userService;
 
     @GetMapping({"","/","/index","/login"})
-    public String loginPage(HttpSession session) {
+    public String loginPage(HttpSession session, Model model) {
         if (null != session && session.getAttribute("user") != null){
+            model.addAttribute("article_nums", blogDao.getCount());
+            model.addAttribute("article_views", blogDao.getViews());
+            model.addAttribute("avg_views", blogDao.getAvgViews());
+            model.addAttribute("friendLink_nums", friendLinkDao.getCount());
+            model.addAttribute("message_nums", messageDao.getCount());
+            model.addAttribute("tag_nums", tagDao.getCount());
+            model.addAttribute("type_nums", typeDao.getCount());
+            model.addAttribute("user_nums", userDao.getCount());
             return "admin/index";
         }
         return "admin/login";

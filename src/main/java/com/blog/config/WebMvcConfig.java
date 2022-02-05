@@ -4,7 +4,6 @@ import com.blog.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -16,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     /**
      * 注册自定义拦截器
      *
-     * @param registry
+     * @param registry 拦截器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

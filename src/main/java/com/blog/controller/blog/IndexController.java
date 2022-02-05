@@ -1,11 +1,14 @@
 package com.blog.controller.blog;
 
+import com.blog.config.RedisKey;
 import com.blog.entity.Blog;
 import com.blog.entity.Message;
 import com.blog.service.BlogService;
 import com.blog.service.MessageService;
+import com.blog.service.RedisService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,9 @@ import java.util.List;
  */
 @Controller
 public class IndexController {
+
+    @Resource
+    private RedisService cache;
 
     @Resource
     private BlogService blogService;
@@ -62,7 +68,18 @@ public class IndexController {
 
     @GetMapping("/blog/{id}")
     public String toLogin(@PathVariable Long id, Model model){
-        Blog blog = blogService.getDetailedBlog(id);
+        Blog blog;
+        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
+            blog = (Blog) cache.hGet(RedisKey.ARTCILE, String.valueOf(id));
+        }else {
+            blog = blogService.getDetailedBlog(id);
+            cache.hSet(RedisKey.ARTCILE, String.valueOf(id), blog);
+        }
+        if (!cache.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
+            cache.hSet(RedisKey.ARTCILEVIEWS, String.valueOf(id), blog.getViews());
+        }
+        cache.hIncr(RedisKey.ARTCILEVIEWS, String.valueOf(id), 1L);
+        blog.setViews((Integer) cache.hGet(RedisKey.ARTCILEVIEWS, String.valueOf(id)));
         model.addAttribute("blog", blog);
         return "blog";
     }

@@ -4,21 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" th:content="#{web_Keywords}" />
+    <meta name="author" th:content="#{web_Name}" />
     <meta name="robots" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Boltz : Crypto Admin Template" />
-    <meta property="og:title" content="Boltz : Crypto Admin Template" />
-    <meta property="og:description" content="Boltz : Crypto Admin Template" />
-    <meta property="og:image" content="social-image.png" />
+    <meta name="description" content="" />
     <meta name="format-detection" content="telephone=no">
-
     <!-- PAGE TITLE HERE -->
-    <title>Boltz : Payment Admin Template</title>
+    <title th:text="#{web_Name} + ' | 博客后台管理系统'">博客后台管理系统</title>
+    <!-- FAVICONS ICON -->
+    <link rel="shortcut icon" type="image/png" th:href="#{web_Ico}" />
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="/backend/images/favicon.png" />
     <link href="/backend/css/style.css" rel="stylesheet">
 
 </head>
@@ -56,7 +53,7 @@
                                     <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
-                                    </div>
+                                     </div>
                                 </form>
                             </div>
                         </div>

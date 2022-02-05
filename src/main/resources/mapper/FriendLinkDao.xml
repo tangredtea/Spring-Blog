@@ -22,6 +22,9 @@
     <select id="getFriendLinkByBlogAddress" resultType="com.blog.entity.FriendLink">
         select * from t_friend f where f.blog_address = #{blogAddress}
     </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(id) from t_friend;
+    </select>
 
     <!--编辑修改友链-->
     <update id="updateFriendLink" parameterType="com.blog.entity.FriendLink">

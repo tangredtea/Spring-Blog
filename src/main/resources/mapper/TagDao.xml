@@ -36,6 +36,9 @@
     <select id="getTagByName" resultType="Tag">
         select * from t_tag where name = #{name}
     </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(id) from t_tag;
+    </select>
 
     <delete id="deleteTag">
         delete from t_tag where id = #{id}

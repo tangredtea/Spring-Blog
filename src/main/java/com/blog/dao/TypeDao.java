@@ -20,6 +20,12 @@ public interface TypeDao {
     int saveType(Type type);
 
     /**
+     * 得到数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
      * 得到分类
      * @param id 分类id
      * @return 分类

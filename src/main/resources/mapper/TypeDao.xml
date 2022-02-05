@@ -38,6 +38,9 @@
     <select id="getTypeByName" resultType="Type">
         select * from t_type where name = #{name}
     </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(id) from t_type;
+    </select>
 
     <delete id="deleteType" >
         delete from t_type where id = #{id}

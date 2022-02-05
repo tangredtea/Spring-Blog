@@ -39,6 +39,9 @@
         where c.parent_message_id = #{childId}
         order by c.create_time desc
     </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(id) from t_message;
+    </select>
 
     <!--删除留言-->
     <delete id="deleteMessage" >

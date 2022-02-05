@@ -19,6 +19,12 @@ public interface TagDao {
     int saveTag(Tag tag);
 
     /**
+     * 得到数量
+     * @return 数量
+     */
+    int getCount();
+
+    /**
      * 得到标签
      * @param id 标签id
      * @return 标签

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <header th:replace="admin/fragments/header::header"></header>
+<link rel="stylesheet" href="/backend/vendor/fullcalendar/css/main.min.css">
 <body>
 
 <!--*******************
@@ -78,8 +79,157 @@
     <!--**********************************
         Content body start
     ***********************************-->
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">首页</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">欢迎页</a></li>
+                </ol>
+            </div>
+            <!-- row -->
+            <div class="row">
 
- <div th:replace="admin/fragments/footer :: footer-content"></div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-danger">
+                        <div class="card-body  p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="flaticon-381-calendar-1"></i>
+									</span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">文章数量</p>
+                                    <h3 class="text-white" th:text="${article_nums}">76</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-success">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="flaticon-381-diamond"></i>
+									</span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">文章浏览量</p>
+                                    <h3 class="text-white" th:text="${article_views}">$56K</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-info">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="flaticon-381-heart"></i>
+									</span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">分类数量</p>
+                                    <h3 class="text-white" th:text="${type_nums}">783K</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-primary">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="flaticon-381-heart"></i>
+									</span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">标签数量</p>
+                                    <h3 class="text-white" th:text="${tag_nums}">$76</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-danger ">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="la la-dollar"></i>
+									</span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">平均阅读数</p>
+                                    <h3 class="text-white" th:text="${avg_views}">250$</h3>
+                                    <div class="progress mb-2 bg-secondary">
+                                        <div class="progress-bar progress-animated bg-light" style="width: 30%"></div>
+                                    </div>
+                                    <small>文章平均阅读数</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-primary">
+                        <div class="card-body  p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="la la-users"></i>
+									</span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">留言数量</p>
+                                    <h3 class="text-white" th:text="${message_nums}">3280</h3>
+                                    <div class="progress mb-2 bg-secondary">
+                                        <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
+                                    </div>
+                                    <small>留言墙上的留言</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-warning">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="la la-user"></i>
+									</span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">用户数量</p>
+                                    <h3 class="text-white" th:text="${user_nums}">245</h3>
+                                    <div class="progress mb-2 bg-primary">
+                                        <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
+                                    </div>
+                                    <small>后台管理用户数</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                    <div class="widget-stat card bg-secondary">
+                        <div class="card-body p-4">
+                            <div class="media">
+									<span class="me-3">
+										<i class="la la-graduation-cap"></i>
+									</span>
+                                <div class="media-body text-white">
+                                    <p class="mb-1">友链数量</p>
+                                    <h3 class="text-white" th:text="${friendLink_nums}">28</h3>
+                                    <div class="progress mb-2 bg-primary">
+                                        <div class="progress-bar progress-animated bg-light" style="width: 76%"></div>
+                                    </div>
+                                    <small>交换友链有助于网站收录</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <!--**********************************
         Content body end
     ***********************************-->
@@ -89,6 +239,7 @@
     <!--**********************************
         Footer start
     ***********************************-->
+    <div th:replace="admin/fragments/footer :: footer-content"></div>
 
     <!--**********************************
         Footer end
@@ -111,6 +262,9 @@
 <!--**********************************
     Scripts
 ***********************************-->
-
+<!-- Required vendors -->
+<script src="/backend/vendor/moment/moment.min.js"></script>
+<script src="/backend/vendor/fullcalendar/js/main.min.js"></script>
+<script src="/backend/js/fullcalendar-init.js"></script>
 </body>
 </html>

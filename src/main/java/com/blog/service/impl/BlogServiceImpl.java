@@ -141,10 +141,9 @@ public class BlogServiceImpl implements BlogService {
             blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);
         }
-        Long id=blog.getId();
-        //如果缓存中有这个键值的话
-        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
-            cache.hSet(RedisKey.ARTCILE,String.valueOf(id),blog);
+        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(blog.getId()))){
+            cache.hDel(RedisKey.ARTCILE, String.valueOf(blog.getId()));
+            cache.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
         }
         return blogDao.updateBlog(blog);
     }
@@ -152,9 +151,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public int deleteBlog(Long id) {
         //如果缓存中有这个键值的话
+        if (cache.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
+            cache.hDel(RedisKey.ARTCILEVIEWS,String.valueOf(id));
+        }
         if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
             cache.hDel(RedisKey.ARTCILE,String.valueOf(id));
-            cache.hDel(RedisKey.ARTCILEVIEWS,String.valueOf(id));
         }
         return blogDao.deleteBlog(id);
     }
