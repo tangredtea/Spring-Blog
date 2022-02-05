@@ -68,7 +68,7 @@ public class AdminController {
         User user = userService.checkUser(username, password);
         if(user != null){
             session.setAttribute("user", user);
-            return "admin/index";
+            return "redirect:/admin/index";
         }else {
             attributes.addFlashAttribute("msg", "用户名或密码错误");
             return "redirect:/admin";
