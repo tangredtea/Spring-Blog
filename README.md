@@ -25,6 +25,8 @@
 
 🤷‍♂️缓存实现: Redis
 
+------
+
 🙈求大佬们给公众号点个关注，不定期分享后端、Java及中间件等技术、面试干货🙈
 
 <img src="https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205231316796.png" alt="image-20220205231316796" style="zoom: 33%;" />
@@ -47,7 +49,7 @@
 ------
 
 ## 前台
-
+>借鉴了其他人的前端进行开发。
 ![image-20220205225152899](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225152899.png)
 
 ![image-20220205225212091](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225212091.png)
