@@ -1,81 +1,69 @@
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/laowenruo/Spring-Blog/master/LICENSE)
 [![stars](https://badgen.net/github/stars//laowenruo/Spring-Blog)](https://github.com//laowenruo/Spring-Blog/stargazers)
 [![contributors](https://badgen.net/github/contributors/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/graphs/contributors)
-[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
+[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
 [![issues](https://badgen.net/github/open-issues/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
 [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
-# Spring-Blog
 
-# 重构版本请看分支main，SpringBoot+Vue版本，目前还基本重构完成，还在做一些修改，之后会编写docker脚本、反向代理等配置文件。
+# SpringBoot-Blog
 
-框架：Springboot
+🤷‍♂️框架：Springboot
 
-数据库持久层：Mybatis
+🤷‍♂️数据库持久层：Mybatis
 
-文章评论插件：Valine
+🤷‍♂️文章评论插件：Valine
 
-分页插件：PageHelper
+🤷‍♂️分页插件：PageHelper
 
-后台UI框架：X-admin框架，即LayUI框架
+🤷‍♂️数据库连接池：hikari
 
-数据库连接池：hikari
+🤷‍♂️数据库：MySQL
 
-数据库：MySQL
+🤷‍♂️日志：Log4J
 
-日志：Log4J
+🤷‍♂️后台配置: properties
 
-后台配置: properties
+🤷‍♂️缓存实现: Redis
 
-缓存实现: Redis+Spring-cache
+🙈求大佬们给公众号点个关注，不定期分享后端、Java及中间件等技术、面试干货🙈
+
+<img src="https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205231316796.png" alt="image-20220205231316796" style="zoom: 33%;" />
+
+## 更新日志
+
+✅修复了前后端所存在的诸多bug，且更换后端管理界面UI
+
+✅将数据库字段进行重构，采用BIT表示状态位，精简其他数据库字段
+
+✅仅用Redis缓存博文和浏览量，设置定时任务刷新浏览量到数据库
+
+✅用properties实现网站常规设置，用反射来进行更新配置文件
+
+✅精简了无需的js、css和其他前后端代码
 
 ------
+
 运行截图
 ------
-首页
-![首页](https://t1.picb.cc/uploads/2021/03/24/Zj2xyL.jpg)
-------
-首页下拉
-![首页下拉](https://t1.picb.cc/uploads/2021/03/24/Zj2F5v.png)
-------
-后台管理
-![后台管理](https://t1.picb.cc/uploads/2021/03/24/Zj2PXi.png)
-------
 
-除了上述选择外实现的简单优化
+## 前台
 
-✅theamleaf模板渲染缓存
+![image-20220205225152899](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225152899.png)
 
-✅网站请求实现Gzip压缩，减小网页体积
+![image-20220205225212091](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225212091.png)
 
-修复
+![image-20220205225238343](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225238343.png)
 
-✅Controller修复：修复Controller层存在的小问题，修复不带参数访问问题
+![image-20220205225941124](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225941124.png)
 
-✅页面修复：时间轴页面、400以及500页面、页脚计时、删除添加提示框、整合页面、文章访问量修复
+## 后台
 
-✅页面开发：编写关于我、友情链接、留言墙页面、友情链接后台管理
+![image-20220205230014300](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230014300.png)
 
-✅项目优化：精简了部分无用代码，部分无需引用的css和js资源，减小项目体积，删减了评论模块
+![image-20220205230241937](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230241937.png)
 
-✅插件引入：引入了一言，采用随机语录，引用了Valine评论插件
+![image-20220205230311762](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230311762.png)
 
-✅SEO优化：底部链接采用no-follow标签，meta标签优化
+![image-20220205230346784](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230346784.png)
 
-✅后台设置：将前端相关信息（文字、图片等）设置到properties，降低网页间的耦合度
-
-✅缓存：redis初步缓存加速，结合了定时任务自动刷新浏览量到数据库
-
-✅theamleaf模板渲染缓存
-
-✅网站请求实现Gzip压缩，减小网页体积
-
-开发者可以选择优化部分（提下建议）
-
-✅你可以采用CDN加速网页静态资源
-
-✅你可以将配置文件里的图床换成更好的，以及一些CDN的js/css
-
-✅你可以采用Nginx实现动静分离
-
-
-
+![image-20220205230415709](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230415709.png)
