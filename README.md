@@ -1,7 +1,7 @@
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/laowenruo/Spring-Blog/master/LICENSE)
 [![stars](https://badgen.net/github/stars//laowenruo/Spring-Blog)](https://github.com//laowenruo/Spring-Blog/stargazers)
 [![contributors](https://badgen.net/github/contributors/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/graphs/contributors)
-[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
+[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
 [![issues](https://badgen.net/github/open-issues/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
 [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
 
