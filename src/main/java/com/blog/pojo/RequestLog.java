@@ -1,9 +1,9 @@
-package com.blog.entity;
+package com.blog.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * 日志实体类，用于封装请求信息
+ * 日志类，用于封装请求信息
  * @author Ryan
  */
 @Data

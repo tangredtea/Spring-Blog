@@ -1,6 +1,6 @@
 package com.blog.aspect;
 
-import com.blog.entity.RequestLog;
+import com.blog.pojo.RequestLog;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class LogAspect {
     /**
      * 定义切入点
      */
-    @Pointcut("execution(* com.blog.controller.*.*(..))")
+    @Pointcut("execution(* com.blog.controller.*.*.*(..))")
     public void log(){}
 
     /**
