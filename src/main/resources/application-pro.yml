@@ -40,11 +40,11 @@ logging:
     root: warn
     com.blog: info
   file:
-    name: blog-pro.log
+    path: logs
 #Mybatis
 mybatis:
   #设置别名
-  type-aliases-package: com.blog.pojo
+  type-aliases-package: com.blog.entity
   #ָ指定myBatis的核心配置文件与Mapper映射文件
   mapper-locations: classpath:mapper/*.xml
   #驼峰命名
@@ -55,5 +55,4 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
-
 

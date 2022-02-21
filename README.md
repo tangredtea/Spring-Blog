@@ -61,6 +61,15 @@
 
 ![image-20220205230415709](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230415709.png)
 
+## docker方式
+
+> 配置完 MySQL 、Redis 等后即可打包镜像运行，具体调优参数可自行修改
+
+```
+docker build -t spring-blog:1.0.0 .
+docker run -d -p 8080:8080 -v /logs:/logs --name spring-blog spring-blog:1.0.0
+```
+
 ## 更新日志
 
 ✅修复了前后端所存在的诸多bug，且更换后端管理界面UI

@@ -61,7 +61,7 @@ logging:
     root: info
     com.blog: debug
   file:
-    name: blog-dev.log
+    path: logs
 #Mybatis
 mybatis:
   #设置别名
@@ -76,5 +76,3 @@ pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
-server:
-  port: 8081

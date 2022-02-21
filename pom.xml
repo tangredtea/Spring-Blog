@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>blog</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>blog</name>
+	<version>1.0.0</version>
+	<name>Spring-Blog-1.0.0</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.4.1</version>
+			<version>1.4.0</version>
 		</dependency>
 
 		<dependency>
