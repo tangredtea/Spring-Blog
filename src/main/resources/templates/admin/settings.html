@@ -183,6 +183,10 @@
                     <span class="input-group-text">Valine评论key</span>
                     <input type="text" class="form-control input-default " placeholder="Valine评论key" name="valine_AppKey" th:value="${settings.valine_AppKey}">
                   </div>
+                  <div class="input-group mb-3 ">
+                    <span class="input-group-text">企业微信Webhook</span>
+                    <input type="text" class="form-control input-default " placeholder="webhook地址，为0则不启用" name="wx_Webhook" th:value="${settings.wx_Webhook}">
+                  </div>
                 </div>
 
                 <div class="ui error message" style="color: green; position: relative; left: auto; right: auto; text-align: center; size: 20px" th:text="${msg} == null ? null : '🤷' + ${msg} + '🤷'"></div>

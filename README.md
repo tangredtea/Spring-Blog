@@ -31,18 +31,6 @@
 
 <img src="https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205231316796.png" alt="image-20220205231316796" style="zoom: 33%;" />
 
-## 更新日志
-
-✅修复了前后端所存在的诸多bug，且更换后端管理界面UI
-
-✅将数据库字段进行重构，采用BIT表示状态位，精简其他数据库字段
-
-✅仅用Redis缓存博文和浏览量，设置定时任务刷新浏览量到数据库
-
-✅用properties实现网站常规设置，用反射来进行更新配置文件
-
-✅精简了无需的js、css和其他前后端代码
-
 ------
 
 运行截图
@@ -70,3 +58,16 @@
 ![image-20220205230346784](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230346784.png)
 
 ![image-20220205230415709](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230415709.png)
+
+## 更新日志
+
+✅修复了前后端所存在的诸多bug，且更换后端管理界面UI
+
+✅将数据库字段进行重构，采用BIT表示状态位，精简其他数据库字段
+
+✅仅用Redis缓存博文和浏览量，设置定时任务刷新浏览量到数据库
+
+✅用properties实现网站常规设置，用反射来进行更新配置文件
+
+✅精简了无需的js、css和其他前后端代码
+✅添加webhook告警、更改日志级别、规范pojo(2022.02.22)

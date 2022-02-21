@@ -86,4 +86,6 @@ public class SettingsConfig {
     @Value("${valine_AppKey}")
     private String valine_AppKey;
 
+    @Value("${wx_Webhook}")
+    private String wx_Webhook;
 }
