@@ -153,7 +153,7 @@ public class BlogController {
         if (redisService.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
             redisService.hDel(RedisKey.ARTCILEVIEWS, String.valueOf(id));
         }
-        redisService.set(RedisKey.INDEXBLOG, blogService.getAllBlog());
+        redisService.set(RedisKey.INDEXBLOG, blogService.getIndexBlog());
         redisService.set(RedisKey.RECOMMENDBLOG, blogService.getAllRecommendBlog());
     }
 }
