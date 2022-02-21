@@ -40,19 +40,44 @@ public class IndexController {
     @RequestMapping("/")
     public String toIndex(@RequestParam(required = false,defaultValue = "1") int pageNum,Model model){
         PageHelper.startPage(pageNum, 5);
-        List<Blog> allBlog = blogService.getIndexBlog();
+        List<Blog> allBlog;
+        List<Blog> recommendBlog;
+        List<Message> messages;
+        List<Blog> hotBlogs;
+        if (cache.hasKey(RedisKey.INDEXBLOG)){
+            allBlog = (List<Blog>) cache.get(RedisKey.INDEXBLOG);
+        }else {
+            allBlog = blogService.getIndexBlog();
+            cache.set(RedisKey.INDEXBLOG, allBlog);
+        }
         //获取推荐博客
-        List<Blog> recommendBlog =blogService.getAllRecommendBlog();
-        //得到分页结果对象
-        PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
-        List<Message> messages = messageService.findByIndexParentId();
+        if (cache.hasKey(RedisKey.RECOMMENDBLOG)){
+            recommendBlog = (List<Blog>) cache.get(RedisKey.RECOMMENDBLOG);
+        }else {
+            recommendBlog = blogService.getAllRecommendBlog();
+            cache.set(RedisKey.RECOMMENDBLOG, recommendBlog);
+        }
+
+        if (cache.hasKey(RedisKey.MESSAGES)){
+            messages = (List<Message>) cache.get(RedisKey.MESSAGES);
+        }else {
+            messages = messageService.findByIndexParentId();
+            cache.set(RedisKey.RECOMMENDBLOG, messages);
+        }
+        if (cache.hasKey(RedisKey.HOTBLOGS)){
+            hotBlogs = (List<Blog>) cache.get(RedisKey.HOTBLOGS);
+        }else {
+            hotBlogs = blogService.getHotBlog();
+            cache.set(RedisKey.HOTBLOGS, hotBlogs);
+        }
         if (messages.size() >= 8){
             messages = messages.subList(0, 8);
         }
+        //得到分页结果对象
+        PageInfo<? extends Blog> pageInfo = new PageInfo<>(allBlog);
         model.addAttribute("messages", messages);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("recommendBlogs", recommendBlog);
-        List<Blog> hotBlogs=blogService.getHotBlog();
         model.addAttribute("hotBlogs", hotBlogs);
         return "index";
     }
@@ -70,7 +95,7 @@ public class IndexController {
     }
 
     @GetMapping("/blog/{id}")
-    public String toLogin(@PathVariable Long id, Model model){
+    public String getBlog(@PathVariable Long id, Model model){
         Blog blog;
         if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
             blog = (Blog) cache.hGet(RedisKey.ARTCILE, String.valueOf(id));

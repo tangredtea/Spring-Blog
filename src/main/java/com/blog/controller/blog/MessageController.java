@@ -1,9 +1,11 @@
 package com.blog.controller.blog;
 
+import com.blog.config.RedisKey;
 import com.blog.config.SettingsConfig;
 import com.blog.entity.Message;
 import com.blog.entity.User;
 import com.blog.service.MessageService;
+import com.blog.service.RedisService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,9 @@ import java.util.List;
  */
 @Controller
 public class MessageController {
+
+    @Resource
+    private RedisService redisService;
 
     @Resource
     private SettingsConfig settingsConfig;
@@ -71,7 +76,11 @@ public class MessageController {
     @GetMapping("/messages/{id}/delete")
     public String delete(@PathVariable Long id){
         messageService.deleteMessage(id);
+        deleteCache();
         return "message";
     }
 
+    public void deleteCache(){
+        redisService.set(RedisKey.MESSAGES, messageService.findByIndexParentId());
+    }
 }

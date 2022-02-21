@@ -1,8 +1,10 @@
 package com.blog.controller.admin;
 
+import com.blog.config.RedisKey;
 import com.blog.entity.Blog;
 import com.blog.entity.User;
 import com.blog.service.BlogService;
+import com.blog.service.RedisService;
 import com.blog.service.TagService;
 import com.blog.service.TypeService;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +29,9 @@ public class BlogController {
 
     @Resource
     private TypeService typeService;
+
+    @Resource
+    private RedisService redisService;
 
     @Resource
     private TagService tagService;
@@ -96,6 +101,7 @@ public class BlogController {
         Blog blog = blogService.getBlog(id);
         //将tags集合转换为tagIds字符串
         blog.init();
+        updateCache(blog);
         //返回一个blog对象给前端th:object
         model.addAttribute("blog", blog);
         setTypeAndTag(model);
@@ -119,6 +125,7 @@ public class BlogController {
         if (blog.getId() == null) {
             blogService.saveBlog(blog);
         } else {
+            updateCache(blog);
             blogService.updateBlog(blog);
         }
         attributes.addFlashAttribute("msg", "新增成功");
@@ -128,7 +135,25 @@ public class BlogController {
     @GetMapping("/blogs/{id}/delete")
     public String deleteBlogs(@PathVariable Long id, RedirectAttributes attributes){
         blogService.deleteBlog(id);
+        deleteCache(id);
         attributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/admin/blogs";
+    }
+
+    public void updateCache(Blog blog){
+        if (redisService.hHasKey(RedisKey.ARTCILE, String.valueOf(blog.getId()))){
+            redisService.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
+        }
+    }
+
+    public void deleteCache(Long id){
+        if (redisService.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
+            redisService.hDel(RedisKey.ARTCILE, String.valueOf(id));
+        }
+        if (redisService.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
+            redisService.hDel(RedisKey.ARTCILEVIEWS, String.valueOf(id));
+        }
+        redisService.set(RedisKey.INDEXBLOG, blogService.getAllBlog());
+        redisService.set(RedisKey.RECOMMENDBLOG, blogService.getAllRecommendBlog());
     }
 }
