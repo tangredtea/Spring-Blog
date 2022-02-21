@@ -69,6 +69,10 @@
 docker build -t spring-blog:1.0.0 .
 docker run -d -p 8080:8080 -v /logs:/logs --name spring-blog spring-blog:1.0.0
 ```
+## Nginx
+
+> 按照nginx.conf配置即可
+> 同时也推荐大家了解下 https://github.com/avwo/whistle 这个反向代理，挺好用的
 
 ## 更新日志
 
@@ -82,4 +86,4 @@ docker run -d -p 8080:8080 -v /logs:/logs --name spring-blog spring-blog:1.0.0
 
 ✅精简了无需的js、css和其他前后端代码
 
-✅添加webhook告警、更改日志级别、规范pojo、添加首页缓存(2022.02.22)
+✅添加webhook告警、更改日志级别、规范pojo、添加首页缓存、添加Dockerfile、Nginx配置文件(2022.02.22)
