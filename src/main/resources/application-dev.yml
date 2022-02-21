@@ -58,10 +58,10 @@ spring:
 #日志输出
 logging:
   level:
-    root: warn
-    com.blog: info
-    #日志目录
-  file.path=: log/blog-dev.log
+    root: info
+    com.blog: debug
+  file:
+    name: blog-dev.log
 #Mybatis
 mybatis:
   #设置别名

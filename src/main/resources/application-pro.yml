@@ -39,8 +39,8 @@ logging:
   level:
     root: warn
     com.blog: info
-    #日志目录
-  file.path=: log/blog-dev.log
+  file:
+    name: blog-pro.log
 #Mybatis
 mybatis:
   #设置别名
