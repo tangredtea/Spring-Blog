@@ -13,7 +13,9 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WebhookMessage {
-
+    /**
+     * the text to send
+     */
     private String text;
 
     public Map<String, Object> toJsonString() {
