@@ -47,5 +47,4 @@ public class FriendLinkServiceImpl implements FriendLinkService {
         friendLinkDao.deleteFriendLink(id);
     }
 
-
 }
