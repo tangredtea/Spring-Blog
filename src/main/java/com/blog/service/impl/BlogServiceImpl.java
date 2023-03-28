@@ -1,22 +1,3 @@
-package com.blog.service.impl;
-
-import com.blog.dao.BlogDao;
-import com.blog.config.RedisKey;
-import com.blog.exception.NotFoundException;
-import com.blog.entity.Blog;
-import com.blog.entity.BlogAndTag;
-import com.blog.entity.Tag;
-import com.blog.service.BlogService;
-import com.blog.service.RedisService;
-import com.blog.util.MarkdownUtils;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.*;
-
-/**
- * @author Ryan
- */
 @Service
 public class BlogServiceImpl implements BlogService {
 
@@ -33,10 +14,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getDetailedBlog(Long id) {
-        Blog blog = blogDao.getDetailedBlog(id);
-        if (blog == null) {
-            throw new NotFoundException("该博客不存在");
-        }
+        Blog blog = Optional.ofNullable(blogDao.getDetailedBlog(id))
+                            .orElseThrow(() -> new NotFoundException("该博客不存在"));
         String content = blog.getContent();
         //将Markdown格式转换成html
         blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
@@ -77,17 +56,15 @@ public class BlogServiceImpl implements BlogService {
     public Map<String, List<Blog>> archiveBlog() {
         List<String> years = blogDao.findGroupYear();
         //set去掉重复的年份
-        Set<String> set = new HashSet<>(years);  
+        Set<String> set = new HashSet<>(years);
         Map<String, List<Blog>> map = new HashMap<>(8);
-        for (String year : set) {
-            map.put(year, blogDao.findByYear(year));
-        }
+        set.forEach(year -> map.put(year, blogDao.findByYear(year)));
         return map;
     }
 
     @Override
     public int countBlog() {
-        return blogDao.getAllBlog().size();
+        return getAllBlog().size();
     }
 
     @Override
@@ -105,23 +82,22 @@ public class BlogServiceImpl implements BlogService {
      * @param blog 博文
      * @return 保存博文
      */
-    @Override    
+    @Override
     public int saveBlog(Blog blog) {
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
+        final Date now = new Date();
+        blog.setCreateTime(now );
+        blog.setUpdateTime(now);
         blog.setViews(0);
         //保存博客
         blogDao.saveBlog(blog);
         //保存博客后才能获取自增的id
         Long id = blog.getId();
         //将标签的数据存到t_blogs_tag表中
-        List<Tag> tags = blog.getTags();
-        BlogAndTag blogAndTag;
-        for (Tag tag : tags) {
+        blog.getTags().forEach(tag -> {
             //新增时无法获取自增的id,在mybatis里修改
-            blogAndTag = new BlogAndTag(tag.getId(), id);
+            BlogAndTag blogAndTag = new BlogAndTag(tag.getId(), id);
             blogDao.saveBlogAndTag(blogAndTag);
-        }
+        });
         return 1;
     }
 
@@ -130,16 +106,14 @@ public class BlogServiceImpl implements BlogService {
      * @param blog 博文
      * @return 状态值
      */
-    @Override   
+    @Override
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
         //将标签的数据存到t_blogs_tag表中
-        List<Tag> tags = blog.getTags();
-        BlogAndTag blogAndTag;
-        for (Tag tag : tags) {
-            blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
+        blog.getTags().forEach(tag -> {
+            BlogAndTag blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);
-        }
+        });
         if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(blog.getId()))){
             cache.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
         }
