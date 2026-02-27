@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * 密码加密工具类
  * 使用 BCrypt 算法，比 MD5 更安全
- * @author Ryan
+ * @author tangredtea
  */
 public class PasswordUtils {
 

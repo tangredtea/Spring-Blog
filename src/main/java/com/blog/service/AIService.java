@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * AI 服务
  * 集成大模型 API 提供智能功能
- * @author Ryan
+ * @author tangredtea
  */
 @Slf4j
 @Service

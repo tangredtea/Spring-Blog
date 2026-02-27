@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 /**
  * 站点地图控制器
  * 提供 sitemap.xml 用于搜索引擎收录
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 public class SitemapController {

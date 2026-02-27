@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * 智能搜索服务
  * 提供语义化搜索和相关推荐
- * @author Ryan
+ * @author tangredtea
  */
 @Slf4j
 @Service

@@ -2,7 +2,7 @@
 FROM openjdk:11-jre-slim
 
 # 作者信息
-LABEL maintainer="coder_ryan <1173779946@qq.com>"
+LABEL maintainer="tangredtea <tangredtea@gmail.com>"
 LABEL description="AI驱动的智能博客系统 - Spring Boot + MyBatis + AI集成"
 
 # 设置时区

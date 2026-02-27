@@ -5,7 +5,7 @@ import com.blog.entity.Tag;
 import java.util.List;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public interface TagService {
     /**

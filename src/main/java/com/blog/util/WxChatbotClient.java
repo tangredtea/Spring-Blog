@@ -29,7 +29,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public class WxChatbotClient {
 

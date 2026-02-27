@@ -4,7 +4,7 @@ import lombok.Getter;
 
 /**
  * 博客文章状态枚举
- * @author Ryan
+ * @author tangredtea
  */
 @Getter
 public enum BlogStatus {
