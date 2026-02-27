@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/header :: head(~{::title})">
+    <title>AI 智能助手 - 后台管理</title>
+</head>
+<body class="bg-light">
+    <!-- 导航栏 -->
+    <nav th:replace="admin/fragments/header :: nav"></nav>
+    
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- 侧边栏 -->
+            <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+            
+            <!-- 主内容区 -->
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">🤖 AI 智能助手</h1>
+                    <span id="ai-status" class="badge badge-secondary">检测中...</span>
+                </div>
+                
+                <!-- AI 功能卡片 -->
+                <div class="row">
+                    <!-- 文章摘要生成 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">📝 智能摘要生成</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">输入文章内容，AI 自动生成简洁的摘要。</p>
+                                <div class="form-group">
+                                    <textarea id="summary-content" class="form-control" rows="6" 
+                                              placeholder="粘贴文章内容..."></textarea>
+                                </div>
+                                <button onclick="generateSummary()" class="btn btn-primary btn-block">
+                                    <span class="spinner-border spinner-border-sm d-none" id="summary-loading"></span>
+                                    生成摘要
+                                </button>
+                                <div id="summary-result" class="mt-3 alert alert-info d-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 标签推荐 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">🏷️ 智能标签推荐</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">根据标题和内容，AI 推荐合适的标签。</p>
+                                <div class="form-group">
+                                    <input type="text" id="tag-title" class="form-control mb-2" 
+                                           placeholder="文章标题">
+                                    <textarea id="tag-content" class="form-control" rows="4" 
+                                              placeholder="文章内容..."></textarea>
+                                </div>
+                                <button onclick="suggestTags()" class="btn btn-success btn-block">
+                                    <span class="spinner-border spinner-border-sm d-none" id="tag-loading"></span>
+                                    获取推荐标签
+                                </button>
+                                <div id="tag-result" class="mt-3 d-none">
+                                    <span class="font-weight-bold">推荐标签：</span>
+                                    <div id="tag-list" class="mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 文章质量评分 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-warning text-dark">
+                                <h5 class="mb-0">⭐ 文章质量评分</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">AI 评估文章质量并给出改进建议。</p>
+                                <div class="form-group">
+                                    <input type="text" id="score-title" class="form-control mb-2" 
+                                           placeholder="文章标题">
+                                    <textarea id="score-content" class="form-control" rows="4" 
+                                              placeholder="文章内容..."></textarea>
+                                </div>
+                                <button onclick="scoreArticle()" class="btn btn-warning btn-block">
+                                    <span class="spinner-border spinner-border-sm d-none" id="score-loading"></span>
+                                    开始评分
+                                </button>
+                                <div id="score-result" class="mt-3 d-none">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="display-4 mr-3" id="score-value">0</span>
+                                        <span class="badge badge-lg" id="score-level">--</span>
+                                    </div>
+                                    <p id="score-suggestion" class="text-muted"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 使用说明 -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-header bg-info text-white">
+                                <h5 class="mb-0">📖 使用说明</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6>配置 AI 服务</h6>
+                                <p class="small text-muted">
+                                    在 <code>application-dev.yml</code> 中配置：<br>
+                                    <code>ai.api.key: your-openai-api-key</code>
+                                </p>
+                                
+                                <h6>支持的模型</h6>
+                                <ul class="small text-muted">
+                                    <li>OpenAI GPT-3.5/4</li>
+                                    <li>阿里云通义千问</li>
+                                    <li>百度文心一言</li>
+                                    <li>其他兼容 OpenAI API 的模型</li>
+                                </ul>
+                                
+                                <h6>注意事项</h6>
+                                <ul class="small text-muted">
+                                    <li>API Key 请通过环境变量配置，不要硬编码</li>
+                                    <li>AI 生成功能需要联网</li>
+                                    <li>免费额度用完后可能需要付费</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer th:replace="admin/fragments/footer :: footer"></footer>
+    
+    <script th:inline="javascript">
+        // 检查 AI 状态
+        $(document).ready(function() {
+            $.get('/admin/ai/status', function(res) {
+                if (res.code === 200 && res.data.enabled) {
+                    $('#ai-status').removeClass('badge-secondary').addClass('badge-success')
+                                   .text('AI 服务正常');
+                } else {
+                    $('#ai-status').removeClass('badge-secondary').addClass('badge-warning')
+                                   .text('AI 未配置');
+                }
+            });
+        });
+        
+        // 生成摘要
+        function generateSummary() {
+            const content = $('#summary-content').val();
+            if (!content.trim()) {
+                alert('请输入文章内容');
+                return;
+            }
+            
+            $('#summary-loading').removeClass('d-none');
+            $.post('/admin/ai/summary', {content: content}, function(res) {
+                $('#summary-loading').addClass('d-none');
+                if (res.code === 200) {
+                    $('#summary-result').removeClass('d-none').text(res.data);
+                } else {
+                    alert(res.msg || '生成失败');
+                }
+            });
+        }
+        
+        // 推荐标签
+        function suggestTags() {
+            const title = $('#tag-title').val();
+            const content = $('#tag-content').val();
+            
+            if (!title.trim() || !content.trim()) {
+                alert('请输入标题和内容');
+                return;
+            }
+            
+            $('#tag-loading').removeClass('d-none');
+            $.post('/admin/ai/suggest-tags', {title: title, content: content}, function(res) {
+                $('#tag-loading').addClass('d-none');
+                if (res.code === 200 && res.data) {
+                    $('#tag-result').removeClass('d-none');
+                    const tags = res.data;
+                    let html = '';
+                    tags.forEach(function(tag) {
+                        html += '<span class="badge badge-primary mr-2">' + tag + '</span>';
+                    });
+                    $('#tag-list').html(html);
+                } else {
+                    alert(res.msg || '获取失败');
+                }
+            });
+        }
+        
+        // 文章评分
+        function scoreArticle() {
+            const title = $('#score-title').val();
+            const content = $('#score-content').val();
+            
+            if (!title.trim() || !content.trim()) {
+                alert('请输入标题和内容');
+                return;
+            }
+            
+            $('#score-loading').removeClass('d-none');
+            $.post('/admin/ai/score', {title: title, content: content}, function(res) {
+                $('#score-loading').addClass('d-none');
+                if (res.code === 200) {
+                    $('#score-result').removeClass('d-none');
+                    $('#score-value').text(res.data.score);
+                    $('#score-level').text(res.data.level)
+                                     .removeClass('badge-success badge-warning badge-danger')
+                                     .addClass(getScoreBadgeClass(res.data.score));
+                    $('#score-suggestion').text(res.data.suggestion);
+                } else {
+                    alert(res.msg || '评分失败');
+                }
+            });
+        }
+        
+        function getScoreBadgeClass(score) {
+            if (score >= 80) return 'badge-success';
+            if (score >= 60) return 'badge-warning';
+            return 'badge-danger';
+        }
+    </script>
+</body>
+</html>
