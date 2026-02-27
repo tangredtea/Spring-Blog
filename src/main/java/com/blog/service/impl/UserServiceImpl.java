@@ -3,7 +3,7 @@ package com.blog.service.impl;
 import com.blog.dao.UserDao;
 import com.blog.entity.User;
 import com.blog.service.UserService;
-import com.blog.util.MD5Utils;
+import com.blog.util.PasswordUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
