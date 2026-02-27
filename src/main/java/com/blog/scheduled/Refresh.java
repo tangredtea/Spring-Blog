@@ -44,16 +44,25 @@ public class Refresh {
     @Scheduled(cron = "0 0 0/4 * * ? ")
     public void execute() {
         // 博客刷新阅读量到数据库
-        Map blog_map = cache.hGetAll(RedisKey.ARTCILE);
-        Map view_map = cache.hGetAll(RedisKey.ARTCILEVIEWS);
-        for (Object o : blog_map.keySet()) {
-            Integer i= (Integer) o;
-            Object o1 = view_map.get(i);
-            Blog blog= (Blog) o1;
-            if (blog.getViews() != view_map.get(i)){
-                blogDao.updateViews(blog.getId(), (Integer) o1);
-                blog.setViews((Integer) o1);
-                cache.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
+        Map<String, Object> blog_map = cache.hGetAll(RedisKey.ARTCILE);
+        Map<String, Object> view_map = cache.hGetAll(RedisKey.ARTCILEVIEWS);
+        
+        for (Map.Entry<String, Object> entry : blog_map.entrySet()) {
+            String key = entry.getKey();
+            Blog blog = (Blog) entry.getValue();
+            Integer redisViews = (Integer) view_map.get(key);
+            
+            if (redisViews != null && !redisViews.equals(blog.getViews())) {
+                // 计算增量并原子更新
+                int increment = redisViews - blog.getViews();
+                if (increment > 0) {
+                    // 这里需要批量更新或循环调用 incrementViews
+                    for (int i = 0; i < increment; i++) {
+                        blogDao.incrementViews(blog.getId());
+                    }
+                    blog.setViews(redisViews);
+                    cache.hSet(RedisKey.ARTCILE, key, blog);
+                }
             }
         }
         // 更新首页推荐博客、博文、留言
