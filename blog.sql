@@ -43,7 +43,10 @@ CREATE TABLE IF NOT EXISTS `t_blog` (
   KEY `idx_type_user` (`type_id`,`user_id`) USING BTREE,
   KEY `idx_published` (`published`) USING BTREE,
   KEY `idx_is_deleted` (`is_deleted`) USING BTREE,
-  KEY `idx_create_time` (`create_time`) USING BTREE
+  KEY `idx_create_time` (`create_time`) USING BTREE,
+  KEY `idx_views` (`views` DESC) USING BTREE,
+  KEY `idx_recommend_update` (`recommend`,`update_time` DESC) USING BTREE,
+  FULLTEXT KEY `ft_title_content` (`title`,`description`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- 正在导出表  blog.t_blog 的数据：~11 rows (大约)

@@ -34,12 +34,20 @@ public interface BlogDao {
     List<Blog> getAllBlog();
 
     /**
-     * 文章访问量
+     * 文章访问量（非原子操作，并发不安全）
      * @param id 博客id
      * @param values 偏移量
      * @return 修改状态
      */
+    @Deprecated
     int updateViews(Long id,int values);
+    
+    /**
+     * 原子性增加浏览量（线程安全）
+     * @param id 博客id
+     * @return 修改状态
+     */
+    int incrementViews(@Param("id") Long id);
 
     /**
      * 根据类型id获取博客
