@@ -76,6 +76,13 @@ docker run -d -p 8080:8080 -v /logs:/logs --name spring-blog spring-blog:1.0.0
 
 ## 更新日志
 
+### 2026-02-27
+🤖 **AI 辅助维护启动**
+- 配置自动化工作流，支持智能代码审查
+- 集成 OpenClaw Agent 进行日常维护
+- 优化 GitHub Issue 响应流程
+
+### 历史更新
 ✅修复了前后端所存在的诸多bug，且更换后端管理界面UI
 
 ✅将数据库字段进行重构，采用BIT表示状态位，精简其他数据库字段
