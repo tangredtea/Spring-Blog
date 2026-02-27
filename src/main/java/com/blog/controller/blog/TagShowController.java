@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 public class TagShowController {

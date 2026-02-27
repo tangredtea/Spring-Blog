@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * redis操作
  *
  *
- * @author Ryan*/
+ * @author tangredtea*/
 @Service
 public class RedisServiceImpl implements RedisService {
 

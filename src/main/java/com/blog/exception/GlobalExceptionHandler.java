@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 全局异常处理器
- * @author Ryan
+ * @author tangredtea
  */
 @Slf4j
 @ControllerAdvice

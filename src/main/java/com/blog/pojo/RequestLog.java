@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * 日志类，用于封装请求信息
- * @author Ryan
+ * @author tangredtea
  */
 @Data
 @AllArgsConstructor

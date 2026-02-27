@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * 密码工具类单元测试
- * @author Ryan
+ * @author tangredtea
  */
 class PasswordUtilsTest {
 

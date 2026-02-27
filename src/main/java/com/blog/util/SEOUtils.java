@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * SEO 工具类
  * 生成 Meta 标签、结构化数据等
- * @author Ryan
+ * @author tangredtea
  */
 @Component
 public class SEOUtils {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public interface BlogService {
 

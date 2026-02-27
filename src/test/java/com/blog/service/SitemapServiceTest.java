@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * 站点地图服务单元测试
- * @author Ryan
+ * @author tangredtea
  */
 class SitemapServiceTest {
 

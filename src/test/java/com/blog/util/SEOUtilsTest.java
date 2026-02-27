@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * SEO 工具类单元测试
- * @author Ryan
+ * @author tangredtea
  */
 class SEOUtilsTest {
 

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * 自定义NotFoundException异常,会跳转到404页面
- * @author Ryan
+ * @author tangredtea
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {

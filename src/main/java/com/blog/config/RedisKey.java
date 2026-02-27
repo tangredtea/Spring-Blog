@@ -1,7 +1,7 @@
 package com.blog.config;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public final class RedisKey {
     public static final String ARTCILEVIEWS = "article_views";

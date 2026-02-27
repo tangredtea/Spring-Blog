@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Configuration
 @ComponentScan(basePackages = "com.blog")

@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * 公共逻辑返回类
- * @author Ryan
+ * @author tangredtea
  */
 @Data
 public class CommonResult<T> {

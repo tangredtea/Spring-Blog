@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * AI 功能控制器
- * @author Ryan
+ * @author tangredtea
  */
 @Slf4j
 @Controller

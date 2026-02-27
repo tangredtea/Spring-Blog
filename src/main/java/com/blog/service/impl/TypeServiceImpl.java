@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Service
 public class TypeServiceImpl implements TypeService {
