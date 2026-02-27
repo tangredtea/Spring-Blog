@@ -1,100 +1,148 @@
-[![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/laowenruo/Spring-Blog/master/LICENSE)
-[![stars](https://badgen.net/github/stars//laowenruo/Spring-Blog)](https://github.com//laowenruo/Spring-Blog/stargazers)
-[![contributors](https://badgen.net/github/contributors/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/graphs/contributors)
-[![help-wanted](https://badgen.net/github/label-issues/laowenruo/Spring-Blog/help%20wanted/open)](https://github.com/laowenruo/Spring-Blog/labels/help%20wanted)
-[![issues](https://badgen.net/github/open-issues/laowenruo/Spring-Blog)](https://github.com/laowenruo/Spring-Blog/issues)
-[![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](http://makeapullrequest.com)
+# SpringBoot Blog 🚀
 
-# SpringBoot-Blog
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/tangredtea/Spring-Blog?style=social)](https://github.com/tangredtea/Spring-Blog/stargazers)
+[![Issues](https://img.shields.io/github/issues/tangredtea/Spring-Blog)](https://github.com/tangredtea/Spring-Blog/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-🤷‍♂️框架：Springboot
+> 基于 Spring Boot + MyBatis 的个人博客系统，持续维护中。
+> 
+> 适合作为 **期末项目 / 毕业设计 / 学习参考**
 
-🤷‍♂️数据库持久层：Mybatis
+## ✨ 特性
 
-🤷‍♂️文章评论插件：Valine
+- 📝 Markdown 文章编辑与预览
+- 🏷️ 文章分类与标签管理
+- 💬 评论系统（Valine）
+- 🔍 全文搜索功能
+- 📊 后台数据统计
+- 🎨 响应式前端界面
+- ⚡ Redis 缓存加速
+- 🔒 安全加固（BCrypt 加密、输入验证）
 
-🤷‍♂️分页插件：PageHelper
+## 🛠️ 技术栈
 
-🤷‍♂️数据库连接池：hikari
+| 层级 | 技术 |
+|------|------|
+| 框架 | Spring Boot 2.7.x |
+| ORM | MyBatis |
+| 数据库 | MySQL 8.0 |
+| 缓存 | Redis |
+| 模板引擎 | Thymeleaf |
+| 分页 | PageHelper |
+| 密码加密 | BCrypt |
+| 连接池 | HikariCP |
 
-🤷‍♂️数据库：MySQL
+## 🚀 快速开始
 
-🤷‍♂️日志：Log4J
+### 环境要求
+- JDK 1.8+
+- MySQL 5.7+
+- Redis 5.0+
+- Maven 3.6+
 
-🤷‍♂️后台配置: properties
+### 安装步骤
 
-🤷‍♂️缓存实现: Redis
-
-初始账号密码：admin  123456
-
-------
-
-🙈求大佬们给公众号点个关注，不定期分享后端、Java及中间件等技术、面试干货🙈
-
-<img src="https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205231316796.png" alt="image-20220205231316796" style="zoom: 33%;" />
-
-------
-
-运行截图
-------
-
-## 前台
->借鉴了其他人的前端进行开发。
-
-![image-20220205225152899](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225152899.png)
-
-![image-20220205225212091](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225212091.png)
-
-![image-20220205225238343](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225238343.png)
-
-![image-20220205225941124](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205225941124.png)
-
-## 后台
-
-![image-20220205230014300](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230014300.png)
-
-![image-20220205230241937](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230241937.png)
-
-![image-20220205230311762](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230311762.png)
-
-![image-20220205230346784](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230346784.png)
-
-![image-20220205230415709](https://isbut-blog.oss-cn-shenzhen.aliyuncs.com/markdown-img/image-20220205230415709.png)
-
-## docker方式
-
-> 配置完 MySQL 、Redis 等后即可打包镜像运行，具体调优参数可自行修改
-
+1. **克隆项目**
+```bash
+git clone https://github.com/tangredtea/Spring-Blog.git
+cd Spring-Blog
 ```
+
+2. **创建数据库**
+```bash
+mysql -u root -p < blog.sql
+```
+
+3. **配置环境变量**（推荐）
+```bash
+export DB_USERNAME=root
+export DB_PASSWORD=your_password
+export REDIS_PASSWORD=your_redis_password  # 如果有
+```
+
+4. **运行项目**
+```bash
+mvn spring-boot:run
+```
+
+5. **访问应用**
+- 前台：http://localhost:8080
+- 后台：http://localhost:8080/admin
+- 默认账号：`admin` / `123456`
+
+### Docker 部署
+
+```bash
+# 构建镜像
 docker build -t spring-blog:1.0.0 .
-docker run -d -p 8080:8080 -v /logs:/logs --name spring-blog spring-blog:1.0.0
+
+# 运行容器
+docker run -d -p 8080:8080 \
+  -e DB_USERNAME=root \
+  -e DB_PASSWORD=password \
+  --name spring-blog \
+  spring-blog:1.0.0
 ```
-## Nginx
 
-> 按照nginx.conf配置即可
-> 同时也推荐大家了解下 https://github.com/avwo/whistle 这个反向代理，挺好用的
+## 📁 项目结构
 
-## 更新日志
+```
+Spring-Blog/
+├── src/main/java/com/blog/
+│   ├── controller/      # 控制器层
+│   ├── service/         # 业务层
+│   ├── dao/             # 数据访问层
+│   ├── entity/          # 实体类
+│   ├── config/          # 配置类
+│   ├── util/            # 工具类
+│   └── exception/       # 异常处理
+├── src/main/resources/
+│   ├── mapper/          # MyBatis XML
+│   ├── templates/       # Thymeleaf 模板
+│   ├── static/          # 静态资源
+│   └── application*.yml # 配置文件
+└── blog.sql             # 数据库脚本
+```
 
-### 2026-02-27
-🤖 **AI 辅助维护启动**
-- 配置自动化工作流，支持智能代码审查
-- 集成 OpenClaw Agent 进行日常维护
-- 优化 GitHub Issue 响应流程
+## 🔐 安全特性
 
-### 历史更新
-✅修复了前后端所存在的诸多bug，且更换后端管理界面UI
+- ✅ BCrypt 密码加密
+- ✅ SQL 注入防护
+- ✅ XSS 攻击防护
+- ✅ 输入参数校验
+- ✅ 全局异常处理
 
-✅将数据库字段进行重构，采用BIT表示状态位，精简其他数据库字段
+## 📈 更新日志
 
-✅仅用Redis缓存博文和浏览量，设置定时任务刷新浏览量到数据库
+### 2026-02-27 v1.1.0
+- 🔒 升级 Spring Boot 至 2.7.18，修复安全漏洞
+- 🔒 替换 MD5 为 BCrypt 密码加密
+- 🔒 添加全局异常处理
+- 🔧 优化配置文件安全性
+- 📝 完善 README 文档
 
-✅用properties实现网站常规设置，用反射来进行更新配置文件
+### 2022-02-22 v1.0.0
+- ✨ 初始版本发布
+- 📝 文章管理功能
+- 🏷️ 分类标签功能
+- 💬 评论系统
+- 📊 后台统计
 
-✅精简了无需的js、css和其他前后端代码
+## 🤝 贡献指南
 
-✅添加webhook告警、更改日志级别、规范pojo、添加首页缓存、添加Dockerfile、Nginx配置文件(2022.02.22)
-## Sponsor
-Thanks to JetBrains for the support
+欢迎提交 Issue 和 Pull Request！
 
-![image](https://user-images.githubusercontent.com/47266759/179214465-dc16a9a2-ebde-4998-b154-ea4943574710.png)
+1. Fork 本仓库
+2. 创建分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
+
+## 📄 许可证
+
+[Apache License 2.0](LICENSE) © tangredtea
+
+---
+
+⭐ 如果这个项目对你有帮助，请给个 Star 支持一下！

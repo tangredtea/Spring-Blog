@@ -1,12 +1,16 @@
 #开发环境
+# 敏感配置请使用环境变量：
+# export DB_PASSWORD=your_password
+# export REDIS_PASSWORD=your_redis_password
+
 spring:
   datasource:
     #hikari连接池,号称最快的连接池
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
     hikari:
       auto-commit: true
       minimum-idle: 2
