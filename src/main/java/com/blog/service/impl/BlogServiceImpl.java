@@ -9,6 +9,7 @@ import com.blog.entity.Tag;
 import com.blog.service.BlogService;
 import com.blog.service.RedisService;
 import com.blog.util.MarkdownUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
