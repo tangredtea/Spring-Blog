@@ -3,7 +3,7 @@ package com.blog.controller.admin;
 import com.blog.dao.*;
 import com.blog.entity.User;
 import com.blog.service.UserService;
-import com.blog.util.MD5Utils;
+import com.blog.util.PasswordUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
