@@ -4,7 +4,9 @@ import com.blog.dao.UserDao;
 import com.blog.entity.User;
 import com.blog.service.UserService;
 import com.blog.util.PasswordUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * @author Ryan
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
