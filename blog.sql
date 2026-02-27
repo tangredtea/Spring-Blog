@@ -28,16 +28,23 @@ CREATE TABLE IF NOT EXISTS `t_blog` (
   `appreciation` bit(1) DEFAULT NULL COMMENT '文章状态位，1：开启，0：关闭',
   `share_statement` bit(1) DEFAULT NULL COMMENT '分享状态位，1：开启，0：关闭',
   `commentable` bit(1) DEFAULT NULL COMMENT '评论状态位，1：开启，0：关闭',
-  `published` bit(1) DEFAULT NULL COMMENT '发布状态位，1：开启，0：关闭',
+  `published` bit(1) DEFAULT NULL COMMENT '发布状态位，1：已发布，0：草稿',
   `recommend` bit(1) DEFAULT NULL COMMENT '推荐状态位，1：开启，0：关闭',
+  `is_deleted` bit(1) DEFAULT b'0' COMMENT '删除状态，1：已删除，0：正常',
+  `is_top` bit(1) DEFAULT b'0' COMMENT '置顶状态，1：置顶，0：普通',
+  `password` varchar(64) DEFAULT NULL COMMENT '文章密码，为空表示公开',
   `create_time` datetime DEFAULT NULL COMMENT '文章创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '文章修改时间',
+  `publish_time` datetime DEFAULT NULL COMMENT '文章发布时间',
   `type_id` int(11) DEFAULT NULL COMMENT '关联的分类id',
   `user_id` int(11) DEFAULT NULL COMMENT '关联的用户id',
   `tag_ids` varchar(100) DEFAULT NULL COMMENT '关联标签',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `KEY1` (`type_id`,`user_id`,`tag_ids`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  KEY `idx_type_user` (`type_id`,`user_id`) USING BTREE,
+  KEY `idx_published` (`published`) USING BTREE,
+  KEY `idx_is_deleted` (`is_deleted`) USING BTREE,
+  KEY `idx_create_time` (`create_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- 正在导出表  blog.t_blog 的数据：~11 rows (大约)
 /*!40000 ALTER TABLE `t_blog` DISABLE KEYS */;

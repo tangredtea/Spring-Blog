@@ -1,0 +1,218 @@
+/**
+ * 暗黑模式样式
+ * Dark Mode Styles
+ */
+
+/* 基础变量 */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #e0e0e0;
+    --link-color: #1890ff;
+    --link-hover: #40a9ff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* 暗黑模式变量 */
+body.dark-mode {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --text-primary: #eaeaea;
+    --text-secondary: #b8b8b8;
+    --text-muted: #888888;
+    --border-color: #2d3748;
+    --link-color: #63b3ed;
+    --link-hover: #90cdf4;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* 应用变量 */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 导航栏 */
+.navbar {
+    background-color: var(--bg-card) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--text-primary) !important;
+}
+
+.nav-link:hover {
+    color: var(--link-color) !important;
+}
+
+/* 卡片 */
+.card {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.card-title,
+.card-text {
+    color: var(--text-primary);
+}
+
+/* 文章列表 */
+.blog-item {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.blog-title a {
+    color: var(--text-primary);
+}
+
+.blog-title a:hover {
+    color: var(--link-color);
+}
+
+.blog-meta {
+    color: var(--text-muted);
+}
+
+/* 按钮 */
+.btn-outline-primary {
+    color: var(--link-color);
+    border-color: var(--link-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--link-color);
+    color: var(--bg-primary);
+}
+
+/* 表单 */
+.form-control {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--bg-secondary);
+    border-color: var(--link-color);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(99, 179, 237, 0.25);
+}
+
+/* 代码块 */
+pre, code {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* 分页 */
+.pagination .page-link {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--link-color);
+}
+
+.pagination .active .page-link {
+    background-color: var(--link-color);
+    border-color: var(--link-color);
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--link-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--shadow);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* 页脚 */
+.footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* 标签云 */
+.tag-cloud a {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.tag-cloud a:hover {
+    background-color: var(--link-color);
+    color: white;
+    border-color: var(--link-color);
+}
+
+/* 侧边栏 */
+.sidebar {
+    background-color: var(--bg-card);
+}
+
+.widget {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.widget-title {
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--link-color);
+}
+
+/* 评论区 */
+.comment-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comment-author {
+    color: var(--text-primary);
+}
+
+.comment-content {
+    color: var(--text-secondary);
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}

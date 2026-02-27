@@ -26,8 +26,12 @@ public class Blog implements Serializable {
     private Boolean appreciation;
     private Boolean shareStatement;
     private Boolean commentable;
-    private Boolean published;
-    private Boolean recommend;
+    private Boolean published;      // 是否发布（true=已发布，false=草稿）
+    private Boolean recommend;      // 是否推荐
+    private Boolean isDeleted;      // 是否删除（软删除）
+    private Boolean isTop;          // 是否置顶
+    private String password;        // 文章密码（为空表示公开）
+    private Date publishTime;       // 发布时间
     private Date createTime;
     private Date updateTime;
 
