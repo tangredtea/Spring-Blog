@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 @RequestMapping("/admin")

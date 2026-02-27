@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Component
 public class Refresh {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.annotation.Resource;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 public class FriendLinkControllerShow {

@@ -14,7 +14,7 @@ import java.util.*;
 
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public class MarkdownUtils {
 

@@ -10,7 +10,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 public class PropertiesUtil {
 

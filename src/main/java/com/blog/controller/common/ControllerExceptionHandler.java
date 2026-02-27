@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * 非状态码跳转到自定义的error页面
  * 状态码自动处理到相对应的状态码页面
  * 拦截所有controller抛出的异常，对异常进行统一的处理
- * @author Ryan
+ * @author tangredtea
  */
 @ControllerAdvice
 public class ControllerExceptionHandler {

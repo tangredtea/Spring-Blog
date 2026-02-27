@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Mapper
 @Repository

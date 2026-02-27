@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 public class AboutShowController {

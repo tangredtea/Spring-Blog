@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @author Ryan
+ * @author tangredtea
  */
 @Controller
 public class MessageController {

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 定义切面
  * 方便日志输出，对相对应的访问方法织入
- * @author Ryan
+ * @author tangredtea
  */
 @Aspect
 @Component

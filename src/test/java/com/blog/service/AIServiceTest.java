@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * AI 服务单元测试
- * @author Ryan
+ * @author tangredtea
  */
 @SpringBootTest
 @TestPropertySource(properties = {
