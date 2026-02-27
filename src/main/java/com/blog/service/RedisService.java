@@ -11,9 +11,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * redis操作
- *
- **/
+ * Redis 操作服务接口
+ * 提供常用的 Redis 数据操作功能
+ * 
+ * @author Ryan
+ * @since 2022-02-22
+ */
 @SuppressWarnings("all")
 public interface RedisService {
     /**

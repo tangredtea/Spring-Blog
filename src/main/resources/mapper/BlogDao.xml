@@ -184,11 +184,6 @@
         select avg(views) from t_blog;
     </select>
 
-    <!--文章访问自增（非原子操作，已废弃）-->
-    <update id="updateViews" >
-        update t_blog b set b.views = #{value} where b.id = #{id}
-    </update>
-    
     <!--原子性增加浏览量（线程安全）-->
     <update id="incrementViews">
         UPDATE t_blog SET views = views + 1 WHERE id = #{id}
