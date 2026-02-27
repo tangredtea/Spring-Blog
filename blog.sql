@@ -148,6 +148,57 @@ REPLACE INTO `t_user` (`id`, `username`, `password`, `nickname`, `email`, `avata
 	(1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '学编程的文若', '110@qq.com', 'https://t1.picb.cc/uploads/2021/03/23/ZboxAv.png');
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 
+-- ==========================================
+-- 系统配置表（新增）
+-- 用于存储网站设置、AI配置等
+-- ==========================================
+CREATE TABLE IF NOT EXISTS `t_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '配置ID',
+  `config_key` varchar(100) NOT NULL COMMENT '配置键名',
+  `config_value` text COMMENT '配置值',
+  `description` varchar(255) DEFAULT NULL COMMENT '配置说明',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `uk_config_key` (`config_key`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='系统配置表';
+
+-- 默认配置数据
+INSERT INTO `t_settings` (`config_key`, `config_value`, `description`) VALUES
+('site.name', 'SpringBoot AI Blog', '网站名称'),
+('site.description', '基于 Spring Boot + AI 的智能博客系统', '网站描述'),
+('site.keywords', 'Spring Boot,Blog,AI,Java', '网站关键词'),
+('site.logo', '', '网站Logo URL'),
+('site.favicon', '', '网站图标 URL'),
+('site.beian', '', '备案号'),
+('site.footer', '© 2024 SpringBoot AI Blog. All rights reserved.', '页脚信息'),
+('comment.enabled', 'true', '是否开启评论'),
+('comment.audit', 'false', '评论是否需要审核'),
+('ai.enabled', 'false', '是否启用AI功能'),
+('ai.auto_summary', 'false', '是否自动生成摘要'),
+('ai.auto_tags', 'false', '是否自动推荐标签');
+
+-- ==========================================
+-- 操作日志表（新增）
+-- 记录管理员操作，便于审计
+-- ==========================================
+CREATE TABLE IF NOT EXISTS `t_operation_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志ID',
+  `user_id` int(11) DEFAULT NULL COMMENT '操作用户ID',
+  `username` varchar(100) DEFAULT NULL COMMENT '操作用户名',
+  `operation` varchar(255) DEFAULT NULL COMMENT '操作描述',
+  `method` varchar(500) DEFAULT NULL COMMENT '请求方法',
+  `params` text COMMENT '请求参数',
+  `ip` varchar(50) DEFAULT NULL COMMENT 'IP地址',
+  `duration` int(11) DEFAULT NULL COMMENT '执行时长(ms)',
+  `status` tinyint(1) DEFAULT '1' COMMENT '状态：0失败 1成功',
+  `error_msg` text COMMENT '错误信息',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_user_id` (`user_id`) USING BTREE,
+  KEY `idx_create_time` (`create_time`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='操作日志表';
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
