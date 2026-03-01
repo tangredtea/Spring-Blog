@@ -7,6 +7,8 @@
 
 > A personal blog system built with Spring Boot + MyBatis, featuring AI-powered content assistance, Redis caching, and a clean admin dashboard.
 
+English | [简体中文](README_CN.md)
+
 ---
 
 ## Features
