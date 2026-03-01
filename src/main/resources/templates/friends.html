@@ -3,22 +3,16 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
-    <!-- Standard Meta 适配移动设备 -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
     <title th:text="'友情链接 | '+ #{web_Name}"></title>
     <meta name="keywords" th:content="#{web_Keywords}">
     <meta name="description" th:content="#{web_Description}">
-
-    <div th:insert="/fragments/header :: common-js"></div>
+    <div th:replace="/fragments/header :: common-js"></div>
     <link rel="stylesheet" href="../static/css/friend.css" th:href="@{/css/friend.css}">
-
-    <!--实现每日一言-->
     <script src="/js/bluebird.min.js"></script>
     <script src="/js/whatwg-fetch@2.0.3_fetch.js"></script>
-    <!--End-->
     <script>
         fetch('https://v1.hitokoto.cn/?max_length=21')
             .then(function (res){
@@ -32,35 +26,33 @@
                 console.error(err);
             })
     </script>
-    <div th:replace="/fragments/header :: common-js"></div>
-
 </head>
 
 <body>
 <div id="workingArea">
+    <div th:replace="/fragments/header :: menu">
+    </div>
     <div class="pageHeadContainer">
-        <img src="/images/background/background5.jpg"  th:src="#{friend_Background}" class="ui image backgroundImg">
+        <img src="/images/background/background5.jpg" th:src="#{friend_Background}" class="ui image backgroundImg">
         <div class="backgroundLayout">
             <div class="myInfoDiv" align="center">
-                <div class="word" >
+                <div class="word">
                     <br>
-                    <div id="hitokoto"style="font-size:30px;color:#ffffff;">:D 获取中...</div>
+                    <div id="hitokoto" style="font-size:30px;color:#ffffff;">:D 获取中...</div>
                 </div>
             </div>
         </div>
     </div>
-    <div th:replace="/fragments/header :: menu">
-    </div>
     <br>
     <br>
     <br>
-    <div  class="m-margin- animated fadeIn">
+    <div class="m-margin- animated fadeIn">
         <div class="ui m-opacity container">
             <div class="box-shadow-max">
                 <div class="ui segment m-padded-tb-large m-opacity">
                     <div class="ui container">
-                        <div class="" style="font-size: 35px;font-weight: bold" align="center">友人入帐须知</div>
-                        <ui class="list">
+                        <div style="font-size: 35px;font-weight: bold" align="center">友人入帐须知</div>
+                        <ul class="list">
                             <div class="m-margin-left-mini m-margin-tb-tiny" style="font-size: large;font-weight: bold">网站要求</div>
                             <br>
                             <li class="m-margin-left-big m-margin-tb-tiny" style="font-size: medium">无色情内容，无政治敏感内容，网站要能长期正常访问</li>
@@ -73,23 +65,20 @@
                             <li class="m-margin-left-big m-margin-tb-tiny" style="font-size: medium">博客标题：百度</li>
                             <li class="m-margin-left-big m-margin-tb-tiny" style="font-size: medium">博客地址：https://baidu.cn/</li>
                             <li class="m-margin-left-big m-margin-tb-tiny" style="font-size: medium">图片地址：https://t1.picb.cc/uploads/2021/03/23/ZboTFi.jpg</li>
-                        </ui>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!--友人帐区域-->
             <div class="box-shadow-max">
                 <div class="ui top attached teal m-opacity segment box-shadow-max">
                     <div class="ui m-padded-tb-large m-container-tiny">
                         <div class="ui stackable m-container-mini m-opacity grid">
-
-                            <!--友人帐显示区域-->
                             <div class="m-margin-tb-tiny four wide column" th:each="friendlink : ${friendLinks}">
                                 <a href="#" class="class_outer" th:href="${friendlink.blogAddress}" target="_blank">
                                     <div align="center">
                                         <div class="friends-link">
-                                            <img src="/images/me.jpg" th:src="${friendlink.pictureAddress}"  alt="" class="friends-link-image">
+                                            <img src="/images/me.jpg" th:src="${friendlink.pictureAddress}" alt="" class="friends-link-image">
                                             <div class="m-margin-top">
                                                 <h4 class="m-font-size-text-friends m-margin-tb-tiny" th:text="${friendlink.blogName}">文若君</h4>
                                             </div>
@@ -97,23 +86,17 @@
                                     </div>
                                 </a>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <button id="toTop" class="circular ui icon button" style="display: none;">
         <i class="ui caret up icon"></i>
     </button>
-
-    <div th:replace="/fragments/footer :: footer-content"></div>
 </div>
-
-
-
+<div th:replace="/fragments/footer :: footer-content"></div>
 
 </body>
 </html>

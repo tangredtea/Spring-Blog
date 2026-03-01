@@ -20,11 +20,6 @@ public class MessageServiceImpl implements MessageService {
     private MessageDao messageDao;
 
     /**
-     * 存放迭代找出的所有子代的集合
-     */
-    private List<Message> tempReplies = new ArrayList<>();
-
-    /**
      * 首页推荐评论
      * @return 留言列表
      */
@@ -46,9 +41,9 @@ public class MessageServiceImpl implements MessageService {
             String parentNickname1 = message.getNickname();
             List<Message> childMessages = messageDao.findByParentIdNotNull(id);
             //查询出子留言
-            combineChildren(childMessages, parentNickname1);
+            List<Message> tempReplies = new ArrayList<>();
+            combineChildren(tempReplies, childMessages, parentNickname1);
             message.setReplyMessages(tempReplies);
-            tempReplies = new ArrayList<>();
         }
         return messages;
     }
@@ -56,40 +51,37 @@ public class MessageServiceImpl implements MessageService {
 
     /**
      * 查询子留言
+     * @param tempReplies 存放子留言的集合
      * @param childMessages 子留言
      * @param parentNickname1 父留言名称
      */
-    private void combineChildren(List<Message> childMessages, String parentNickname1) {
-        //判断是否有一级子回复
-        if(childMessages.size() > 0){
-            //循环找出子留言的id
+    private void combineChildren(List<Message> tempReplies, List<Message> childMessages, String parentNickname1) {
+        if(!childMessages.isEmpty()){
             for(Message childMessage : childMessages){
                 String parentNickname = childMessage.getNickname();
                 childMessage.setParentNickname(parentNickname1);
                 tempReplies.add(childMessage);
                 Long childId = childMessage.getId();
-                //查询二级以及所有子集回复
-                recursively(childId, parentNickname);
+                recursively(tempReplies, childId, parentNickname);
             }
         }
     }
 
     /**
      * 循环迭代找出子集回复
+     * @param tempReplies 存放子留言的集合
      * @param childId 子集id
      * @param parentNickname1 父名称
      */
-    private void recursively(Long childId, String parentNickname1) {
-        //根据子一级留言的id找到子二级留言
+    private void recursively(List<Message> tempReplies, Long childId, String parentNickname1) {
         List<Message> replayMessages = messageDao.findByReplayId(childId);
-        if(replayMessages.size() > 0){
+        if(!replayMessages.isEmpty()){
             for(Message replayMessage : replayMessages){
                 String parentNickname = replayMessage.getNickname();
                 replayMessage.setParentNickname(parentNickname1);
                 Long replayId = replayMessage.getId();
                 tempReplies.add(replayMessage);
-                //循环迭代找出子集回复
-                recursively(replayId,parentNickname);
+                recursively(tempReplies, replayId, parentNickname);
             }
         }
     }
@@ -112,5 +104,10 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void deleteMessage(Long id) {
         messageDao.deleteMessage(id);
+    }
+
+    @Override
+    public int countMessage() {
+        return messageDao.getCount();
     }
 }

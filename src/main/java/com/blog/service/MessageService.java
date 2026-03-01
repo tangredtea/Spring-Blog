@@ -34,4 +34,10 @@ public interface MessageService {
      */
     void deleteMessage(Long id);
 
+    /**
+     * 得到留言数量
+     * @return 数量
+     */
+    int countMessage();
+
 }

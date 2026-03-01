@@ -34,6 +34,12 @@ public interface BlogDao {
     List<Blog> getAllBlog();
 
     /**
+     * 得到所有已发布博客
+     * @return 博客列表
+     */
+    List<Blog> getAllPublishedBlogs();
+
+    /**
      * 原子性增加浏览量（线程安全）
      * @param id 博客id
      * @return 修改状态
@@ -106,6 +112,21 @@ public interface BlogDao {
      * @return 状态值
      */
     int saveBlogAndTag(BlogAndTag blogAndTag);
+
+    /**
+     * 删除博客标签关联
+     * @param blogId 博文id
+     * @return 状态值
+     */
+    int deleteBlogAndTagByBlogId(@Param("blogId") Long blogId);
+
+    /**
+     * 批量增加浏览量
+     * @param id 博客id
+     * @param increment 增量
+     * @return 修改状态
+     */
+    int addViews(@Param("id") Long id, @Param("increment") int increment);
 
     /**
      * 更新博客

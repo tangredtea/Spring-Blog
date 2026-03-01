@@ -21,7 +21,15 @@ public class AIController {
 
     @Resource
     private AIService aiService;
-    
+
+    /**
+     * AI 助手页面
+     */
+    @GetMapping("/assistant")
+    public String assistant() {
+        return "admin/ai-assistant";
+    }
+
     /**
      * 生成文章摘要
      */

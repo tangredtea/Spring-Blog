@@ -58,4 +58,10 @@ public interface UserService {
      * @return 数量
      */
     int getUserInfoByUsername(String name);
+
+    /**
+     * 得到用户数量
+     * @return 数量
+     */
+    int countUser();
 }

@@ -47,4 +47,9 @@ public class FriendLinkServiceImpl implements FriendLinkService {
         friendLinkDao.deleteFriendLink(id);
     }
 
+    @Override
+    public int countFriendLink() {
+        return friendLinkDao.getCount();
+    }
+
 }

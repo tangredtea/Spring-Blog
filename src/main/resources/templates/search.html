@@ -11,8 +11,6 @@
     <meta name="keywords" th:content="#{web_Keywords}">
     <meta name="description" th:content="#{web_Description}">
     <div th:replace="/fragments/header :: common-js"></div>
-
-
 </head>
 
 <body>
@@ -37,86 +35,55 @@
             </div>
         </div>
     </div>
-    <div  class="m-container-small m-padded-tb-big animated fadeIn">
-        <div class="ui container">
+    <div class="search-results-wrap">
+        <div class="search-results-container">
             <!--header-->
-            <div class="ui top attached segment">
-                <div class="ui middle aligned two column grid">
-                    <div class="column">
-                        <h3 class="ui teal header">搜索结果</h3>
-                    </div>
-                    <div class="right aligned column">
-                        共<h2 class="ui orange header m-inline-block m-text-thin" th:text="${pageInfo.total}">14</h2>个
+            <div class="search-results-header">
+                <h3 class="search-results-title">搜索结果</h3>
+                <span class="search-results-count">共 <strong th:text="${pageInfo.total}">0</strong> 篇文章</span>
+            </div>
+
+            <!-- 无结果提示 -->
+            <div class="search-empty" th:if="${pageInfo.total == 0}">
+                <i class="search icon" style="font-size:3em;color:#ccc;"></i>
+                <p>没有找到相关文章，换个关键词试试吧</p>
+            </div>
+
+            <!-- 文章列表 -->
+            <div class="search-result-item" th:each="blog : ${pageInfo.list}">
+                <div class="search-result-content">
+                    <h3><a th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">文章标题</a></h3>
+                    <p class="search-result-desc" th:text="${blog.description}">文章描述</p>
+                    <div class="search-result-meta">
+                        <img th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                        <span th:text="${blog.user.nickname}">作者</span>
+                        <span class="search-result-dot"></span>
+                        <span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">日期</span>
+                        <span class="search-result-dot"></span>
+                        <i class="eye icon"></i><span th:text="${blog.views}">0</span>
+                        <span class="search-result-tag">
+                            <a th:text="${blog.type.name}" class="ui teal basic label m-padded-tiny m-text-thin">分类</a>
+                        </span>
                     </div>
                 </div>
+                <a class="search-result-img" th:href="@{/blog/{id}(id=${blog.id})}">
+                    <img th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
+                </a>
             </div>
 
-            <div class="ui top attached teal segment">
-                <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${pageInfo.list}">
-                    <div class="ui middle aligned mobile reversed stackable grid">
-                        <div class="eleven wide column">
-                            <h3 class="ui header" ><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">你真的理解什么是财富自由吗?</a></h3>
-                            <p class="m-text" th:text="${blog.description}">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是大家都那么做而已…...</p>
-                            <div class="ui grid">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://unsplash.it/100/100?image=1005" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
-                                            <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}" >朱一鸣</a></div>
-                                        </div>
-                                        <div class="item">
-                                            <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime, 'yyyy-MM-dd')}">2020-3-02</span>
-                                        </div>
-                                        <div class="item">
-                                            <i class="eye icon"></i> <span th:text="${blog.views}">2342</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" th:text="${blog.type.name}">认知升级</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="five wide column">
-                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                                <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}"  alt="" class="ui rounded image">
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
+            <!--分页-->
+            <div class="search-pagination" th:if="${pageInfo.total > 0}">
+                <a class="search-page-btn" th:href="${pageInfo.hasPreviousPage} ? @{/search(query=${query},pageNum=${pageInfo.prePage})} : @{/search(query=${query},pageNum=1)}">&laquo; 上一页</a>
+                <span class="search-page-info">第 <span th:text="${pageInfo.pageNum}">1</span> / <span th:text="${pageInfo.pages}">1</span> 页</span>
+                <a class="search-page-btn" th:href="${pageInfo.hasNextPage} ? @{/search(query=${query},pageNum=${pageInfo.nextPage})} : @{/search(query=${query},pageNum=${pageInfo.pages})}">下一页 &raquo;</a>
             </div>
-
-            <!--footer-->
-            <div class="ui bottom attached segment" >
-                <div class="ui middle aligned two column grid">
-                    <div class="column">
-                        <div class="item"><a class="ui mini purple basic button" th:href="@{/search(query=${query},pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a></div>
-                    </div>
-                    <div class="right aligned column">
-                        <div class="item"><a class="ui mini purple basic button" th:href="@{/search(query=${query},pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ui segment m-inline-block">
-                <p >当前第<span th:text="${pageInfo.pageNum}"></span>页，总<span th:text="${pageInfo.pages}"></span>页，共<span th:text="${pageInfo.total}"></span>条记录</p>
-            </div>
-
         </div>
     </div>
     <button id="toTop" class="circular ui icon button" style="display: none;">
         <i class="ui caret up icon"></i>
     </button>
-    <!--时间轴内容-->
 </div>
-<!--中间内容-->
 <div th:replace="/fragments/footer :: footer-content"></div>
-
-
-
 
 </body>
 </html>

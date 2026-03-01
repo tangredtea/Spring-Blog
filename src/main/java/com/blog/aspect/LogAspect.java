@@ -24,7 +24,7 @@ public class LogAspect {
     /**
      * 定义切入点
      */
-    @Pointcut("execution(* com.blog.controller.*.*.*(..))")
+    @Pointcut("execution(* com.blog.controller..*.*(..))")
     public void log(){}
 
     /**

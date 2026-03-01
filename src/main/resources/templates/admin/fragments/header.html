@@ -14,11 +14,15 @@
         <!-- PAGE TITLE HERE -->
         <title th:text="#{web_Name} + ' | 博客后台管理系统'">博客后台管理系统</title>
         <!-- FAVICONS ICON -->
-        <link rel="shortcut icon" type="image/png" th:href="#{web_Ico}" />
+        <link rel="icon" type="image/x-icon" th:href="#{web_Ico}" />
         <link href="/backend/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
         <link href="/backend/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
         <!-- Style css -->
         <link href="/backend/css/style.css" rel="stylesheet">
 </header>
+<div id="preloader" th:fragment="preloader">
+    <div style="width:40px;height:40px;border:4px solid #e0e0e0;border-top-color:#2258BF;border-radius:50%;animation:admin-spin .7s linear infinite"></div>
+    <style>@keyframes admin-spin{to{transform:rotate(360deg)}}</style>
+</div>
 </body>
 </html>

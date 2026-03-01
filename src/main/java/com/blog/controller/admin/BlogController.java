@@ -132,7 +132,7 @@ public class BlogController {
         return "redirect:/admin/blogs";
     }
 
-    @GetMapping("/blogs/{id}/delete")
+    @PostMapping("/blogs/{id}/delete")
     public String deleteBlogs(@PathVariable Long id, RedirectAttributes attributes){
         blogService.deleteBlog(id);
         deleteCache(id);
@@ -141,17 +141,17 @@ public class BlogController {
     }
 
     public void updateCache(Blog blog){
-        if (redisService.hHasKey(RedisKey.ARTCILE, String.valueOf(blog.getId()))){
-            redisService.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
+        if (redisService.hHasKey(RedisKey.ARTICLE, String.valueOf(blog.getId()))){
+            redisService.hSet(RedisKey.ARTICLE, String.valueOf(blog.getId()), blog);
         }
     }
 
     public void deleteCache(Long id){
-        if (redisService.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
-            redisService.hDel(RedisKey.ARTCILE, String.valueOf(id));
+        if (redisService.hHasKey(RedisKey.ARTICLE, String.valueOf(id))){
+            redisService.hDel(RedisKey.ARTICLE, String.valueOf(id));
         }
-        if (redisService.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
-            redisService.hDel(RedisKey.ARTCILEVIEWS, String.valueOf(id));
+        if (redisService.hHasKey(RedisKey.ARTICLE_VIEWS, String.valueOf(id))){
+            redisService.hDel(RedisKey.ARTICLE_VIEWS, String.valueOf(id));
         }
         redisService.set(RedisKey.INDEXBLOG, blogService.getIndexBlog());
         redisService.set(RedisKey.RECOMMENDBLOG, blogService.getAllRecommendBlog());

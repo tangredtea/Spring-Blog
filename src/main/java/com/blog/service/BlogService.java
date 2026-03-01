@@ -108,4 +108,16 @@ public interface BlogService {
      * @return 博文列表
      */
     List<Blog> getHotBlog();
+
+    /**
+     * 得到总浏览量
+     * @return 总浏览量
+     */
+    int getTotalViews();
+
+    /**
+     * 得到平均浏览量
+     * @return 平均浏览量
+     */
+    int getAvgViews();
 }

@@ -10,7 +10,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:root}
+    password: ${DB_PASSWORD:qq897261}
     hikari:
       auto-commit: true
       minimum-idle: 2
@@ -84,6 +84,6 @@ pagehelper:
 # AI 配置（可选）
 ai:
   api:
-    key: ${AI_API_KEY:}  # 从环境变量读取，如 OpenAI API Key
+    key: ${AI_API_KEY:}
     url: ${AI_API_URL:https://api.openai.com/v1/chat/completions}
   model: ${AI_MODEL:gpt-3.5-turbo}

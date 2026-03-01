@@ -90,7 +90,7 @@
     </div>
 
 
-    <div class="recommendation">
+    <div class="recommendation page-fade-in">
         <div class="ui vertical stackable grid container">
             <div class="ui row">
                 <div class="eight wide column">
@@ -116,8 +116,19 @@
                     <img class="ui rounded huge image" th:src="#{web_GeYan}">
                 </div>
             </div>
+            <!-- AI 智能体验提示 -->
+            <div class="row" style="padding: 1em 0;">
+                <div class="sixteen wide column">
+                    <div class="ai-experience-banner">
+                        <div class="ai-banner-text">
+                            <strong>&#10024; AI 智能体验</strong><br>
+                            搜索框输入关键词获得智能建议，文章详情页底部查看 AI 推荐文章，还可与 AI 助手实时对话
+                        </div>
+                        <a href="/search" class="ai-banner-btn">试试搜索 &rarr;</a>
+                    </div>
+                </div>
+            </div>
 <!--热点文章-->
-
             <div class="row titleDiv">
                 <a href="/category" class="ui header title"><i class="red fire icon"></i>热点文章</a>
             </div>
@@ -128,7 +139,7 @@
                             <div class="ui fluid raised link card">
 
                                 <div class="blurring dimmable image" >
-                                    <img src="" th:src="${hotArticle.firstPicture}"  >
+                                    <img src="" th:src="${hotArticle.firstPicture}" loading="lazy"  >
                                 </div>
                             </div>
                         </div>
@@ -154,7 +165,7 @@
                         </div>
                         <div class="extra content">
                             <div class="right floated author">
-                                <img class="ui avatar image" src="https://www.xiaoxuya.top/img/user/190.jpg" th:text="${message.nickname}">
+                                <img class="ui avatar image" src="/image/me.jpg" th:src="${message.avatar}" th:alt="${message.nickname}">
                             </div>
                         </div>
                     </a>
@@ -162,13 +173,17 @@
             </div>
 <!--推荐文章-->
             <div class="row recommendTitleDiv">
-                <div class="recommendArticlesTitle">推荐文章</div>
+                <div class="ai-recommend-title">
+                    <span style="font-size: 1.2em;">&#10024;</span>
+                    <div class="recommendArticlesTitle">AI 推荐文章</div>
+                    <span class="ai-badge">AI</span>
+                </div>
             </div>
             <div class="three column row recommendArticles">
                 <div class="column recommendArticle" th:each="recommendBlog: ${recommendBlogs}">
                     <div class="ui fluid raised link card">
                         <a class="image" th:href="@{/blog/{id}(id=${recommendBlog.id})}">
-                            <img src="" th:src="${recommendBlog.firstPicture}">
+                            <img src="" th:src="${recommendBlog.firstPicture}" loading="lazy">
                         </a>
                         <div class="ui circular articleInfo">
                             <div class="articleTitle" th:text="${recommendBlog.title}">推荐文章标题</div>
@@ -182,18 +197,18 @@
     </div>
 
 <!--最新文章-->
-    <div class="newArticles">
+    <div class="newArticles page-fade-in">
         <div class="ui vertical stackable grid container">
             <div class="row titleDiv">
                 <a href="/types" class="ui header title"><i class="green leaf icon"></i>最新文章</a>
             </div>
             <div class="row ui raised link card segment article" th:each="blog : ${pageInfo.list}">
                 <div class="five wide column">
-                    <img class=" ui rounded image" src="" th:src="${blog.firstPicture}">
+                    <img class=" ui rounded image" src="" th:src="${blog.firstPicture}" loading="lazy">
                 </div>
                 <div class="eleven wide column">
                     <div class="content">
-                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  class="ui teal right ribbon label" th:text="${blog.flag}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  class="ui teal right ribbon label" th:text="${blog.flag} ? '原创' : '转载'">
                         </a>
                         <div class="articleHeader"><a th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}"></a>
                         </div>
@@ -218,10 +233,10 @@
             <div align="center" class="pagination paginationDiv">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
-                        <div class="item"><a class="ui mini blue basic button" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}">上一页</a></div>
+                        <div class="item"><a class="ui mini blue basic button" th:href="${pageInfo.hasPreviousPage} ? @{/(pageNum=${pageInfo.prePage})} : @{/(pageNum=1)}">上一页</a></div>
                     </div>
                     <div class="right aligned column">
-                        <div class="item"><a class="ui mini blue basic button" th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}">下一页</a></div>
+                        <div class="item"><a class="ui mini blue basic button" th:href="${pageInfo.hasNextPage} ? @{/(pageNum=${pageInfo.nextPage})} : @{/(pageNum=${pageInfo.pages})}">下一页</a></div>
                     </div>
                 </div>
             </div>
@@ -246,8 +261,8 @@
         </div>
     </div>
     </div>
-    <div th:replace="/fragments/footer :: footer-content"></div>
 </div>
+<div th:replace="/fragments/footer :: footer-content"></div>
 
 
 </body>

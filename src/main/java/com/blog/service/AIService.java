@@ -84,7 +84,27 @@ public class AIService {
             );
             
             String response = callAI(prompt);
-            return response.split("，|,\\s*");
+            // Clean up: remove markdown formatting, headers, etc.
+            response = response.replaceAll("\\*\\*[^*]*\\*\\*", "").trim();
+            // Remove leading/trailing newlines and pick the last non-empty line (tags line)
+            String[] lines = response.split("\\n");
+            String tagLine = response;
+            for (int i = lines.length - 1; i >= 0; i--) {
+                if (!lines[i].trim().isEmpty()) {
+                    tagLine = lines[i].trim();
+                    break;
+                }
+            }
+            String[] tags = tagLine.split("[，,]\\s*");
+            // Filter out empty tags
+            java.util.List<String> result = new java.util.ArrayList<>();
+            for (String tag : tags) {
+                String t = tag.trim();
+                if (!t.isEmpty()) {
+                    result.add(t);
+                }
+            }
+            return result.toArray(new String[0]);
         } catch (Exception e) {
             log.error("AI tag suggestion failed", e);
             return new String[0];
@@ -135,14 +155,30 @@ public class AIService {
             );
             
             String response = callAI(prompt);
+            // Try to extract score from response - look for "分数|建议" format first
             String[] parts = response.split("\\|", 2);
-            
+
             int score = 70;
+            String suggestion = "继续加油！";
+
+            // Try to extract a number from the first part
             try {
-                score = Integer.parseInt(parts[0].replaceAll("\\D", ""));
+                String numStr = parts[0].replaceAll("[^0-9]", "");
+                if (!numStr.isEmpty()) {
+                    int parsed = Integer.parseInt(numStr.substring(0, Math.min(numStr.length(), 3)));
+                    if (parsed >= 0 && parsed <= 100) {
+                        score = parsed;
+                    }
+                }
             } catch (NumberFormatException ignored) {}
-            
-            String suggestion = parts.length > 1 ? parts[1].trim() : "继续加油！";
+
+            if (parts.length > 1) {
+                suggestion = parts[1].replaceAll("\\*\\*[^*]*\\*\\*", "").trim();
+            } else {
+                // No pipe found - try to use the whole response as suggestion
+                suggestion = response.replaceAll("\\*\\*[^*]*\\*\\*", "").replaceAll("\\d+\\s*分?", "").trim();
+                if (suggestion.isEmpty()) suggestion = "继续加油！";
+            }
             
             return new ArticleScore(score, suggestion);
         } catch (Exception e) {
@@ -182,7 +218,10 @@ public class AIService {
                 Map<String, Object> choice = choices.get(0);
                 @SuppressWarnings("unchecked")
                 Map<String, String> message_ = (Map<String, String>) choice.get("message");
-                return message_.get("content").trim();
+                String content = message_.get("content").trim();
+                // Strip <think>...</think> blocks from reasoning models
+                content = content.replaceAll("(?s)<think>.*?</think>", "").trim();
+                return content;
             }
         }
         
@@ -194,7 +233,7 @@ public class AIService {
      */
     private String generateLocalSummary(String content) {
         // 去除 HTML 标签
-        String text = content.replaceAll("<[^>]+", "");
+        String text = content.replaceAll("<[^>]+>", "");
         // 取前 150 字符
         if (text.length() > 150) {
             return text.substring(0, 150) + "...";
@@ -202,6 +241,41 @@ public class AIService {
         return text;
     }
     
+    /**
+     * 文章问答
+     * @param articleTitle 文章标题
+     * @param articleContent 文章内容
+     * @param question 用户问题
+     * @return AI 回答
+     */
+    public String chatAboutArticle(String articleTitle, String articleContent, String question) {
+        if (!aiEnabled) {
+            return "AI 服务未启用，暂时无法回答问题。请联系博主配置 AI 服务。";
+        }
+
+        try {
+            // Truncate article content to fit in context
+            String truncatedContent = articleContent.replaceAll("<[^>]+>", "");
+            if (truncatedContent.length() > 2000) {
+                truncatedContent = truncatedContent.substring(0, 2000) + "...";
+            }
+
+            String prompt = String.format(
+                "你是一个博客文章的 AI 助手。根据以下文章内容回答用户的问题。\n" +
+                "回答要求：简洁准确，控制在 200 字以内，使用中文。如果问题与文章无关，礼貌地引导用户提出与文章相关的问题。\n\n" +
+                "文章标题：%s\n" +
+                "文章内容：%s\n\n" +
+                "用户问题：%s",
+                articleTitle, truncatedContent, question
+            );
+
+            return callAI(prompt);
+        } catch (Exception e) {
+            log.error("AI chat failed", e);
+            return "抱歉，AI 暂时无法回答您的问题，请稍后再试。";
+        }
+    }
+
     /**
      * 检查 AI 是否可用
      */

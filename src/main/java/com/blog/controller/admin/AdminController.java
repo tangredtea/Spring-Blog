@@ -1,8 +1,7 @@
 package com.blog.controller.admin;
 
-import com.blog.dao.*;
 import com.blog.entity.User;
-import com.blog.service.UserService;
+import com.blog.service.*;
 import com.blog.util.PasswordUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,37 +23,41 @@ import java.util.Objects;
 public class AdminController {
 
     @Resource
-    private BlogDao blogDao;
+    private BlogService blogService;
 
     @Resource
-    private FriendLinkDao friendLinkDao;
+    private FriendLinkService friendLinkService;
 
     @Resource
-    private MessageDao messageDao;
+    private MessageService messageService;
 
     @Resource
-    private TagDao tagDao;
+    private TagService tagService;
 
     @Resource
-    private TypeDao typeDao;
-
-    @Resource
-    private UserDao userDao;
+    private TypeService typeService;
 
     @Resource
     private UserService userService;
 
+    @Resource
+    private AIService aiService;
+
     @GetMapping({"","/","/index","/login"})
     public String loginPage(HttpSession session, Model model) {
         if (null != session && session.getAttribute("user") != null){
-            model.addAttribute("article_nums", blogDao.getCount());
-            model.addAttribute("article_views", blogDao.getViews());
-            model.addAttribute("avg_views", blogDao.getAvgViews());
-            model.addAttribute("friendLink_nums", friendLinkDao.getCount());
-            model.addAttribute("message_nums", messageDao.getCount());
-            model.addAttribute("tag_nums", tagDao.getCount());
-            model.addAttribute("type_nums", typeDao.getCount());
-            model.addAttribute("user_nums", userDao.getCount());
+            model.addAttribute("article_nums", blogService.countBlog());
+            model.addAttribute("article_views", blogService.getTotalViews());
+            model.addAttribute("avg_views", blogService.getAvgViews());
+            model.addAttribute("friendLink_nums", friendLinkService.countFriendLink());
+            model.addAttribute("message_nums", messageService.countMessage());
+            model.addAttribute("tag_nums", tagService.countTag());
+            model.addAttribute("type_nums", typeService.countType());
+            model.addAttribute("user_nums", userService.countUser());
+            model.addAttribute("ai_enabled", aiService.isEnabled());
+            // 最近发布的文章（取前5条）
+            PageHelper.startPage(1, 5);
+            model.addAttribute("recentBlogs", blogService.getAllBlog());
             return "admin/index";
         }
         return "admin/login";
@@ -67,6 +70,8 @@ public class AdminController {
                         RedirectAttributes attributes){
         User user = userService.checkUser(username, password);
         if(user != null){
+            // 不在 session 中存储密码
+            user.setPassword(null);
             session.setAttribute("user", user);
             return "redirect:/admin/index";
         }else {
@@ -92,7 +97,6 @@ public class AdminController {
 
     @GetMapping("/users/input")
     public String toAddUser(Model model){
-        //返回一个tag对象给前端th:object
         model.addAttribute("user", new User());
         return "admin/users-input";
     }
@@ -104,7 +108,7 @@ public class AdminController {
     }
 
     @PostMapping("/users")
-    public String addTag(User user, RedirectAttributes attributes){
+    public String addUser(User user, RedirectAttributes attributes){
         int nums = userService.getUserInfoByUsername(user.getUsername());
         if(nums != 0){
             attributes.addFlashAttribute("msg", "不能添加已存在的用户名");
@@ -112,12 +116,12 @@ public class AdminController {
         }else {
             attributes.addFlashAttribute("msg", "添加成功");
         }
-        user.setPassword(MD5Utils.code(user.getPassword()));
+        user.setPassword(PasswordUtils.encode(user.getPassword()));
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
 
-    @GetMapping("/users/{id}/delete")
+    @PostMapping("/users/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes attributes){
         userService.deleteUser(id);
         attributes.addFlashAttribute("msg", "删除成功");
@@ -125,7 +129,7 @@ public class AdminController {
     }
 
     @PostMapping("/users/{id}")
-    public String editTag(@PathVariable Integer id, User user, RedirectAttributes attributes){
+    public String editUser(@PathVariable Integer id, User user, RedirectAttributes attributes){
         User beforeUser = userService.getUserInfoById(id);
         if (!Objects.equals(beforeUser.getUsername(), user.getUsername())){
             int nums = userService.getUserInfoByUsername(user.getUsername());
@@ -136,10 +140,12 @@ public class AdminController {
                 attributes.addFlashAttribute("msg", "修改成功");
             }
         }
-        if (user.getPassword() == null){
+        // 如果密码为空或未修改，保留原密码；否则加密新密码
+        if (user.getPassword() == null || user.getPassword().trim().isEmpty()){
             user.setPassword(beforeUser.getPassword());
+        } else {
+            user.setPassword(PasswordUtils.encode(user.getPassword()));
         }
-        user.setPassword(MD5Utils.code(user.getPassword()));
         userService.updateUser(user);
         return "redirect:/admin/users";
     }

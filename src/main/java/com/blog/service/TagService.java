@@ -61,4 +61,10 @@ public interface TagService {
      * @return 状态值
      */
     int deleteTag(Integer id);
+
+    /**
+     * 得到标签数量
+     * @return 数量
+     */
+    int countTag();
 }

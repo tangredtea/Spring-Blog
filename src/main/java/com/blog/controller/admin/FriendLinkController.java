@@ -113,7 +113,7 @@ public class FriendLinkController {
      * @param attributes 属性
      * @return 友链页
      */
-    @GetMapping("/friendLinks/{id}/delete")
+    @PostMapping("/friendLinks/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes attributes){
         friendLinkService.deleteFriendLink(id);
         attributes.addFlashAttribute("msg", "删除成功");

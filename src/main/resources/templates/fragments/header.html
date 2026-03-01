@@ -7,6 +7,15 @@
         <script src="/js/jquery.min.js" ></script>
         <script src="/js/foreBlog.js" type="text/javascript" ></script>
         <script src="/js/category.js"></script>
+        <script>
+            /* 在页面渲染前注入预加载遮罩 */
+            document.addEventListener('DOMContentLoaded', function(){
+                var p = document.createElement('div');
+                p.id = 'page-preloader';
+                p.innerHTML = '<div class="spinner"></div>';
+                document.body.insertBefore(p, document.body.firstChild);
+            });
+        </script>
         <link rel="stylesheet" href="/css/semantic.min.css">
         <link rel="stylesheet" href="/css/typo.css">
         <link rel="stylesheet" type="text/css" href="/css/foreBlog.css"/>
@@ -28,10 +37,12 @@
             <a href="/friends" class="item mobileHidden navItem"><i class="ui linkify icon"></i>友链</a>
             <div id="searchItem " class=" right menu item mobileHidden navItem">
                 <div class="ui icon search input"   >
-                    <form name="search" action="#" method="get" th:action="@{/search}" target="_blank"  >
-                        <div class="ui icon search input">
-                            <input class="prompt"  type="text"  name="query" placeholder="Search...." th:value="${query}">
+                    <form name="search" action="#" method="get" th:action="@{/search}"  >
+                        <div class="ui icon search input" style="position: relative;">
+                            <input class="prompt" id="searchInput" type="text" name="query" placeholder="AI 智能搜索..." th:value="${query}" autocomplete="off">
                             <i onclick="document.forms['search'].submit()" style="color: #d2691e" class="search link icon"></i>
+                            <div id="searchSuggestions" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:999; background:#fff; border:1px solid #ddd; border-radius:0 0 4px 4px; box-shadow:0 2px 8px rgba(0,0,0,0.15); max-height:200px; overflow-y:auto;">
+                            </div>
                         </div>
                     </form>
                 </div>

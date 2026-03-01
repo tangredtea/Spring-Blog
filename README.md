@@ -1,176 +1,174 @@
-# SpringBoot AI Blog 🤖✨
+# SpringBoot AI Blog
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/tangredtea/Spring-Blog?style=social)](https://github.com/tangredtea/Spring-Blog/stargazers)
 [![Issues](https://img.shields.io/github/issues/tangredtea/Spring-Blog)](https://github.com/tangredtea/Spring-Blog/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-> 🚀 基于 Spring Boot + MyBatis 的**智能化**个人博客系统
-> 
-> 集成 AI 助手、SEO 优化、暗黑模式等现代特性
->
-> 适合作为 **期末项目 / 毕业设计 / 企业级博客**
+> A personal blog system built with Spring Boot + MyBatis, featuring AI-powered content assistance, Redis caching, and a clean admin dashboard.
 
 ---
 
-## ✨ 核心特性
+## Features
 
-### 🤖 AI 智能功能（新）
-- **智能摘要生成** - AI 自动生成文章摘要
-- **标签推荐** - 根据内容智能推荐标签
-- **文章质量评分** - AI 评估并给出改进建议
-- **智能搜索** - 关键词提取和相关文章推荐
+### AI Integration
+- **Smart Summary** - Auto-generate article summaries via AI
+- **Tag Suggestions** - AI-recommended tags based on content
+- **Article Scoring** - Quality assessment with improvement suggestions
+- **Smart Search** - Keyword extraction and related article recommendations
 
-### 🔍 SEO/AEO 优化（新）
-- **站点地图** - 自动生成 `sitemap.xml`
-- **结构化数据** - Schema.org JSON-LD 标记
-- **Open Graph** - 社交媒体分享优化
-- **Twitter Card** - Twitter 分享卡片
-- **Meta 标签** - 自动优化标题、描述、关键词
+### Content Management
+- **Rich Editor** - Markdown editor with live preview
+- **Draft System** - Save unpublished articles as drafts
+- **Category & Tags** - Flexible content organization
+- **Friend Links** - Blogroll management
+- **Comment System** - Valine-based serverless comments
+- **Message Board** - Visitor guestbook
 
-### 🎨 用户体验（新）
-- **暗黑模式** - 一键切换，护眼舒适
-- **响应式设计** - 完美适配移动端
-- **主题记忆** - 记住用户偏好
+### Admin Dashboard
+- **Statistics Overview** - Article count, views, tags, categories at a glance
+- **AI Status Monitor** - Check AI service availability from dashboard
+- **Quick Actions** - One-click shortcuts for common operations
+- **Recent Articles** - Latest published posts table
 
-### 📝 文章管理增强
-- **草稿箱** - 保存未发布的文章
-- **置顶功能** - 重要文章置顶显示
-- **密码保护** - 私密文章访问控制
-- **回收站** - 误删文章可恢复
+### Performance
+- **Redis Caching** - Accelerated page loading
+- **Database Indexing** - Optimized query performance
+- **HikariCP** - High-performance connection pool
 
-### 💬 互动功能
-- **评论系统** - Valine 无后端评论
-- **留言板** - 访客留言互动
-- **友链管理** - 友情链接展示
-
-### ⚡ 性能优化
-- **Redis 缓存** - 加速页面加载
-- **数据库索引** - 优化查询性能
+### Security
+- BCrypt password encryption
+- SQL injection protection (MyBatis parameterized queries)
+- Login interceptor for admin routes
+- Input validation
 
 ---
 
-## 🛠️ 技术栈
+## Tech Stack
 
-| 层级 | 技术 |
-|------|------|
-| 框架 | Spring Boot 2.7.x |
+| Layer | Technology |
+|-------|-----------|
+| Framework | Spring Boot 2.7.x |
 | ORM | MyBatis |
-| 数据库 | MySQL 8.0 |
-| 缓存 | Redis |
-| 模板引擎 | Thymeleaf |
-| 分页 | PageHelper |
-| 密码加密 | BCrypt |
-| 连接池 | HikariCP |
+| Database | MySQL 8.0 |
+| Cache | Redis |
+| Template Engine | Thymeleaf |
+| Pagination | PageHelper |
+| Password Encryption | BCrypt |
+| Connection Pool | HikariCP |
 
 ---
 
-## 🚀 快速开始
+## Quick Start
 
-### 环境要求
-- JDK 1.8+
+### Prerequisites
+- JDK 8+
 - MySQL 5.7+
 - Redis 5.0+
 - Maven 3.6+
 
-### 安装步骤
+### Installation
 
-1. **克隆项目**
+1. **Clone the repository**
 ```bash
 git clone https://github.com/tangredtea/Spring-Blog.git
 cd Spring-Blog
 ```
 
-2. **创建数据库**
+2. **Initialize the database**
 ```bash
 mysql -u root -p < blog.sql
 ```
 
-3. **配置环境变量**（推荐）
+3. **Configure environment variables** (recommended)
 ```bash
 export DB_USERNAME=root
 export DB_PASSWORD=your_password
-export REDIS_PASSWORD=your_redis_password  # 如果有
-export AI_API_KEY=your_openai_api_key      # 可选，用于AI功能
+export REDIS_PASSWORD=your_redis_password  # if applicable
+export AI_API_KEY=your_openai_api_key      # optional, for AI features
 ```
 
-4. **运行项目**
+4. **Run the application**
 ```bash
 mvn spring-boot:run
 ```
 
-5. **访问应用**
-- 前台：http://localhost:8080
-- 后台：http://localhost:8080/admin
-- 默认账号：`admin` / `123456`
+5. **Access the application**
+- Frontend: http://localhost:8080
+- Admin panel: http://localhost:8080/admin
+- Default credentials: `admin` / `admin123`
 
-### Docker Compose 部署（推荐）
+### Docker Compose Deployment
 
 ```bash
-# 1. 复制配置
+# 1. Copy config
 cp .env.example .env
 
-# 2. 编辑配置
+# 2. Edit config
 vim .env
 
-# 3. 一键启动
+# 3. Start all services
 docker-compose up -d
 ```
 
 ---
 
-## 📁 项目结构
+## Project Structure
 
 ```
 Spring-Blog/
 ├── src/main/java/com/blog/
-│   ├── controller/      # 控制器层
-│   ├── service/         # 业务层
-│   ├── dao/             # 数据访问层
-│   ├── entity/          # 实体类
-│   ├── config/          # 配置类
-│   ├── util/            # 工具类
-│   └── exception/       # 异常处理
+│   ├── controller/      # Controllers (admin + frontend)
+│   ├── service/         # Business logic & AI services
+│   ├── dao/             # Data access layer
+│   ├── entity/          # Entity classes
+│   ├── config/          # Configuration (Redis, WebMvc, etc.)
+│   ├── interceptor/     # Login interceptor
+│   ├── aspect/          # AOP logging
+│   ├── scheduled/       # Scheduled tasks (cache refresh)
+│   └── util/            # Utilities (BCrypt, CommonResult)
 ├── src/main/resources/
-│   ├── mapper/          # MyBatis XML
-│   ├── templates/       # Thymeleaf 模板
-│   ├── static/          # 静态资源
-│   └── application*.yml # 配置文件
-├── src/test/            # 单元测试
-├── blog.sql             # 数据库脚本
-├── Dockerfile           # Docker 构建
+│   ├── mapper/          # MyBatis XML mappers
+│   ├── templates/       # Thymeleaf templates
+│   ├── static/          # Static resources (CSS/JS/images)
+│   └── application*.yml # Configuration files
+├── src/test/            # Unit tests
+├── blog.sql             # Database schema & seed data
+├── Dockerfile           # Docker build
 ├── docker-compose.yml   # Docker Compose
-└── .env.example         # 环境变量示例
+└── .env.example         # Environment variables template
 ```
 
 ---
 
-## 🔐 安全特性
+## AI Configuration
 
-- ✅ BCrypt 密码加密
-- ✅ SQL 注入防护
-- ✅ XSS 攻击防护
-- ✅ 输入参数校验
-- ✅ 全局异常处理
+AI features are optional. To enable them, set the following in `application-dev.yml` or via environment variables:
 
----
+```yaml
+ai:
+  api:
+    key: ${AI_API_KEY:}         # OpenAI API key
+    url: ${AI_API_URL:https://api.openai.com/v1/chat/completions}
+  model: ${AI_MODEL:gpt-3.5-turbo}
+```
 
-## 🤝 贡献指南
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
+When AI is not configured, the system gracefully falls back to default behavior (no errors).
 
 ---
 
-## 📄 许可证
+## Contributing
 
-[Apache License 2.0](LICENSE) © tangredtea
+Contributions are welcome! Feel free to open issues and pull requests.
+
+1. Fork the repository
+2. Create your branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给个 Star 支持一下！
+## License
+
+[Apache License 2.0](LICENSE) - tangredtea

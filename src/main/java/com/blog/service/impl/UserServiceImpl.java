@@ -24,7 +24,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkUser(String username, String password) {
-        return userDao.queryByUsernameAndPassword(username, MD5Utils.code(password));
+        User user = userDao.queryByUsername(username);
+        if (user != null && PasswordUtils.matches(password, user.getPassword())) {
+            return user;
+        }
+        return null;
     }
 
     @Override
@@ -55,6 +59,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int getUserInfoByUsername(String name) {
         return userDao.getUserInfoByUsername(name);
+    }
+
+    @Override
+    public int countUser() {
+        return userDao.getCount();
     }
 
 }

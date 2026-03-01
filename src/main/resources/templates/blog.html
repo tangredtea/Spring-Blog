@@ -39,77 +39,120 @@
     </div>
 
 
-    <div class="articleContent">
-        <div class="ui raised teal segment">
-            <div class="ui vertical stackable grid container">
-                <div class="row">
-                    <h4 class="ui header articleTitle" th:text="${blog.title}">article.articleTitle</h4>
+    <div class="blog-layout page-fade-in">
+        <!-- 主内容 -->
+        <div class="blog-main">
+            <div class="blog-card">
+                <h1 class="blog-title" th:text="${blog.title}">article.articleTitle</h1>
+                <div class="blog-meta">
+                    <span><i class="ui user circle icon"></i><span th:text="${blog.user.nickname}">作者</span></span>
+                    <span><i class="ui clock outline icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">日期</span></span>
+                    <span><i class="ui eye icon"></i><span th:text="${blog.views}">0</span></span>
+                    <a class="blog-flag" th:text="${blog.flag} ? '原创' : '转载'">原创</a>
                 </div>
-                <div class="row">
-                    <div class="aticleInfo">
-                        <span><i class="ui user circle icon"></i>作者: <span class="author" th:text="${blog.user.nickname}">article.author</span></span>
-                        <span><i class="ui clock outline icon"></i>发表时间: <span class="publishDate" th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">{article.createDate | dateFormatFilter}</span></span>
-                        <span><i class="ui eye icon"></i><span class="viewNumber" th:text="${blog.views}">article.viewNumber</span></span>
-                        <a class="ui blue button originalDesign" th:text="${blog.flag} ? '原创' : '转载'"> '原创': '转载'}}</a>
-                    </div>
+                <div class="ui divider"></div>
+                <div class="blog-body typo" id="blogContent" th:utext="${blog.content}">
                 </div>
-                <div class="row article">
-                    <div th:utext="${blog.content}" class="typo ui container" id="blogContent">
+                <div class="blog-tags">
+                    <i class="tags icon"></i>
+                    <a class="ui basic teal label" th:each="tag : ${blog.tags}" th:text="${tag.name}">标签</a>
+                </div>
+            </div>
 
-                    </div>
-                </div>
-                <!--标签-->
-                <div class="m-padded-lr-responsive">
-                    <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
-                </div>
-                <div class="row">
-                    <div class="operation">
-                        <div th:if="${blog.appreciation}">
-                            <div class="ui blue button" onclick="donateToggle()" data-tooltip="谢谢你的支持哦！" data-inverted=""><i  class="ui star outline icon"></i>赞赏</div>
-                            <div class="hide_box"></div>
-                            <div class="shang_box">
-                                <a class="shang_close" href="javascript:void(0)" onclick="donateToggle()" title="关闭"><img src="/images/close.jpg" alt="取消" /></a>
-                                <div class="shang_tit">
-                                    <p>感谢您的支持，我会继续努力的!</p>
-                                </div>
-                                <div class="shang_payimg">
-                                    <img src="/images/alipayimg.png" alt="扫码支持" title="扫一扫" />
-                                </div>
-                                <div class="pay_explain">扫码打赏，你说多少就多少</div>
-                                <div class="shang_payselect">
-                                    <div class="pay_item checked" data-id="alipay">
-                                        <span class="radiobox"></span>
-                                        <span class="pay_logo"><img src="/images/alipay.jpg" alt="支付宝" /></span>
-                                    </div>
-                                    <div class="pay_item" data-id="weipay">
-                                        <span class="radiobox"></span>
-                                        <span class="pay_logo"><img src="/images/wechat.jpg" alt="微信" /></span>
-                                    </div>
-                                </div>
-                                <div class="shang_info">
-                                    <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
-                                </div>
+            <!-- 赞赏 -->
+            <div class="blog-card" th:if="${blog.appreciation}" style="text-align:center;">
+                <div class="operation">
+                    <div class="ui blue button" onclick="donateToggle()" data-tooltip="谢谢你的支持哦！" data-inverted=""><i  class="ui star outline icon"></i>赞赏</div>
+                    <div class="hide_box"></div>
+                    <div class="shang_box">
+                        <a class="shang_close" href="javascript:void(0)" onclick="donateToggle()" title="关闭"><img src="/images/close.jpg" alt="取消" /></a>
+                        <div class="shang_tit"><p>感谢您的支持，我会继续努力的!</p></div>
+                        <div class="shang_payimg"><img src="/images/alipayimg.png" alt="扫码支持" title="扫一扫" /></div>
+                        <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                        <div class="shang_payselect">
+                            <div class="pay_item checked" data-id="alipay">
+                                <span class="radiobox"></span>
+                                <span class="pay_logo"><img src="/images/alipay.jpg" alt="支付宝" /></span>
+                            </div>
+                            <div class="pay_item" data-id="weipay">
+                                <span class="radiobox"></span>
+                                <span class="pay_logo"><img src="/images/wechat.jpg" alt="微信" /></span>
                             </div>
                         </div>
+                        <div class="shang_info"><p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p></div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row typo" >
-                    <blockquote>
-                        <p>本文作者： <span th:text="${blog.user.nickname}">article.author</span></p>
-                        <p>微信公众号： <span >学编程的文若</span></p>
-                        <p>版权声明： <span>本博客所有文章除特别声明外，均采用  BY-NC-SA 许可协议。转载请注明出处！</span></p>
-                    </blockquote>
+            <!-- 版权声明 -->
+            <div class="blog-card blog-copyright">
+                <p><strong>本文作者：</strong> <span th:text="${blog.user.nickname}">作者</span></p>
+                <p><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
+            </div>
+
+            <!-- 相关文章推荐 -->
+            <div class="blog-card" th:if="${relatedBlogs != null and !relatedBlogs.isEmpty()}">
+                <div class="ai-related-header">
+                    <span class="ai-related-icon">&#10024;</span>
+                    <span class="ai-related-title">相关文章推荐</span>
                 </div>
-                <div class="row">
-                    <h4 class="end">我也是有底线的哦!</h4>
+                <div class="ai-related-grid">
+                    <a class="ai-related-card" th:each="related : ${relatedBlogs}" th:href="@{/blog/{id}(id=${related.id})}">
+                        <div class="ai-related-cover" th:if="${related.firstPicture != null and !related.firstPicture.isEmpty()}">
+                            <img th:src="${related.firstPicture}" loading="lazy" alt="">
+                        </div>
+                        <div class="ai-related-info">
+                            <div class="ai-related-card-title" th:text="${related.title}">文章标题</div>
+                            <div class="ai-related-meta">
+                                <span><i class="eye icon"></i><span th:text="${related.views}">0</span> 阅读</span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
+
+            <!-- 评论 -->
+            <div class="blog-card" th:if="${blog.commentable}">
+                <div id="comments"></div>
+            </div>
+        </div>
+
+        <!-- 侧边栏 -->
+        <aside class="blog-sidebar">
+            <div class="sidebar-card sidebar-author">
+                <img th:src="${blog.user.avatar}" class="sidebar-avatar" alt="">
+                <div class="sidebar-author-name" th:text="${blog.user.nickname}">作者</div>
+            </div>
+            <div class="sidebar-card sidebar-toc" id="sidebarToc">
+                <h4>目录</h4>
+                <div id="tocList" class="toc-list"></div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- AI 问答浮窗 -->
+    <div id="ai-chat-widget" class="ai-chat-widget">
+        <div id="ai-chat-bubble" class="ai-chat-bubble" onclick="toggleAiChat()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.55 3.35 17L2 22L7 20.65C8.45 21.5 10.15 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white"/>
+            </svg>
+            <span class="ai-chat-bubble-text">AI</span>
+        </div>
+        <div id="ai-chat-panel" class="ai-chat-panel" style="display:none;">
+            <div class="ai-chat-header">
+                <span>&#10024; AI 文章助手</span>
+                <span class="ai-chat-close" onclick="toggleAiChat()">&times;</span>
+            </div>
+            <div id="ai-chat-messages" class="ai-chat-messages">
+                <div class="ai-chat-msg ai-msg">你好！我是本文的 AI 助手，可以回答关于这篇文章的任何问题。</div>
+            </div>
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-chat-input" placeholder="输入关于本文的问题..." onkeydown="if(event.key==='Enter')sendAiChat()">
+                <button onclick="sendAiChat()" id="ai-chat-send">发送</button>
             </div>
         </div>
     </div>
-    <div th:if="${blog.commentable}" class="commentContent" >
-        <div id="comments" ></div>
-    </div>
+
     <button id="toTop" class="circular ui icon button" style="display: none;">
         <i class="ui caret up icon"></i>
     </button>
@@ -141,6 +184,105 @@
         appId: data_1,
         appKey: data_2
     })
+
+    // AI Chat
+    var _blogId = /*[[${blog.id}]]*/ 0;
+
+    function toggleAiChat() {
+        var panel = document.getElementById('ai-chat-panel');
+        var bubble = document.getElementById('ai-chat-bubble');
+        if (panel.style.display === 'none') {
+            panel.style.display = 'flex';
+            bubble.style.display = 'none';
+            document.getElementById('ai-chat-input').focus();
+        } else {
+            panel.style.display = 'none';
+            bubble.style.display = 'flex';
+        }
+    }
+
+    function sendAiChat() {
+        var input = document.getElementById('ai-chat-input');
+        var question = input.value.trim();
+        if (!question) return;
+
+        var messages = document.getElementById('ai-chat-messages');
+        // User message
+        var userDiv = document.createElement('div');
+        userDiv.className = 'ai-chat-msg user-msg';
+        userDiv.textContent = question;
+        messages.appendChild(userDiv);
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+
+        // Loading
+        var loadDiv = document.createElement('div');
+        loadDiv.className = 'ai-chat-msg ai-msg ai-loading';
+        loadDiv.innerHTML = '<span class="ai-dots"><span>.</span><span>.</span><span>.</span></span> 思考中';
+        messages.appendChild(loadDiv);
+        messages.scrollTop = messages.scrollHeight;
+
+        var sendBtn = document.getElementById('ai-chat-send');
+        sendBtn.disabled = true;
+        sendBtn.textContent = '...';
+
+        $.ajax({
+            url: '/api/ai/chat',
+            type: 'POST',
+            data: { blogId: _blogId, question: question },
+            success: function(res) {
+                loadDiv.remove();
+                var aiDiv = document.createElement('div');
+                aiDiv.className = 'ai-chat-msg ai-msg';
+                aiDiv.textContent = (res && res.data) ? res.data : (res && res.message ? res.message : '抱歉，暂时无法回答');
+                messages.appendChild(aiDiv);
+                messages.scrollTop = messages.scrollHeight;
+            },
+            error: function() {
+                loadDiv.remove();
+                var errDiv = document.createElement('div');
+                errDiv.className = 'ai-chat-msg ai-msg';
+                errDiv.textContent = '网络错误，请稍后再试';
+                messages.appendChild(errDiv);
+                messages.scrollTop = messages.scrollHeight;
+            },
+            complete: function() {
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送';
+            }
+        });
+    }
+
+    // Check AI status and hide chat if disabled
+    $.get('/api/ai/status', function(res) {
+        if (!res || !res.data || !res.data.enabled) {
+            var widget = document.getElementById('ai-chat-widget');
+            if (widget) widget.style.display = 'none';
+        }
+    });
+
+    // Generate TOC from article headings
+    (function() {
+        var content = document.getElementById('blogContent');
+        var tocList = document.getElementById('tocList');
+        var tocCard = document.getElementById('sidebarToc');
+        if (!content || !tocList) return;
+        var headings = content.querySelectorAll('h1,h2,h3,h4');
+        if (headings.length === 0) {
+            if (tocCard) tocCard.style.display = 'none';
+            return;
+        }
+        var html = '';
+        for (var i = 0; i < headings.length; i++) {
+            var h = headings[i];
+            var id = 'heading-' + i;
+            h.id = id;
+            var level = parseInt(h.tagName.charAt(1));
+            var indent = Math.max(0, level - 2) * 16;
+            html += '<a href="#' + id + '" class="toc-item" style="padding-left:' + indent + 'px;">' + h.textContent + '</a>';
+        }
+        tocList.innerHTML = html;
+    })();
 
 </script>
 

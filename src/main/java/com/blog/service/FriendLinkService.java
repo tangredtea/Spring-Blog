@@ -49,4 +49,10 @@ public interface FriendLinkService {
      */
     void deleteFriendLink(Integer id);
 
+    /**
+     * 得到友链数量
+     * @return 数量
+     */
+    int countFriendLink();
+
 }

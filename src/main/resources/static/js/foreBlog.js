@@ -1,3 +1,12 @@
+/* 页面加载完成后隐藏预加载遮罩 */
+$(window).on('load', function(){
+    var preloader = document.getElementById('page-preloader');
+    if(preloader){
+        preloader.classList.add('loaded');
+        setTimeout(function(){ preloader.remove(); }, 500);
+    }
+});
+
 function formatDate(value,formatString){
     if(value==null){
         return "";

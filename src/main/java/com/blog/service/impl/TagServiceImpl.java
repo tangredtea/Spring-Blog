@@ -82,4 +82,9 @@ public class TagServiceImpl implements TagService {
     public int deleteTag(Integer id) {
         return tagDao.deleteTag(id);
     }
+
+    @Override
+    public int countTag() {
+        return tagDao.getCount();
+    }
 }

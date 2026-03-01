@@ -61,6 +61,16 @@
         where b.type_id = t.id order by b.update_time desc
     </select>
 
+    <!--获取所有已发布博客-->
+    <select id="getAllPublishedBlogs" resultMap="blog">
+        select b.id, b.title, b.update_time, b.type_id, b.tag_ids, b.description,
+               t.id typeId, t.name typeName
+        from t_blog b
+        left join t_type t on b.type_id = t.id
+        where b.published = 1
+        order by b.update_time desc
+    </select>
+
     <!--得到分类文章-->
     <select id="getByTypeId" resultMap="blog">
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
@@ -164,6 +174,10 @@
         insert into t_blog_tags (tag_id, blog_id) values (#{tagId},#{blogId});
     </insert>
 
+    <delete id="deleteBlogAndTagByBlogId">
+        delete from t_blog_tags where blog_id = #{blogId}
+    </delete>
+
 
     <select id="findGroupYear" resultType="String">
         select DATE_FORMAT(b.update_time, '%Y') from t_blog b order by b.update_time desc
@@ -187,6 +201,11 @@
     <!--原子性增加浏览量（线程安全）-->
     <update id="incrementViews">
         UPDATE t_blog SET views = views + 1 WHERE id = #{id}
+    </update>
+
+    <!--批量增加浏览量-->
+    <update id="addViews">
+        UPDATE t_blog SET views = views + #{increment} WHERE id = #{id}
     </update>
 
 

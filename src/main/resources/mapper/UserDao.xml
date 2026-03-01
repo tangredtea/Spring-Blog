@@ -21,12 +21,16 @@
         where username = #{username} and password = #{password};
     </select>
 
+    <select id="queryByUsername" resultType="User">
+        select * from t_user where username = #{username}
+    </select>
+
     <select id="getUserInfoById" resultType="com.blog.entity.User">
         select nickname, username, id , email from t_user where id = #{id}
     </select>
 
     <select id="getAllUser" resultType="com.blog.entity.User">
-        select * from t_user
+        select id, username, nickname, email, avatar from t_user
     </select>
 
     <select id="getUserInfoByUsername" resultType="java.lang.Integer">

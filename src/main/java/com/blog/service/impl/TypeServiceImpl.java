@@ -56,4 +56,9 @@ public class TypeServiceImpl implements TypeService {
     public int deleteType(Integer id) {
         return typeDao.deleteType(id);
     }
+
+    @Override
+    public int countType() {
+        return typeDao.getCount();
+    }
 }

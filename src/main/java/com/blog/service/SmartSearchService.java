@@ -20,7 +20,21 @@ public class SmartSearchService {
 
     @Resource
     private BlogDao blogDao;
-    
+
+    /** Simple in-memory cache for search suggestions to avoid repeated DB queries */
+    private volatile List<Blog> publishedBlogsCache;
+    private volatile long cacheTimestamp;
+    private static final long CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+    private List<Blog> getCachedPublishedBlogs() {
+        long now = System.currentTimeMillis();
+        if (publishedBlogsCache == null || now - cacheTimestamp > CACHE_TTL_MS) {
+            publishedBlogsCache = blogDao.getAllPublishedBlogs();
+            cacheTimestamp = now;
+        }
+        return publishedBlogsCache;
+    }
+
     /**
      * 提取关键词
      * @param text 文本内容
@@ -35,7 +49,7 @@ public class SmartSearchService {
         ));
         
         // 去除 HTML 标签
-        String cleanText = text.replaceAll("<[^>]+", "");
+        String cleanText = text.replaceAll("<[^>]+>", "");
         
         // 按非中文字符分割
         String[] words = cleanText.split("[^\\u4e00-\\u9fa5a-zA-Z0-9]+");
@@ -100,7 +114,7 @@ public class SmartSearchService {
             return Collections.emptyList();
         }
         
-        List<Blog> allBlogs = blogDao.getAllPublishedBlogs();
+        List<Blog> allBlogs = getCachedPublishedBlogs();
         
         return allBlogs.stream()
                 .filter(b -> !b.getId().equals(blogId))
@@ -121,15 +135,28 @@ public class SmartSearchService {
         if (query == null || query.trim().isEmpty()) {
             return Collections.emptyList();
         }
-        
-        List<Blog> blogs = blogDao.getAllPublishedBlogs();
+
+        List<Blog> blogs = getCachedPublishedBlogs();
         String lowerQuery = query.toLowerCase();
-        
-        return blogs.stream()
-                .filter(b -> b.getTitle() != null && 
+
+        // Match by title first, then by description
+        List<String> titleMatches = blogs.stream()
+                .filter(b -> b.getTitle() != null &&
                        b.getTitle().toLowerCase().contains(lowerQuery))
                 .map(Blog::getTitle)
-                .limit(5)
                 .collect(Collectors.toList());
+
+        List<String> descMatches = blogs.stream()
+                .filter(b -> b.getTitle() != null &&
+                       !b.getTitle().toLowerCase().contains(lowerQuery) &&
+                       b.getDescription() != null &&
+                       b.getDescription().toLowerCase().contains(lowerQuery))
+                .map(Blog::getTitle)
+                .collect(Collectors.toList());
+
+        List<String> result = new ArrayList<>(titleMatches);
+        result.addAll(descMatches);
+
+        return result.stream().limit(6).collect(Collectors.toList());
     }
 }

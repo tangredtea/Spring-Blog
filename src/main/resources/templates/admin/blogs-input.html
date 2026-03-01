@@ -21,6 +21,7 @@
 <!--**********************************
   Main wrapper start
 ***********************************-->
+<div th:replace="admin/fragments/header :: preloader"></div>
 <div id="main-wrapper">
   <!--**********************************
        Nav header start
@@ -140,6 +141,9 @@
                       </div>
                     </div>
                   </div>
+                  <button type="button" id="ai-suggest-tags-btn" class="ui mini teal button" style="margin-top: 5px;" onclick="aiSuggestTags()">
+                    <i class="magic icon"></i> AI 推荐标签
+                  </button>
                 </div>
               </div>
 
@@ -157,6 +161,11 @@
               </div>
 
               <div class="required field">
+                <div style="margin-bottom: 5px;">
+                  <button type="button" id="ai-summary-btn" class="ui mini teal button" onclick="aiGenerateSummary()">
+                    <i class="magic icon"></i> AI 生成摘要
+                  </button>
+                </div>
                 <div id="md-description" style="z-index: 1 !important;">
                   <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="300"></textarea>
                 </div>
@@ -308,6 +317,62 @@
       }
     }
   });
+
+  // AI 生成摘要
+  function aiGenerateSummary() {
+    var content = contentEditor.getMarkdown();
+    if (!content || !content.trim()) {
+      alert('请先输入博客内容');
+      return;
+    }
+    var $btn = $('#ai-summary-btn');
+    $btn.addClass('loading disabled');
+    $.post('/admin/ai/summary', {content: content}, function(res) {
+      $btn.removeClass('loading disabled');
+      if (res.code === 200 && res.data) {
+        // 将摘要填入描述编辑器
+        $('#md-description').find('textarea[name="description"]').val(res.data);
+        // 如果 editormd 描述编辑器已初始化，也同步
+        if (typeof descriptionEditor !== 'undefined' && descriptionEditor) {
+          descriptionEditor.setMarkdown(res.data);
+        }
+        alert('摘要已生成并填入描述框');
+      } else {
+        alert(res.msg || 'AI 生成摘要失败');
+      }
+    }).fail(function() {
+      $btn.removeClass('loading disabled');
+      alert('请求失败，请检查 AI 服务是否已配置');
+    });
+  }
+
+  // AI 推荐标签
+  function aiSuggestTags() {
+    var title = $('input[name="title"]').val();
+    var content = contentEditor.getMarkdown();
+    if (!title || !title.trim()) {
+      alert('请先输入文章标题');
+      return;
+    }
+    if (!content || !content.trim()) {
+      alert('请先输入博客内容');
+      return;
+    }
+    var $btn = $('#ai-suggest-tags-btn');
+    $btn.addClass('loading disabled');
+    $.post('/admin/ai/suggest-tags', {title: title, content: content}, function(res) {
+      $btn.removeClass('loading disabled');
+      if (res.code === 200 && res.data) {
+        var tags = res.data;
+        alert('AI 推荐标签：' + tags.join('、') + '\n\n请在标签下拉框中手动选择对应标签。');
+      } else {
+        alert(res.msg || 'AI 推荐标签失败');
+      }
+    }).fail(function() {
+      $btn.removeClass('loading disabled');
+      alert('请求失败，请检查 AI 服务是否已配置');
+    });
+  }
 
 </script>
 </body>

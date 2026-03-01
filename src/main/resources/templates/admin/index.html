@@ -7,7 +7,7 @@
 <!--*******************
     Preloader start
 ********************-->
-
+<div th:replace="admin/fragments/header :: preloader"></div>
 <!--*******************
     Preloader end
 ********************-->
@@ -228,6 +228,101 @@
                 </div>
 
             </div>
+
+            <!-- AI 状态 + 快捷操作 -->
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">AI 服务状态</h4>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${ai_enabled}" class="d-flex align-items-center mb-3">
+                                <span class="badge badge-success badge-lg me-3" style="font-size:14px;">运行中</span>
+                                <span>AI 智能助手已就绪</span>
+                            </div>
+                            <div th:unless="${ai_enabled}" class="d-flex align-items-center mb-3">
+                                <span class="badge badge-warning badge-lg me-3" style="font-size:14px;">未配置</span>
+                                <span>请在配置文件中设置 AI API Key</span>
+                            </div>
+                            <a href="/admin/ai/assistant" class="btn btn-primary btn-sm">
+                                <i class="la la-magic"></i> 打开 AI 助手
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">快捷操作</h4>
+                        </div>
+                        <div class="card-body">
+                            <a th:href="@{/admin/blogs/input}" class="btn btn-rounded btn-primary me-2 mb-2">
+                                <i class="la la-pen"></i> 发布文章
+                            </a>
+                            <a th:href="@{/admin/types/input}" class="btn btn-rounded btn-info me-2 mb-2">
+                                <i class="la la-folder-plus"></i> 新增分类
+                            </a>
+                            <a th:href="@{/admin/tags/input}" class="btn btn-rounded btn-success me-2 mb-2">
+                                <i class="la la-tag"></i> 新增标签
+                            </a>
+                            <a th:href="@{/admin/friendLinks/input}" class="btn btn-rounded btn-warning me-2 mb-2">
+                                <i class="la la-link"></i> 新增友链
+                            </a>
+                            <a href="/admin/settings" class="btn btn-rounded btn-secondary me-2 mb-2">
+                                <i class="la la-cog"></i> 网站设置
+                            </a>
+                            <a href="/admin/ai/assistant" class="btn btn-rounded btn-dark me-2 mb-2">
+                                <i class="la la-magic"></i> AI 助手
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最近发布的文章 -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">最近发布的文章</h4>
+                            <a th:href="@{/admin/blogs}" class="btn btn-primary btn-sm">查看全部</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th>标题</th>
+                                            <th>分类</th>
+                                            <th>浏览量</th>
+                                            <th>状态</th>
+                                            <th>更新时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="blog : ${recentBlogs}">
+                                            <td>
+                                                <a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">文章标题</a>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-primary" th:text="${blog.type != null} ? ${blog.type.name} : '-'">分类</span>
+                                            </td>
+                                            <td th:text="${blog.views}">0</td>
+                                            <td>
+                                                <span th:if="${blog.published}" class="badge badge-success">已发布</span>
+                                                <span th:unless="${blog.published}" class="badge badge-secondary">草稿</span>
+                                            </td>
+                                            <td th:text="${blog.updateTime != null} ? ${#dates.format(blog.updateTime, 'yyyy-MM-dd HH:mm')} : '-'">2024-01-01</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!--**********************************

@@ -54,4 +54,10 @@ public interface TypeService {
      * @return 状态值
      */
     int deleteType(Integer id);
+
+    /**
+     * 得到分类数量
+     * @return 数量
+     */
+    int countType();
 }

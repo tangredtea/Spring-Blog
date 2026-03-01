@@ -69,15 +69,15 @@ public class MessageController {
     }
 
     /**
-     * 删除留言
+     * 删除留言（需要管理员权限）
      * @param id 留言id
      * @return 渲染视图
      */
-    @GetMapping("/messages/{id}/delete")
+    @PostMapping("/admin/messages/{id}/delete")
     public String delete(@PathVariable Long id){
         messageService.deleteMessage(id);
         deleteCache();
-        return "message";
+        return "redirect:/messageComment";
     }
 
     public void deleteCache(){

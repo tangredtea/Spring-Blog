@@ -70,7 +70,7 @@ public class TagController {
         return "redirect:/admin/tags";
     }
 
-    @GetMapping("/tags/{id}/delete")
+    @PostMapping("/tags/{id}/delete")
     public String delete(@PathVariable Integer id, RedirectAttributes attributes){
         tagService.deleteTag(id);
         attributes.addFlashAttribute("msg", "删除成功");

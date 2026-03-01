@@ -22,6 +22,13 @@ public interface UserDao {
     User queryByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     /**
+     * 通过用户名查询用户
+     * @param username 用户名
+     * @return user
+     */
+    User queryByUsername(@Param("username") String username);
+
+    /**
      * 通过id查询用户信息
      * @param id 用户id
      * @return user

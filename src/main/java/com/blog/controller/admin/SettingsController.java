@@ -31,7 +31,7 @@ public class SettingsController {
 
     @PostMapping("/settings")
     public String message(@Valid SettingsConfig temp, RedirectAttributes attributes) throws IOException, IllegalAccessException {
-        PropertiesUtil.Write(settings.getClass(),temp);
+        PropertiesUtil.write(settings.getClass(),temp);
         settings = temp;
         attributes.addFlashAttribute("msg", "编辑成功");
         return "redirect:/admin/settings";

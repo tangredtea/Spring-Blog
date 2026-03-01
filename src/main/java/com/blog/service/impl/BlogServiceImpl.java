@@ -11,6 +11,7 @@ import com.blog.service.RedisService;
 import com.blog.util.MarkdownUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -84,7 +85,17 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int countBlog() {
-        return getAllBlog().size();
+        return blogDao.getCount();
+    }
+
+    @Override
+    public int getTotalViews() {
+        return blogDao.getViews();
+    }
+
+    @Override
+    public int getAvgViews() {
+        return blogDao.getAvgViews();
     }
 
     @Override
@@ -102,40 +113,34 @@ public class BlogServiceImpl implements BlogService {
      * @param blog 博文
      * @return 保存博文
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveBlog(Blog blog) {
         final Date now = new Date();
-        blog.setCreateTime(now );
+        blog.setCreateTime(now);
         blog.setUpdateTime(now);
         blog.setViews(0);
-        //保存博客
         blogDao.saveBlog(blog);
-        //保存博客后才能获取自增的id
         Long id = blog.getId();
-        //将标签的数据存到t_blogs_tag表中
         blog.getTags().forEach(tag -> {
-            //新增时无法获取自增的id,在mybatis里修改
             BlogAndTag blogAndTag = new BlogAndTag(tag.getId(), id);
             blogDao.saveBlogAndTag(blogAndTag);
         });
         return 1;
     }
 
-    /**
-     * 编辑博客
-     * @param blog 博文
-     * @return 状态值
-     */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
-        //将标签的数据存到t_blogs_tag表中
+        // 先删除旧的标签关联，再插入新的
+        blogDao.deleteBlogAndTagByBlogId(blog.getId());
         blog.getTags().forEach(tag -> {
             BlogAndTag blogAndTag = new BlogAndTag(tag.getId(), blog.getId());
             blogDao.saveBlogAndTag(blogAndTag);
         });
-        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(blog.getId()))){
-            cache.hSet(RedisKey.ARTCILE, String.valueOf(blog.getId()), blog);
+        if (cache.hHasKey(RedisKey.ARTICLE, String.valueOf(blog.getId()))){
+            cache.hSet(RedisKey.ARTICLE, String.valueOf(blog.getId()), blog);
         }
         return blogDao.updateBlog(blog);
     }
@@ -143,11 +148,11 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public int deleteBlog(Long id) {
         //如果缓存中有这个键值的话
-        if (cache.hHasKey(RedisKey.ARTCILEVIEWS, String.valueOf(id))){
-            cache.hDel(RedisKey.ARTCILEVIEWS, String.valueOf(id));
+        if (cache.hHasKey(RedisKey.ARTICLE_VIEWS, String.valueOf(id))){
+            cache.hDel(RedisKey.ARTICLE_VIEWS, String.valueOf(id));
         }
-        if (cache.hHasKey(RedisKey.ARTCILE, String.valueOf(id))){
-            cache.hDel(RedisKey.ARTCILE, String.valueOf(id));
+        if (cache.hHasKey(RedisKey.ARTICLE, String.valueOf(id))){
+            cache.hDel(RedisKey.ARTICLE, String.valueOf(id));
         }
         return blogDao.deleteBlog(id);
     }

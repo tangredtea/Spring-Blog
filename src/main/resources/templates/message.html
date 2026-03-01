@@ -59,7 +59,7 @@
             <input type="hidden" name="parentMessage.id" value="-1">
             <!--                    留言区-->
             <div class="field">
-                <textarea name="content" placeholder="请输入留言信息..."></textarea>
+                <textarea name="content" placeholder="请输入留言信息... (AI 智能助手可能会协助博主回复)"></textarea>
             </div>
             <div class="ui grid">
                 <!--                    输入姓名-->
@@ -112,7 +112,9 @@
                                 <div class="text" th:text="${message.content}">太赞了！ </div>
                                 <div class="actions">
                                     <a class="reply" data-messageid="1" data-messagenickname="Matt" th:attr="data-messageid=${message.id},data-messagenickname=${message.nickname}" onclick="reply(this)">回复</a>
-                                    <a class="delete" href="#" th:href="@{/messages/{id}/delete(id=${message.id})}" onclick="return confirm('确定要删除该评论吗？三思啊! 删了可就没了！')" th:if="${session.user}">删除</a>
+                                    <form th:if="${session.user}" th:action="@{/admin/messages/{id}/delete(id=${message.id})}" method="post" style="display:inline">
+                                        <button type="submit" class="delete" onclick="return confirm('确定要删除该评论吗？三思啊! 删了可就没了！')" style="background:none;border:none;cursor:pointer;color:rgba(0,0,0,.4);padding:0;font-size:inherit">删除</button>
+                                    </form>
                                 </div>
                             </div>
                             <!--子集留言-->
@@ -133,7 +135,9 @@
                                         <div class="text" th:text="${reply.content}">太赞了！ </div>
                                         <div class="actions">
                                             <a class="reply" data-messageid="1" data-messagenickname="Matt" th:attr="data-messageid=${reply.id},data-messagenickname=${reply.nickname}" onclick="reply(this)">回复</a>
-                                            <a class="delete" href="#" th:href="@{/messages/{id}/delete(id=${reply.id})}" onclick="return confirm('确定要删除该评论吗？三思啊! 删了可就没了！')" th:if="${session.user}">删除</a>
+                                            <form th:if="${session.user}" th:action="@{/admin/messages/{id}/delete(id=${reply.id})}" method="post" style="display:inline">
+                                                <button type="submit" class="delete" onclick="return confirm('确定要删除该评论吗？三思啊! 删了可就没了！')" style="background:none;border:none;cursor:pointer;color:rgba(0,0,0,.4);padding:0;font-size:inherit">删除</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -217,8 +221,9 @@
 
     //发送请求给后端
     function postData() {
+        $('#messagepost-btn').addClass('loading disabled');
         $.ajax({
-            url:"" , // 请求路径
+            url:"/message" , // 请求路径
             type:"POST" , //请求方式
             data:{"parentMessage.id":$("[name='parentMessage.id']").val(),"nickname":$("[name='nickname']").val(),"email":$("[name='email']").val(),"content":$("[name='content']").val()},
             success:function () {
@@ -226,6 +231,7 @@
                 location.reload();
             },//响应成功后的回调函数
             error:function () {
+                $('#messagepost-btn').removeClass('loading disabled');
                 alert("出错啦...")
             },//表示如果请求响应出现错误，会执行的回调函数
             dataType:"text"//设置接受到的响应数据的格式
