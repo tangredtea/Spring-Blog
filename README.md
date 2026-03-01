@@ -171,7 +171,9 @@ Spring-Blog/
 
 ---
 
-## AI Configuration
+## Configuration
+
+### AI Configuration (Optional)
 
 AI features are optional. To enable them, set the following in `application-dev.yml` or via environment variables:
 
@@ -184,6 +186,29 @@ ai:
 ```
 
 When AI is not configured, the system gracefully falls back to default behavior (no errors).
+
+### Site Settings
+
+Edit `src/main/resources/messages.properties` to customize your blog:
+
+```properties
+# Basic Info
+web_Name=Your Blog Name
+web_Description=Your blog description
+web_Keywords=Java Blog, Tech Blog
+
+# Social Links
+web_Github=https://github.com/yourusername
+web_Csdn=https://blog.csdn.net/yourusername
+
+# Comment System (Valine)
+valine_AppID=your_leancloud_appid
+valine_AppKey=your_leancloud_appkey
+
+# WeChat Work Webhook (Optional - for error notifications)
+wx_Webhook=https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your_key
+# Set to "0" to disable webhook notifications
+```
 
 ---
 
