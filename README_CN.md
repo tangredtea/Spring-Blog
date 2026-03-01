@@ -39,10 +39,18 @@
 - **HikariCP** - 高性能连接池
 
 ### 安全特性
-- BCrypt 密码加密
-- SQL 注入防护（MyBatis 参数化查询）
-- 后台路由登录拦截器
-- 输入验证
+- **BCrypt 加密** - 安全的密码哈希（Spring Security Crypto）
+- **SQL 注入防护** - MyBatis 参数化查询
+- **登录拦截器** - 后台路由保护
+- **输入验证** - Bean Validation（JSR-380）
+
+### 附加功能
+- **SEO 优化** - 站点地图生成、元标签、结构化数据
+- **Markdown 支持** - CommonMark 解析器，支持 GFM 表格和标题锚点
+- **异常监控** - 企业微信 Webhook 通知系统错误
+- **全局异常处理** - 自定义错误页面和详细日志记录
+- **AOP 日志** - 基于面向切面编程的请求/响应日志
+- **定时任务** - 自动缓存刷新和维护
 
 ---
 
@@ -64,8 +72,8 @@
 ## 快速开始
 
 ### 环境要求
-- JDK 8+
-- MySQL 5.7+
+- JDK 8+（已在 JDK 21 上测试）
+- MySQL 5.7+（推荐 MySQL 8.0）
 - Redis 5.0+
 - Maven 3.6+
 
@@ -120,30 +128,52 @@ docker-compose up -d
 ```
 Spring-Blog/
 ├── src/main/java/com/blog/
-│   ├── controller/      # 控制器（后台 + 前台）
+│   ├── controller/      # 控制器（后台 + 前台 + 通用）
+│   │   ├── admin/       # 后台管理控制器
+│   │   ├── blog/        # 前台博客控制器
+│   │   ├── common/      # 通用控制器
+│   │   └── SitemapController.java  # SEO 站点地图
 │   ├── service/         # 业务逻辑 & AI 服务
-│   ├── dao/             # 数据访问层
-│   ├── entity/          # 实体类
-│   ├── config/          # 配置（Redis、WebMvc 等）
+│   │   └── impl/        # 服务实现类
+│   ├── dao/             # 数据访问层（MyBatis 映射器）
+│   ├── entity/          # 实体类（Blog、User、Tag 等）
+│   ├── pojo/            # 数据传输对象（DTOs）
+│   ├── config/          # 配置（Redis、WebMvc、Settings）
 │   ├── interceptor/     # 登录拦截器
 │   ├── aspect/          # AOP 日志
 │   ├── scheduled/       # 定时任务（缓存刷新）
-│   └── util/            # 工具类（BCrypt、CommonResult）
+│   ├── exception/       # 全局异常处理
+│   ├── enums/           # 枚举类（BlogStatus 等）
+│   └── util/            # 工具类（密码、SEO、Markdown 等）
 ├── src/main/resources/
 │   ├── mapper/          # MyBatis XML 映射文件
 │   ├── templates/       # Thymeleaf 模板
+│   │   ├── admin/       # 后台管理页面
+│   │   ├── fragments/   # 可复用片段
+│   │   └── error/       # 错误页面（404、500）
 │   ├── static/          # 静态资源（CSS/JS/图片）
-│   └── application*.yml # 配置文件
+│   │   ├── css/         # 样式表
+│   │   ├── js/          # JavaScript 文件
+│   │   ├── images/      # 图片
+│   │   ├── fonts/       # Web 字体
+│   │   └── lib/         # 第三方库
+│   ├── application.yml  # 主配置文件
+│   ├── application-dev.yml   # 开发环境配置
+│   ├── application-pro.yml   # 生产环境配置
+│   └── messages.properties   # 国际化消息
 ├── src/test/            # 单元测试
 ├── blog.sql             # 数据库结构 & 初始数据
 ├── Dockerfile           # Docker 构建
 ├── docker-compose.yml   # Docker Compose
+├── nginx.conf           # Nginx 配置
 └── .env.example         # 环境变量模板
 ```
 
 ---
 
-## AI 配置
+## 配置说明
+
+### AI 配置（可选）
 
 AI 功能是可选的。要启用它们，请在 `application-dev.yml` 中设置或通过环境变量配置：
 
@@ -156,6 +186,29 @@ ai:
 ```
 
 当未配置 AI 时，系统会优雅地回退到默认行为（不会报错）。
+
+### 站点设置
+
+编辑 `src/main/resources/messages.properties` 自定义你的博客：
+
+```properties
+# 基本信息
+web_Name=你的博客名称
+web_Description=你的博客描述
+web_Keywords=Java博客, 技术博客
+
+# 社交链接
+web_Github=https://github.com/yourusername
+web_Csdn=https://blog.csdn.net/yourusername
+
+# 评论系统（Valine）
+valine_AppID=your_leancloud_appid
+valine_AppKey=your_leancloud_appkey
+
+# 企业微信 Webhook（可选 - 用于错误通知）
+wx_Webhook=https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your_key
+# 设置为 "0" 可禁用 webhook 通知
+```
 
 ---
 

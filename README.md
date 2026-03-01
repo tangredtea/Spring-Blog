@@ -39,10 +39,18 @@ English | [简体中文](README_CN.md)
 - **HikariCP** - High-performance connection pool
 
 ### Security
-- BCrypt password encryption
-- SQL injection protection (MyBatis parameterized queries)
-- Login interceptor for admin routes
-- Input validation
+- **BCrypt Encryption** - Secure password hashing (Spring Security Crypto)
+- **SQL Injection Protection** - MyBatis parameterized queries
+- **Login Interceptor** - Admin route protection
+- **Input Validation** - Bean Validation (JSR-380)
+
+### Additional Features
+- **SEO Optimization** - Sitemap generation, meta tags, structured data
+- **Markdown Support** - CommonMark parser with GFM tables and heading anchors
+- **Exception Monitoring** - WeChat Work webhook notifications for system errors
+- **Global Exception Handling** - Custom error pages with detailed logging
+- **AOP Logging** - Request/response logging with aspect-oriented programming
+- **Scheduled Tasks** - Automatic cache refresh and maintenance
 
 ---
 
@@ -64,8 +72,8 @@ English | [简体中文](README_CN.md)
 ## Quick Start
 
 ### Prerequisites
-- JDK 8+
-- MySQL 5.7+
+- JDK 8+ (tested with JDK 21)
+- MySQL 5.7+ (recommended MySQL 8.0)
 - Redis 5.0+
 - Maven 3.6+
 
@@ -120,24 +128,44 @@ docker-compose up -d
 ```
 Spring-Blog/
 ├── src/main/java/com/blog/
-│   ├── controller/      # Controllers (admin + frontend)
+│   ├── controller/      # Controllers (admin + frontend + common)
+│   │   ├── admin/       # Admin panel controllers
+│   │   ├── blog/        # Frontend blog controllers
+│   │   ├── common/      # Common controllers
+│   │   └── SitemapController.java  # SEO sitemap
 │   ├── service/         # Business logic & AI services
-│   ├── dao/             # Data access layer
-│   ├── entity/          # Entity classes
-│   ├── config/          # Configuration (Redis, WebMvc, etc.)
+│   │   └── impl/        # Service implementations
+│   ├── dao/             # Data access layer (MyBatis mappers)
+│   ├── entity/          # Entity classes (Blog, User, Tag, etc.)
+│   ├── pojo/            # Plain Old Java Objects (DTOs)
+│   ├── config/          # Configuration (Redis, WebMvc, Settings)
 │   ├── interceptor/     # Login interceptor
 │   ├── aspect/          # AOP logging
 │   ├── scheduled/       # Scheduled tasks (cache refresh)
-│   └── util/            # Utilities (BCrypt, CommonResult)
+│   ├── exception/       # Global exception handling
+│   ├── enums/           # Enumerations (BlogStatus, etc.)
+│   └── util/            # Utilities (Password, SEO, Markdown, etc.)
 ├── src/main/resources/
 │   ├── mapper/          # MyBatis XML mappers
 │   ├── templates/       # Thymeleaf templates
+│   │   ├── admin/       # Admin panel pages
+│   │   ├── fragments/   # Reusable fragments
+│   │   └── error/       # Error pages (404, 500)
 │   ├── static/          # Static resources (CSS/JS/images)
-│   └── application*.yml # Configuration files
+│   │   ├── css/         # Stylesheets
+│   │   ├── js/          # JavaScript files
+│   │   ├── images/      # Images
+│   │   ├── fonts/       # Web fonts
+│   │   └── lib/         # Third-party libraries
+│   ├── application.yml  # Main configuration
+│   ├── application-dev.yml   # Development config
+│   ├── application-pro.yml   # Production config
+│   └── messages.properties   # i18n messages
 ├── src/test/            # Unit tests
 ├── blog.sql             # Database schema & seed data
 ├── Dockerfile           # Docker build
 ├── docker-compose.yml   # Docker Compose
+├── nginx.conf           # Nginx configuration
 └── .env.example         # Environment variables template
 ```
 
