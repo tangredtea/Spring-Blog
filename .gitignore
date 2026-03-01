@@ -2,3 +2,8 @@
 /.idea/
 /blog-dev.log
 /log/
+
+# Node.js dependencies in static resources (security risk)
+src/main/resources/static/**/package.json
+src/main/resources/static/**/package-lock.json
+src/main/resources/static/**/node_modules/
